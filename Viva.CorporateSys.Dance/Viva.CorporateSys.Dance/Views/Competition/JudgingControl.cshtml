@@ -1,0 +1,64 @@
+﻿@using Newtonsoft.Json
+@model Viva.CorporateSys.DanceAPI.Judging
+
+@{
+    Layout = null;
+}
+
+<table>
+    <tr>
+        <td colspan="2">
+            <b>Division : @Html.DisplayFor(model => model.DivisionName)</b>
+            <br />
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <b>Judging @Html.DisplayFor(model => model.Sequence) : @Html.DisplayFor(model => model.Text)</b>
+        </td>
+    </tr>
+    @foreach (var Assignment in Model.Assignments)
+    {
+        <tr>
+            <td>
+                @{
+                   bool checkAssignment = (Model.SelectedAssignment != null && Model.SelectedAssignment.Id == Assignment.Id);
+                   bool disableAssignment = (Model.SelectedAssignment != null);
+                   var array = new Dictionary<string, object>();
+                   if(checkAssignment)
+                   { array.Add("checked", "checked"); }
+                   if (disableAssignment)
+                   { array.Add("disabled", "disabled"); }
+               }
+                <!--http://msdn.microsoft.com/en-us/library/dd410596.aspx-->
+                @Html.RadioButtonFor(model => model.SelectedAssignmentJSON, Newtonsoft.Json.JsonConvert.SerializeObject(Assignment), array) <!--disabled=(Model.SelectedAssignment != null)?"disabled":"" -->
+                <!--Html.RadioButton("Buyer", "Buyer", new { onchange = "this.form.submit();" })-->
+            </td>
+            <td>
+                @Assignment.Text
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @if (false)
+                {
+
+                    Html.RenderPartial("~/Views/Competition/JudgingControl.cshtml", Model);
+
+                }
+            </td>
+        </tr>
+    }
+    
+    <tr><td colspan="2">
+            @if (Model.SelectedAssignment == null)
+            {
+                <input type='submit' value='Confirm Answer' />
+            }
+            else
+            {
+
+            }
+        </td></tr>
+</table>

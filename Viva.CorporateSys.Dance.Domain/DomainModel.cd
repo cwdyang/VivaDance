@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Viva.CorporateSys.Dance.Domain.Models.Answer" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAIAAAAAAAAAABABBAAAAIACAAAA=</HashCode>
+      <FileName>Models\Answer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viva.CorporateSys.Dance.Domain.Models.BaseObject" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGEAAAAQAAAAAAAAEAAAAgAAACAAAAKgAAAAAAAAA=</HashCode>
+      <FileName>Models\BaseObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viva.CorporateSys.Dance.Domain.Models.Participant" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCEAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAg=</HashCode>
+      <FileName>Models\Participant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viva.CorporateSys.Dance.Domain.Models.Division" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQBAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAA=</HashCode>
+      <FileName>Models\Division.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viva.CorporateSys.Dance.Domain.Models.Competition" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACCAAAAAAAQAAAAAAAAAAAAAADEAAEQAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Competition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viva.CorporateSys.Dance.Domain.Models.Judging" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAgACAIAAAAAAAAAAAAgBAAAAIAAgCAA=</HashCode>
+      <FileName>Models\Judging.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viva.CorporateSys.Dance.Domain.Models.JudgingAssignment" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAEQAAAAAQAAAA=</HashCode>
+      <FileName>Models\JudgingAssignment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Viva.CorporateSys.Dance.Domain.Models.DivisionType" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAJAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Division.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

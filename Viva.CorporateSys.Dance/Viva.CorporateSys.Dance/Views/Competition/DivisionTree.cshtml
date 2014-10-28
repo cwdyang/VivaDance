@@ -1,0 +1,69 @@
+﻿@using Viva.CorporateSys.DanceAPI
+@model Viva.CorporateSys.Dance.ViewModels.CompetitionViewModel
+           
+@{
+    ViewBag.Title = "Select Competition categories";
+}
+<!--http://www.mikesdotnetting.com/Article/218/Managing-Checkboxes-And-Radios-In-ASP.NET-Razor-Web-Pages-->
+<script>
+    function checkUncheckChildCheckBoxes(checkbox) {
+        var li = $("li#" + checkbox.name);
+        if (li != null) {
+            li.find("input[type=checkbox]").each(function () { this.checked = checkbox.checked; });
+        }
+    }
+</script>
+
+@helper TreeView(IEnumerable<Division> categories)
+{
+    foreach (var Division in categories)
+    {
+        <!--This is crucial for checkUncheckChildCheckBoxes() dont mess with the li's id -->
+       <li style="list-style-type: none;" id="@Division.Id">
+
+            <span>
+                @Html.CheckBox(Division.Id.ToString(), false, new { @onchange = "checkUncheckChildCheckBoxes(this);" })
+                @Division.Text
+            </span>
+            @if (Division.Categories.Count > 0)
+            {
+                <ul>
+                    @TreeView(Division.Categories)
+                </ul>
+            }
+        </li>
+    }
+}
+
+@using (Html.BeginForm("GenerateCompetition", "Competition", FormMethod.Post))
+{
+<article>
+    <p><h3>@ViewBag.Title</h3></p>
+    <fieldset>
+        <ul id="continentFolders">
+            @if (Model.Participant == null)
+            {
+                <li>No categories available.</li>
+            }
+            else
+            {
+                @TreeView(Model.Categories)
+            }
+
+        </ul>
+    </fieldset>
+    
+    <p>
+        <input type='submit' value='Generate Competition' />
+    </p>
+</article>
+}
+
+<aside>
+    <p>
+        @if (Model.Participant != null)
+        {
+            <h3>Participant: @Html.DisplayFor(model => model.Participant.FirstName) @Html.DisplayFor(model => model.Participant.LastName)</h3>
+        }
+    </p>
+</aside>

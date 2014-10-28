@@ -1,0 +1,14 @@
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Datastore.Tests.dll.config
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Datastore.Tests.dll
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Datastore.Tests.pdb
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\EntityFramework.dll
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Datastore.dll
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Domain.dll
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Datastore.pdb
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Domain.pdb
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\EntityFramework.xml
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.dll
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.pdb
+C:\Development\Dance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.csprojResolveAssemblyReference.cache

@@ -1,0 +1,76 @@
+﻿@using System.Web.UI.WebControls
+@model Viva.CorporateSys.Dance.ViewModels.CompetitionViewModel
+
+@{
+    ViewBag.Title = "Viva internal interview Competition";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+@using (Html.BeginForm("AnswerJudging","Competition",FormMethod.Post))
+{
+    
+        <article>
+            <fieldset>
+                <p>
+                    @{ Html.RenderPartial("~/Views/Competition/JudgingControl.cshtml", Model.Competition.Judgings.First(x => x.Sequence == Model.Competition.CurrentJudgingNumber)); }
+                </p>
+                <p>
+                    @if (Model.Competition.CurrentJudgingNumber > 1)
+                    {
+                        @Html.ActionLink("Previous |", "Competition", "Competition", new
+                        {
+                            // htmlAttributes
+                            JudgingNumber = Model.Competition.CurrentJudgingNumber - 1
+                        }, null)
+                    }
+                    
+                    @{
+                    var list = new List<int>();
+
+                    for (int i = 1; i <= Model.Competition.Judgings.ToList().Count; i++)
+                    {
+
+                        list.Add(i);
+                    }
+                    }
+                    
+                    
+                    Jump to Judging @Html.DropDownList("ddlJudgingJump", new SelectList(list.AsEnumerable(), Model.Competition.CurrentJudgingNumber), new { @onchange = "this.form.action = 'Competition?JudgingNumber='+$('#ddlJudgingJump').val(); this.form.submit();" }) 
+                    
+
+                    @if (Model.Competition.CurrentJudgingNumber < Model.Competition.Judgings.ToList().Count)
+                    {
+                        @Html.ActionLink("| Next", "Competition", "Competition", new
+                        {
+                            // htmlAttributes
+                            JudgingNumber = Model.Competition.CurrentJudgingNumber + 1
+                        }, null)
+                    }
+                    
+                    
+
+
+                    
+                    
+                </p>
+            </fieldset>
+    </article>
+}
+<aside>
+    <p>
+        <h3>You are: @Html.DisplayFor(model => model.Participant.FirstName) @Html.DisplayFor(model => model.Participant.LastName)</h3>
+    </p>
+
+    <p>
+        Competitioniner = @Html.DisplayFor(model => model.Competition.Competitioniner)
+    </p>
+
+    <p>
+        Total Judgings (Answered) = @Html.DisplayFor(model => model.Competition.Judgings.ToList().Count) (@Html.DisplayFor(model => model.Competition.Judgings.Where(x=>x.SelectedAssignment!=null).ToList().Count))
+    </p>
+
+</aside>
