@@ -36,8 +36,8 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
         public IList<Competition> GetOpenCompetitions()
         {
             var list = DbContext.JudgeCompetitions.Select(x => x.Competition)
-                .Include(x => x.JudgeCompetitions.Select(y=>y.Judge))
-                .Include(x => x.CompetitorCompetitions.Select(y=>y.Competitor))
+                .Include(x => x.JudgeCompetitions.Select(y=>y.Judge).Select(z=>z.Organisation))
+                .Include(x => x.CompetitorCompetitions.Select(y => y.Competitor).Select(z => z.Organisation))
                 .Where(
                     x =>
                         !new List<CompetitionStatus> {CompetitionStatus.Closed, CompetitionStatus.JudgingCompleted}
@@ -144,6 +144,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
 
 
             var judgingFound = DbContext.Judgings.FirstOrDefault(x=>
+                x.CriterionId == judging.Criterion.Id &&
                 x.CompetitorCompetitionId==judging.CompetitorCompetition.Id&&
                 x.JudgeCompetitionId==judging.JudgeCompetition.Id);
 

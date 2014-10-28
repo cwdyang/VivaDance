@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Viva.CorporateSys.Dance.Datastore.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Viva.CorporateSys.Dance.Domain.Models;
@@ -25,7 +27,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Tests
                 var criteria = compRepo.GetAllCriteria();
 
                 var comps = compRepo.GetOpenCompetitions().OrderBy(x => x.StartedOn);
-00
+
                 compRepo.ClearAllJudgings();
 
                 //comps.First().JudgeCompetitions.Zip(comps.First().CompetitorCompetitions,(x1,x2)=>new {jc = x1,cc = x2}).ToList().ForEach(z =>
@@ -50,7 +52,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Tests
                             JudgeCompetition = z,
                             Id = Guid.NewGuid(),
                             Criterion = criterion,
-                            ScorePoints = (criterion.Caption.StartsWith("Penalty")) ? -10 : 5
+                            ScorePoints = (criterion.Caption.StartsWith("Penalty")) ? -10 : new Random().Next(0,10)
                         };
 
                         listOfJudgings.Add(judging);
@@ -66,20 +68,19 @@ namespace Viva.CorporateSys.Dance.Datastore.Tests
                    
                 });
 
-                var listOfJudgingsGroupedByCompetitor = 
+                var listOfJudgingsGroupedByCompetitorQuery = 
                 listOfJudgings.GroupBy(x => x.CompetitorCompetition.Competitor).Select(g => new
                 {
                         Key= g.Key,
                         Value= g.Select(y => y).ToList()
-                }).ToList();
+                });
 
-                listOfJudgingsGroupedByCompetitor.ForEach(
-
+                listOfJudgingsGroupedByCompetitorQuery.ToList().ForEach(
                     c =>
                     {
                         if (!c.Value.Any(x => x.IsExcluded))
                         {
-                            var orderedJudgings = c.Value.OrderBy(x => x.ScorePoints).ToList();
+                            var orderedJudgings = c.Value.Where(x=>x.ScorePoints>0).OrderBy(x => x.ScorePoints).ToList();
 
                             orderedJudgings.Last().IsExcluded = true;
                             orderedJudgings.First().IsExcluded = true;
@@ -87,8 +88,31 @@ namespace Viva.CorporateSys.Dance.Datastore.Tests
                             compRepo.SubmitJudging(orderedJudgings.Last());
                             compRepo.SubmitJudging(orderedJudgings.First());
                         }
+
+
                     });
 
+                var listOfJudgingsGroupedByCriterionQuery = 
+                listOfJudgings.GroupBy(x => new{ x.Criterion,x.CompetitorCompetition.Competitor}).Select(g => new
+                {
+                        Key= g.Key,
+                        Value= g.Select(y => y).ToList()
+                });
+
+
+                var results = listOfJudgingsGroupedByCriterionQuery.OrderBy(x => x.Key.Competitor.EntityNumber)
+                    .OrderBy(x => x.Key.Criterion.DisplaySequence).Select(
+                        c => new
+                        {
+                            TeamName = c.Key.Competitor.EntityNumber + " " + c.Key.Competitor.EntityName + " " +
+                                       c.Key.Competitor.Organisation.Caption,
+                            CriterionSequence = c.Key.Criterion.DisplaySequence,
+                            CriterionName = c.Key.Criterion.Caption,
+                            CriterionAverageScore = (c.Value.Any(x => x.IsExcluded == false)) ? c.Value.Where(x => x.IsExcluded == false).Average(x => x.ScorePoints) :0
+                        }
+                    );
+
+                results.OrderBy(x => x.TeamName).OrderBy(x => x.CriterionSequence).ToList().ForEach(x => Debug.WriteLine(x.TeamName + " " + x.CriterionName + " " + x.CriterionAverageScore));
             }
         }
 
