@@ -11,9 +11,11 @@ namespace Viva.CorporateSys.DanceAPI
         [OperationContract]
         List<Competition> GetOpenCompetitionsForJudge(Guid judgeId);
         [OperationContract]
+        List<Competition> GetOpenCompetitions();
+        [OperationContract]
         bool IsJudgingCompleteForCompetition(Guid competitionId, Guid? judgeId);
         [OperationContract]
-        bool IsJudgingCompleteForCompetitor(Guid competitionId, Guid? judgeId);
+        bool IsJudgingCompleteForCompetitor(Guid competitionId, Guid competitorId, Guid? judgeId);
         [OperationContract]
         List<Criterion> GetAllowedCriteriaForJudge(Guid competitionId, Guid judgeId);
         [OperationContract]
@@ -25,7 +27,9 @@ namespace Viva.CorporateSys.DanceAPI
         [OperationContract]
         List<Judging> GetJudgingsForCompetitor(Guid competitionId, Guid competitorId);
         [OperationContract]
-        bool SubmitJudging(Judging judging);
+        Judging SubmitJudging(Judging judging);
+        [OperationContract]
+        void ClearAllJudgings();
 
 
     }

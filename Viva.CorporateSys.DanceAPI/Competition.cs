@@ -84,6 +84,11 @@ namespace Viva.CorporateSys.DanceAPI
         [DataMember]
         public ICollection<CompetitorCompetition> CompetitorCompetitions { get; set; }
 
+        [DataMember]
+        public int EntityNumber { get; set; }
+
+        [DataMember]
+        public string EntityName { get; set; }
     }
 
     [DataContract]
@@ -99,6 +104,9 @@ namespace Viva.CorporateSys.DanceAPI
     {
         [DataMember]
         public double? ScorePoints { get; set; }
+
+        [DataMember]
+        public int DisplaySequence { get; set; }
     }
 
     [DataContract]
@@ -173,6 +181,32 @@ namespace Viva.CorporateSys.DanceAPI
 
         [DataMember]
         public Criterion Criterion { get; set; }
+
+        [DataMember]
+        public CompetitorCompetition CompetitorCompetition { get; set; }
+
+        [DataMember]
+        public JudgeCompetition JudgeCompetition { get; set; }
+
+
+        [DataMember]
+        public string GroupByCompetitorCriterion {
+            get
+            {
+                var value = "";
+
+                try
+                {
+                    value = this.CompetitorCompetition.Competitor.Id.ToString() + this.Criterion.Id.ToString();
+                }
+                catch (Exception)
+                {
+
+                }
+
+                return value;
+            }
+        }
     }
 
 
@@ -183,6 +217,9 @@ namespace Viva.CorporateSys.DanceAPI
     {
         [DataMember]
         public ICollection<Judging> Judgings { get; set; }
+
+        [DataMember]
+        public Guid CompetitionId { get; set; }
     }
 
     [DataContract]
@@ -192,7 +229,19 @@ namespace Viva.CorporateSys.DanceAPI
         public CompetitorType CompetitorType { get; set; }
 
         [DataMember]
+        public Competitor Competitor { get; set; }
+
+        [DataMember]
         public int Sequence { get; set; }
+
+        [DataMember]
+        public double TotalScorePoints { get; set; }
+
+        [DataMember]
+        public double TotalPenaltyPoints { get; set; }
+
+
+        
     }
 
     [DataContract]
@@ -200,6 +249,9 @@ namespace Viva.CorporateSys.DanceAPI
     {
         [DataMember]
         public JudgeType JudgeType { get; set; }
+
+        [DataMember]
+        public Judge Judge { get; set; }
 
     }
 

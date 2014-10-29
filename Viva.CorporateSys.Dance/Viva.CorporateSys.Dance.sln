@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0B7F4A
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viva.CorporateSys.DanceAPI.Tests", "Viva.CorporateSys.DanceAPI.Tests\Viva.CorporateSys.DanceAPI.Tests.csproj", "{C8E09706-A746-4953-9D6B-E45E55416D00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{99439466-A4CA-4F1E-8B51-97D251330B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99439466-A4CA-4F1E-8B51-97D251330B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99439466-A4CA-4F1E-8B51-97D251330B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E09706-A746-4953-9D6B-E45E55416D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E09706-A746-4953-9D6B-E45E55416D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E09706-A746-4953-9D6B-E45E55416D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E09706-A746-4953-9D6B-E45E55416D00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

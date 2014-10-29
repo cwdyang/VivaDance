@@ -88,8 +88,6 @@ namespace Viva.CorporateSys.Dance.Datastore.Tests
                             compRepo.SubmitJudging(orderedJudgings.Last());
                             compRepo.SubmitJudging(orderedJudgings.First());
                         }
-
-
                     });
 
                 var listOfJudgingsGroupedByCriterionQuery = 

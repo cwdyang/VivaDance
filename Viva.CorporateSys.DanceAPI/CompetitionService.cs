@@ -30,13 +30,18 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.ScorePoints, opt => opt.MapFrom(d => d.ScorePoints))
                 .ForMember(o => o.Text, opt => opt.MapFrom(d => d.Caption))
                 .ForMember(o => o.IsExcluded, opt => opt.MapFrom(d => d.IsExcluded))
+                .ForMember(o => o.CompetitorCompetition, opt => opt.MapFrom(d => d.CompetitorCompetition))
+                .ForMember(o => o.JudgeCompetition, opt => opt.MapFrom(d => d.JudgeCompetition))
                 .ForMember(o => o.Criterion, opt => opt.MapFrom(d => d.Criterion))
+                .ForMember(o => o.GroupByCompetitorCriterion, opt => opt.ResolveUsing<GroupByCompetitorCriterionResolver>())
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id));
 
             Mapper.CreateMap<Judging, Dance.Domain.Models.Judging>()
                 .ForMember(o => o.ScorePoints, opt => opt.MapFrom(d => d.ScorePoints))
                 .ForMember(o => o.Caption, opt => opt.MapFrom(d => d.Text))
                 .ForMember(o => o.IsExcluded, opt => opt.MapFrom(d => d.IsExcluded))
+                .ForMember(o => o.CompetitorCompetition, opt => opt.MapFrom(d => d.CompetitorCompetition))
+                .ForMember(o => o.JudgeCompetition, opt => opt.MapFrom(d => d.JudgeCompetition))
                 .ForMember(o => o.Criterion, opt => opt.MapFrom(d => d.Criterion))
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id));
            
@@ -55,7 +60,7 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Email, opt => opt.MapFrom(d => d.Email))
                 .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
                 .ForMember(o => o.JudgeCompetitions, opt => opt.MapFrom(d => d.JudgeCompetitions))
-                .ForMember(o => o.Organisation.Caption, opt => opt.MapFrom(d => d.OrganisationName))
+                
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
 
@@ -63,6 +68,8 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                 .ForMember(o => o.Email, opt => opt.MapFrom(d => d.Email))
                 .ForMember(o => o.CompetitorType, opt => opt.MapFrom(d => d.CompetitorType))
+                .ForMember(o => o.EntityNumber, opt => opt.MapFrom(d => d.EntityNumber))
+                .ForMember(o => o.EntityName, opt => opt.MapFrom(d => d.EntityName))
                 .ForMember(o => o.OrganisationName, opt => opt.MapFrom(d => d.Organisation.Caption))
                 .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
@@ -72,7 +79,9 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                 .ForMember(o => o.Email, opt => opt.MapFrom(d => d.Email))
                 .ForMember(o => o.CompetitorType, opt => opt.MapFrom(d => d.CompetitorType))
-                .ForMember(o => o.Organisation.Caption, opt => opt.MapFrom(d => d.OrganisationName))
+                .ForMember(o => o.EntityNumber, opt => opt.MapFrom(d => d.EntityNumber))
+                .ForMember(o => o.EntityName, opt => opt.MapFrom(d => d.EntityName))
+                
                 .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
@@ -82,13 +91,44 @@ namespace Viva.CorporateSys.DanceAPI
             Mapper.CreateMap<CompetitorCompetition, Dance.Domain.Models.CompetitorCompetition>()
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                 .ForMember(o => o.CompetitorType, opt => opt.MapFrom(d => d.CompetitorType))
+                .ForMember(o => o.Competitor, opt => opt.MapFrom(d => d.Competitor))
+                .ForMember(o => o.CompetitionId, opt => opt.MapFrom(d => d.CompetitionId))
                 .ForMember(o => o.Sequence, opt => opt.MapFrom(d => d.Sequence));
 
 
             Mapper.CreateMap<Dance.Domain.Models.CompetitorCompetition, CompetitorCompetition>()
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                 .ForMember(o => o.CompetitorType, opt => opt.MapFrom(d => d.CompetitorType))
+                .ForMember(o => o.Competitor, opt => opt.MapFrom(d => d.Competitor))
+                .ForMember(o => o.CompetitionId, opt => opt.MapFrom(d => d.CompetitionId))
                 .ForMember(o => o.Sequence, opt => opt.MapFrom(d => d.Sequence));
+
+            Mapper.CreateMap<JudgeCompetition, Dance.Domain.Models.JudgeCompetition>()
+                .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+                .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
+                .ForMember(o => o.CompetitionId, opt => opt.MapFrom(d => d.CompetitionId))
+                .ForMember(o => o.Judge, opt => opt.MapFrom(d => d.Judge));
+
+
+            Mapper.CreateMap<Dance.Domain.Models.JudgeCompetition, JudgeCompetition>()
+                .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+                .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
+                .ForMember(o => o.CompetitionId, opt => opt.MapFrom(d => d.CompetitionId))
+                .ForMember(o => o.Judge, opt => opt.MapFrom(d => d.Judge));
+
+
+            Mapper.CreateMap<Criterion, Dance.Domain.Models.Criterion>()
+               .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+               .ForMember(o => o.Caption, opt => opt.MapFrom(d => d.Text))
+               .ForMember(o => o.ScorePoints, opt => opt.MapFrom(d => d.ScorePoints))
+               .ForMember(o => o.DisplaySequence, opt => opt.MapFrom(d => d.DisplaySequence));
+
+            Mapper.CreateMap<Dance.Domain.Models.Criterion, Criterion>()
+              .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+              .ForMember(o => o.Text, opt => opt.MapFrom(d => d.Caption))
+              .ForMember(o => o.ScorePoints, opt => opt.MapFrom(d => d.ScorePoints))
+              .ForMember(o => o.DisplaySequence, opt => opt.MapFrom(d => d.DisplaySequence));
+
 
             Mapper.CreateMap<Dance.Domain.Models.Competition,Competition>()
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
@@ -157,70 +197,136 @@ namespace Viva.CorporateSys.DanceAPI
             oSmtpClient.Send(msg);
         }
 
-        public List<Division> GetCategories(List<Guid> DivisionIds)
-        {
-            var list = Enumerable.Empty<Division>().ToList();
-
-            using (var CompetitionRepo = new CompetitionRepository())
-            {
-               
-            }
-
-            return list;
-        }
-
-
-        public Competition GenerateCompetition(List<Guid> DivisionIds,Guid JudgeGuid,string Competitioniner)
-        {
-            using (var CompetitionRepo = new CompetitionRepository())
-            {
-                return null;
-            }
-        }
-
         public List<Competition> GetOpenCompetitionsForJudge(Guid judgeId)
         {
-            throw new NotImplementedException();
+            var listToReturn = Enumerable.Empty<Competition>().ToList();
+
+            using (var repo = new CompetitionRepository())
+            {
+                var list = repo.GetOpenCompetitionsForJudge( judgeId);
+
+                listToReturn = Mapper.Map<List<Competition>>(list);
+            }
+
+            return listToReturn;
         }
 
         public bool IsJudgingCompleteForCompetition(Guid competitionId, Guid? judgeId)
         {
-            throw new NotImplementedException();
+            using (var repo = new CompetitionRepository())
+            {
+                return repo.IsJudgingCompleteForCompetition(competitionId, judgeId);
+            }
         }
 
-        public bool IsJudgingCompleteForCompetitor(Guid competitionId, Guid? judgeId)
+        public bool IsJudgingCompleteForCompetitor(Guid competitionId,Guid competitorId, Guid? judgeId)
         {
-            throw new NotImplementedException();
+            using (var repo = new CompetitionRepository())
+            {
+                return repo.IsJudgingCompleteForCompetitor(competitionId,competitorId, judgeId);
+            }
         }
 
         public List<Criterion> GetAllowedCriteriaForJudge(Guid competitionId, Guid judgeId)
         {
-            throw new NotImplementedException();
+            var listToReturn = Enumerable.Empty<Criterion>().ToList();
+
+            using (var repo = new CompetitionRepository())
+            {
+                var list = repo.GetAllowedCriteriaForJudge(competitionId, judgeId);
+
+                listToReturn = Mapper.Map<List<Criterion>>(list);
+            }
+
+            return listToReturn;
         }
 
         public List<Competitor> GetCompetitorsForCompetition(Guid competitionId)
         {
-            throw new NotImplementedException();
+            var listToReturn = Enumerable.Empty<Competitor>().ToList();
+
+            using (var repo = new CompetitionRepository())
+            {
+                var list = repo.GetCompetitorsForCompetition(competitionId);
+
+                listToReturn = Mapper.Map<List<Competitor>>(list);
+            }
+
+            return listToReturn;
         }
 
         public List<Judge> GetJudgesForCompetition(Guid competitionId)
         {
-            throw new NotImplementedException();
+            var listToReturn = Enumerable.Empty<Judge>().ToList();
+
+            using (var repo = new CompetitionRepository())
+            {
+                var list = repo.GetJudgesForCompetition(competitionId);
+
+                listToReturn = Mapper.Map<List<Judge>>(list);
+            }
+
+            return listToReturn;
         }
 
         public List<Criterion> GetAllCriteria()
         {
-            throw new NotImplementedException();
+            var listToReturn = Enumerable.Empty<Criterion>().ToList();
+
+            using (var repo = new CompetitionRepository())
+            {
+                var list = repo.GetAllCriteria();
+
+                listToReturn = Mapper.Map<List<Criterion>>(list);
+            }
+
+            return listToReturn;
         }
 
         public List<Judging> GetJudgingsForCompetitor(Guid competitionId, Guid competitorId)
         {
-            throw new NotImplementedException();
+            var listToReturn = Enumerable.Empty<Judging>().ToList();
+
+            using (var repo = new CompetitionRepository())
+            {
+                var list = repo.GetJudgingsForCompetitor(competitionId, competitorId);
+
+                listToReturn = Mapper.Map<List<Judging>>(list);
+            }
+
+            return listToReturn;
         }
 
-        public bool SubmitJudging(Judging judging)
+        public Judging SubmitJudging(Judging judging)
         {
-            throw new NotImplementedException();
+            using (var repo = new CompetitionRepository())
+            {
+                var judgingToReturn = repo.SubmitJudging(Mapper.Map<Dance.Domain.Models.Judging>(judging));
+
+                return Mapper.Map<Judging>(judgingToReturn);
+            } 
+        }
+
+        public void ClearAllJudgings()
+        {
+            using (var repo = new CompetitionRepository())
+            {
+                repo.ClearAllJudgings();
+            }
+        }
+
+        public List<Competition> GetOpenCompetitions()
+        {
+            var listToReturn = Enumerable.Empty<Competition>().ToList();
+
+            using (var repo = new CompetitionRepository())
+            {
+                var list = repo.GetOpenCompetitions();
+
+                listToReturn = Mapper.Map<List<Competition>>(list);
+            }
+
+            return listToReturn;
         }
     }
 }

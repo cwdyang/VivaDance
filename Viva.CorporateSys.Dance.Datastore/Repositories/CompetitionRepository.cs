@@ -63,15 +63,18 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
             var judgingCount = queryJudgings.Select(x => x.Id).Distinct().Count();
             var judgingGroupCount = queryJudgings.GroupBy(x => x.JudgeCompetition.JudgeId).Select(gr => new { Key = gr.Key, Count = gr.Count() });
 
-            var judgingGroupCounts = judgingGroupCount.ToList();
+            
 
             var judge = DbContext.Judges.FirstOrDefault(x => x.Id == judgeId);
 
+            var judgeCC = judge.JudgeCompetitions.FirstOrDefault();
 
+            if (judgeCC == null)
+                return false;
 
             var judgingCountCap = (judge == null)
                 ? (MinJudgingPerCriterion*NormalCriterionCount + PenalityCriterionCount)
-                : MinJudgingPerCriterion + ((judge.JudgeCompetitions.First().JudgeType == JudgeType.Head)
+                : MinJudgingPerCriterion + ((judgeCC.JudgeType == JudgeType.Head)
                     ? PenalityCriterionCount
                     : 0);
 
@@ -141,7 +144,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
         {
             DbContext.JudgeCompetitions.Attach(judging.JudgeCompetition);
             DbContext.CompetitorCompetitions.Attach(judging.CompetitorCompetition);
-
+            DbContext.Criteria.Attach(judging.Criterion);
 
             var judgingFound = DbContext.Judgings.FirstOrDefault(x=>
                 x.CriterionId == judging.Criterion.Id &&

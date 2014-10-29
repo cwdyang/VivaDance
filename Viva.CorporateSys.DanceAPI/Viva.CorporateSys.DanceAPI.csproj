@@ -58,6 +58,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GroupByCompetitorCriterionResolver.cs" />
     <Compile Include="ParticipantService.cs" />
     <Compile Include="DivisionNameResolver.cs" />
     <Compile Include="IParticipantService.cs" />
