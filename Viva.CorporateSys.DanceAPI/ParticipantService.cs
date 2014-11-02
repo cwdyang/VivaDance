@@ -1,16 +1,24 @@
 ﻿using AutoMapper;
+using Ninject;
 using Viva.CorporateSys.Dance.Datastore.Repositories;
+using Viva.CorporateSys.Dance.Domain.Models;
 
 namespace Viva.CorporateSys.DanceAPI
 {
-    public class ParticipantService : IParticipantService
+    public class ParticipantService  : BaseService, IParticipantService
     {
+        private IParticipantRepository GetParticipantRepository()
+        {
+            return Kernel.Get<IParticipantRepository>();
+        }
+
         static ParticipantService()
         {
             Mapper.CreateMap<Dance.Domain.Models.Judge, Judge>()
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                 .ForMember(o => o.Email, opt => opt.MapFrom(d => d.Email))
                 .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
+                .ForMember(o => o.JudgeCompetitions, opt => opt.MapFrom(d => d.JudgeCompetitions))
                 .ForMember(o => o.OrganisationName, opt => opt.MapFrom(d => d.Organisation.Caption))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
@@ -19,7 +27,8 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                 .ForMember(o => o.Email, opt => opt.MapFrom(d => d.Email))
                 .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
-                .ForMember(o => o.Organisation.Caption, opt => opt.MapFrom(d => d.OrganisationName))
+                .ForMember(o => o.JudgeCompetitions, opt => opt.MapFrom(d => d.JudgeCompetitions))
+
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
 
@@ -27,7 +36,10 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                 .ForMember(o => o.Email, opt => opt.MapFrom(d => d.Email))
                 .ForMember(o => o.CompetitorType, opt => opt.MapFrom(d => d.CompetitorType))
+                .ForMember(o => o.EntityNumber, opt => opt.MapFrom(d => d.EntityNumber))
+                .ForMember(o => o.EntityName, opt => opt.MapFrom(d => d.EntityName))
                 .ForMember(o => o.OrganisationName, opt => opt.MapFrom(d => d.Organisation.Caption))
+                .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
 
@@ -35,10 +47,35 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                 .ForMember(o => o.Email, opt => opt.MapFrom(d => d.Email))
                 .ForMember(o => o.CompetitorType, opt => opt.MapFrom(d => d.CompetitorType))
-                .ForMember(o => o.Organisation.Caption, opt => opt.MapFrom(d => d.OrganisationName))
+                .ForMember(o => o.EntityNumber, opt => opt.MapFrom(d => d.EntityNumber))
+                .ForMember(o => o.EntityName, opt => opt.MapFrom(d => d.EntityName))
+
+                .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
 
+
+
+            
+            
+            Mapper.CreateMap<Organisation, Dance.Domain.Models.Organisation>()
+               .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+               .ForMember(o => o.Caption, opt => opt.MapFrom(d => d.Text));
+
+            Mapper.CreateMap<Dance.Domain.Models.Organisation,Organisation>()
+               .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+               .ForMember(o => o.Text, opt => opt.MapFrom(d => d.Caption));
+
+        }
+
+        public Organisation AddOrganisation(Organisation organisation)
+        {
+            using (var repo = new ParticipantRepository())
+            {
+                repo.AddOrganisation(Mapper.Map<Viva.CorporateSys.Dance.Domain.Models.Organisation>(organisation));
+            }
+
+            return organisation;
         }
 
         public Judge AddJudge(Judge judge)
@@ -51,11 +88,22 @@ namespace Viva.CorporateSys.DanceAPI
             return judge;
         }
 
+
+        public Competitor AddCompetitor(Competitor competitor)
+        {
+            using (var repo = GetParticipantRepository())
+            {
+                repo.AddCompetitor(Mapper.Map<Viva.CorporateSys.Dance.Domain.Models.Competitor>(competitor));
+            }
+
+            return competitor;
+        }
+
         public Judge GetJudge(string emailAddress)
         {
             Judge judgeToReturn = null;
 
-            using (var repo = new ParticipantRepository())
+            using (var repo = GetParticipantRepository())
             {
                 var judge = repo.GetJudge(emailAddress);
 
@@ -70,7 +118,7 @@ namespace Viva.CorporateSys.DanceAPI
         {
             Competitor competitorToReturn = null;
 
-            using (var repo = new ParticipantRepository())
+            using (var repo = GetParticipantRepository())
             {
                 var competitor = repo.GetCompetitor(emailAddress);
 

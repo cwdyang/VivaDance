@@ -5,14 +5,20 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using AutoMapper;
+using Ninject;
 using Viva.CorporateSys.Dance.Datastore.Repositories;
 using Viva.CorporateSys.Dance.Domain.Models;
 
 namespace Viva.CorporateSys.DanceAPI
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public class CompetitionService : ICompetitionService
+    public class CompetitionService :BaseService, ICompetitionService
     {
+        private ICompetitionRepository GetCompetitionRepository()
+        {
+            return Kernel.Get<ICompetitionRepository>();
+        }
+
         static CompetitionService()
         {
 
@@ -167,9 +173,9 @@ namespace Viva.CorporateSys.DanceAPI
         {
             var message = new StringBuilder();
 
-            
 
-            using (var CompetitionRepo = new CompetitionRepository())
+
+            using (var CompetitionRepo = GetCompetitionRepository())
             {
                
             }
@@ -201,7 +207,7 @@ namespace Viva.CorporateSys.DanceAPI
         {
             var listToReturn = Enumerable.Empty<Competition>().ToList();
 
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 var list = repo.GetOpenCompetitionsForJudge( judgeId);
 
@@ -213,7 +219,7 @@ namespace Viva.CorporateSys.DanceAPI
 
         public bool IsJudgingCompleteForCompetition(Guid competitionId, Guid? judgeId)
         {
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 return repo.IsJudgingCompleteForCompetition(competitionId, judgeId);
             }
@@ -221,7 +227,7 @@ namespace Viva.CorporateSys.DanceAPI
 
         public bool IsJudgingCompleteForCompetitor(Guid competitionId,Guid competitorId, Guid? judgeId)
         {
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 return repo.IsJudgingCompleteForCompetitor(competitionId,competitorId, judgeId);
             }
@@ -231,7 +237,7 @@ namespace Viva.CorporateSys.DanceAPI
         {
             var listToReturn = Enumerable.Empty<Criterion>().ToList();
 
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 var list = repo.GetAllowedCriteriaForJudge(competitionId, judgeId);
 
@@ -245,7 +251,7 @@ namespace Viva.CorporateSys.DanceAPI
         {
             var listToReturn = Enumerable.Empty<Competitor>().ToList();
 
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 var list = repo.GetCompetitorsForCompetition(competitionId);
 
@@ -259,7 +265,7 @@ namespace Viva.CorporateSys.DanceAPI
         {
             var listToReturn = Enumerable.Empty<Judge>().ToList();
 
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 var list = repo.GetJudgesForCompetition(competitionId);
 
@@ -273,7 +279,7 @@ namespace Viva.CorporateSys.DanceAPI
         {
             var listToReturn = Enumerable.Empty<Criterion>().ToList();
 
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 var list = repo.GetAllCriteria();
 
@@ -287,7 +293,7 @@ namespace Viva.CorporateSys.DanceAPI
         {
             var listToReturn = Enumerable.Empty<Judging>().ToList();
 
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 var list = repo.GetJudgingsForCompetitor(competitionId, competitorId);
 
@@ -299,7 +305,7 @@ namespace Viva.CorporateSys.DanceAPI
 
         public Judging SubmitJudging(Judging judging)
         {
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 var judgingToReturn = repo.SubmitJudging(Mapper.Map<Dance.Domain.Models.Judging>(judging));
 
@@ -309,7 +315,7 @@ namespace Viva.CorporateSys.DanceAPI
 
         public void ClearAllJudgings()
         {
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 repo.ClearAllJudgings();
             }
@@ -319,7 +325,7 @@ namespace Viva.CorporateSys.DanceAPI
         {
             var listToReturn = Enumerable.Empty<Competition>().ToList();
 
-            using (var repo = new CompetitionRepository())
+            using (var repo = GetCompetitionRepository())
             {
                 var list = repo.GetOpenCompetitions();
 

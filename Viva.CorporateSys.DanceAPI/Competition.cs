@@ -167,7 +167,11 @@ namespace Viva.CorporateSys.DanceAPI
         public Criterion Criterion { get; set; }
     }
 
-    
+    [DataContract]
+    public class Organisation : BaseObject
+    {
+    }
+
 
     [DataContract]
     public class Judging:BaseObject

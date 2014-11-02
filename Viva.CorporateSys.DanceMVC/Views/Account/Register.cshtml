@@ -1,4 +1,6 @@
-﻿@model Viva.CorporateSys.DanceMVC.Models.RegisterModel
+﻿@using Viva.CorporateSys.DanceMVC.Models
+@using WebGrease.Css.Extensions
+@model Viva.CorporateSys.DanceMVC.Models.RegisterModel
 @{
     ViewBag.Title = "Register";
 }
@@ -19,6 +21,55 @@
                 @Html.LabelFor(m => m.UserName)
                 @Html.TextBoxFor(m => m.UserName)
             </li>
+            
+            
+            <li>
+                @Html.LabelFor(m => m.FirstName)
+                @Html.TextBoxFor(m => m.FirstName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.MobileNumber)
+                @Html.TextBoxFor(m => m.MobileNumber)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.EntityName)
+                @Html.TextBoxFor(m => m.EntityName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.UserNumber)
+                @Html.TextBoxFor(m => m.UserNumber)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.OrganisationName)
+                @Html.TextBoxFor(m => m.OrganisationName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.EntityType)
+                @{
+                    var list = new Dictionary<string, string>();
+
+                    const EntityType eventType = new EntityType();
+
+                    typeof(EntityType).GetFields().ForEach(x =>
+                    {
+                        var key = ((int) x.GetValue(eventType)).ToString();
+
+                        list.Remove(key);
+                        list.Add(key, x.Name);
+                        
+                    });
+                   
+                    
+                    var selectList = new SelectList(list.AsEnumerable(), "Key", "Value");
+                
+                    
+                }
+                @Html.DropDownListFor(m => m.EntityType, selectList)
+            </li>
             <li>
                 @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password)
@@ -27,6 +78,7 @@
                 @Html.LabelFor(m => m.ConfirmPassword)
                 @Html.PasswordFor(m => m.ConfirmPassword)
             </li>
+            
         </ol>
         <input type="submit" value="Register" />
     </fieldset>

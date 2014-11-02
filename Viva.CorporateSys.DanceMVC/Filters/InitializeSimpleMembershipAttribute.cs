@@ -38,7 +38,7 @@ namespace Viva.CorporateSys.DanceMVC.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("dbOneDance", "UserProfile", "sa", "Test1234", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

@@ -85,7 +85,7 @@ namespace Viva.CorporateSys.DanceAPI.Tests
 
                 c =>
                 {
-                    Debug.WriteLine(c.Key.EntityName);
+                    Debug.WriteLine(c.Key.EntityName + "__" + c.Key.EntityNumber + "___" + c.Key.OrganisationName);
 
                     var total = 0.0;
 

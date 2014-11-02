@@ -15,6 +15,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
         IList<Criterion> GetAllCriteria();
         IList<Judging> GetJudgingsForCompetitor(Guid competitionId,Guid competitorId);
         Judging SubmitJudging(Judging judging);
+        IList<Competition> GetOpenCompetitions(); 
         void ClearAllJudgings();
     }
 }

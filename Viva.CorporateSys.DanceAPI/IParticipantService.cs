@@ -11,6 +11,15 @@ namespace Viva.CorporateSys.DanceAPI
 
         [OperationContract]
         Competitor GetCompetitor(string emailAddress);
+
+        [OperationContract]
+        Judge AddJudge(Judge judge);
+
+        [OperationContract]
+        Organisation AddOrganisation(Organisation organisation);
+
+        [OperationContract]
+        Competitor AddCompetitor(Competitor competitor);
     }
 
     

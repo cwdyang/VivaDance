@@ -11,7 +11,7 @@ namespace Viva.CorporateSys.DanceMVC.Models
     public class UsersContext : DbContext
     {
         public UsersContext()
-            : base("DefaultConnection")
+            : base("name=dbOneDance")
         {
         }
 
@@ -72,9 +72,39 @@ namespace Viva.CorporateSys.DanceMVC.Models
 
     public class RegisterModel
     {
+
+
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Mobile Number")]
+        public string MobileNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Email Address")]
         public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Entity Number")]
+        public int UserNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Entity Name")]
+        public string EntityName { get; set; }
+
+        [Required]
+        [Display(Name = "Entity type")]
+        public EntityType EntityType { get; set; }
+
+        [Required]
+        [Display(Name = "Organisation name")]
+        public string OrganisationName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -86,6 +116,16 @@ namespace Viva.CorporateSys.DanceMVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public enum EntityType
+    {
+        Competitor_Soloist = 0,
+        Competitor_Couple = 1,
+        Competitor_CouplesTeam = 2,
+
+        Judge_Normal=3,
+        Judge_Head=4
     }
 
     public class ExternalLogin

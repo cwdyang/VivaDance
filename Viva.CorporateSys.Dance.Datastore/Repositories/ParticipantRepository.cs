@@ -21,9 +21,22 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
 
         public Judge AddJudge(Judge Judge)
         {
-            DbContext.Judges.AddOrUpdate(Judge);
-            DbContext.SaveChanges();
+            if (!DbContext.Judges.Any(x => x.Email == Judge.Email))
+            {
+                DbContext.Judges.Add(Judge);
+                DbContext.SaveChanges();
+            }
             return Judge;
+        }
+
+        public Competitor AddCompetitor(Competitor competitor)
+        {
+            if (!DbContext.Competitors.Any(x => x.Email == competitor.Email))
+            {
+                DbContext.Competitors.Add(competitor);
+                DbContext.SaveChanges();
+            }
+            return competitor;
         }
 
         public ParticipantRepository()
@@ -39,6 +52,16 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
         public Competitor GetCompetitor(string emailAddress)
         {
             throw new System.NotImplementedException();
+        }
+
+        public Organisation AddOrganisation(Organisation organisation)
+        {
+            if (!DbContext.Organisations.Any(x => x.Caption == organisation.Caption))
+            {
+                DbContext.Organisations.Add(organisation);
+                DbContext.SaveChanges();
+            }
+            return organisation;
         }
     }
 }

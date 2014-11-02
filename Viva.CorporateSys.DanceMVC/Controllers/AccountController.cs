@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Transactions;
 using System.Web;
@@ -7,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
+using Viva.CorporateSys.DanceAPI;
+using Viva.CorporateSys.DanceMVC.ViewModels;
 using WebMatrix.WebData;
 using Viva.CorporateSys.DanceMVC.Filters;
 using Viva.CorporateSys.DanceMVC.Models;
@@ -15,9 +18,10 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
-    public class AccountController : Controller
+    public class AccountController : JudgingController
     {
-        //
+        private ICompetitionService _competitionService;
+        private IParticipantService _participantService;
         // GET: /Account/Login
 
         [AllowAnonymous]
@@ -25,6 +29,17 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+
+        public AccountController(ICompetitionService competitionService, IParticipantService participantService)
+        {
+            _competitionService = competitionService;
+            _participantService = participantService;
+        }
+
+        public AccountController()
+        {
+            
         }
 
         //
@@ -37,6 +52,20 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                var user = _participantService.GetJudge(model.UserName);
+
+
+
+                if (user != null)
+                {
+                    base.ViewModel = new JudgingViewModel(user, _competitionService.GetOpenCompetitionsForJudge(user.Id));
+
+                    if (ViewModel.Competitions.Count>0)
+                        return RedirectToAction("ActiveCompetitions", "Judging");
+                    else
+                        return RedirectToAction("Index", "Home");
+                }
+
                 return RedirectToLocal(returnUrl);
             }
 
@@ -81,6 +110,62 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
+
+                    //_competitionService
+
+                    switch (model.EntityType)
+                    {
+                        case EntityType.Competitor_Soloist:
+                        case EntityType.Competitor_Couple:
+                        case EntityType.Competitor_CouplesTeam:
+                            var competitor = new Competitor {
+                                Id=Guid.NewGuid(),
+                                EntityName = model.EntityName,
+                                EntityNumber = model.UserNumber,
+                                MobileNumber = model.MobileNumber,
+                                FirstName = model.FirstName,
+                                LastName = model.LastName,
+                                CompetitorType = (CompetitorType)model.EntityType,
+                                Email = model.UserName,
+                                
+                                OrganisationName = model.OrganisationName
+                            };
+                            _participantService.AddCompetitor(competitor);
+                            break;
+                        case EntityType.Judge_Head:
+                        case EntityType.Judge_Normal:
+                            var judge = new Judge()
+                            {
+                                Id = Guid.NewGuid(),
+
+                                MobileNumber = model.MobileNumber,
+                                
+                                FirstName = model.FirstName,
+                                LastName = model.LastName,
+                                JudgeType = (model.EntityType==EntityType.Judge_Head)?JudgeType.Head : JudgeType.Normal,
+                                Email = model.UserName,
+                                OrganisationName = model.OrganisationName
+                            };
+                            _participantService.AddJudge(judge);
+
+                            base.ViewModel = new JudgingViewModel(judge, _competitionService.GetOpenCompetitionsForJudge(judge.Id));
+
+                            return RedirectToAction("ActiveCompetitions", "Judging");
+
+                            break;
+
+                    }
+
+                    var organisation = new Organisation
+                    {
+                        Id = Guid.NewGuid(),
+                        Text = model.OrganisationName
+                    };
+
+                    _participantService.AddOrganisation(organisation);
+
+
+
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

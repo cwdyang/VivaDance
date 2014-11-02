@@ -15,3 +15,9 @@ C:\Development\Dance\Viva.CorporateSys.DanceAPI\bin\Debug\EntityFramework.xml
 C:\Development\Dance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.csprojResolveAssemblyReference.cache
 C:\Development\Dance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.dll
 C:\Development\Dance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.pdb
+C:\Development\Dance\Viva.CorporateSys.DanceAPI\bin\Debug\Castle.Core.dll
+C:\Development\Dance\Viva.CorporateSys.DanceAPI\bin\Debug\Ninject.dll
+C:\Development\Dance\Viva.CorporateSys.DanceAPI\bin\Debug\Ninject.Extensions.Factory.dll
+C:\Development\Dance\Viva.CorporateSys.DanceAPI\bin\Debug\Castle.Core.xml
+C:\Development\Dance\Viva.CorporateSys.DanceAPI\bin\Debug\Ninject.xml
+C:\Development\Dance\Viva.CorporateSys.DanceAPI\bin\Debug\Ninject.Extensions.Factory.xml

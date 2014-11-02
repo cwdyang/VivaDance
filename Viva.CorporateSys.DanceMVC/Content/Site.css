@@ -15,7 +15,7 @@ body {
 }
 
 a {
-    color: #333;
+    color: darkblue;
     outline: none;
     padding-left: 3px;
     padding-right: 3px;
@@ -24,7 +24,7 @@ a {
 
     a:link, a:visited,
     a:active, a:hover {
-        color: #333;
+        color: darkblue;
     }
 
     a:hover {
@@ -58,18 +58,18 @@ mark {
     visibility: hidden;
 }
 
-h1, h2, h3,
+h2, h3, h3,
 h4, h5, h6 {
     color: #000;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-h1 {
+h2 {
     font-size: 2em;
 }
 
-h2 {
+h3 {
     font-size: 1.75em;
 }
 
@@ -147,14 +147,17 @@ footer {
 ----------------------------------------------------------*/
 #login {
     display: block;
+    color: #d3dce0;
     font-size: .85em;
     margin: 0 0 10px;
     text-align: right;
 }
 
     #login a {
-        background-color: #d3dce0;
+        color: #d3dce0;
+        font-size: 1.4em;
         margin-left: 10px;
+        font-weight: bold;
         margin-right: 3px;
         padding: 2px 3px;
         text-decoration: none;
@@ -162,6 +165,8 @@ footer {
 
     #login a.username {
         background: none;
+         
+     font-size: 1em;
         margin: 0;
         padding: 0;
         text-decoration: underline;
@@ -169,11 +174,15 @@ footer {
 
     #login ul {
         margin: 0;
+        font-size: 1.4em;
     }
 
     #login li {
         display: inline;
+            font-size: .85em;
         list-style: none;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
 
@@ -190,12 +199,13 @@ ul#menu {
     ul#menu li {
         display: inline;
         list-style: none;
-        padding-left: 15px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
         ul#menu li a {
             background: none;
-            color: #999;
+            color: darkblue;
             text-decoration: none;
         }
 
@@ -220,10 +230,11 @@ ul#menu {
         background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
         background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
         color: #3e5667;
+        max-width:960px;
         padding: 20px 40px 30px 40px;
     }
 
-        .featured hgroup.title h1, .featured hgroup.title h2 {
+        .featured hgroup.title h2, .featured hgroup.title h3 {
             color: #fff;
         }
 
@@ -236,18 +247,18 @@ hgroup.title {
     margin-bottom: 10px;
 }
 
-hgroup.title h1, hgroup.title h2 {
+hgroup.title h2, hgroup.title h3 {
     display: inline;
 }
 
-hgroup.title h2 {
+hgroup.title h3 {
     font-weight: normal;
     margin-left: 3px;
 }
 
 /* features */
 section.feature {
-    width: 300px;
+    width: 100%;
     float: left;
     padding: 10px;
 }
@@ -368,7 +379,7 @@ aside {
     width: 40%;
 }
 
-    #socialLoginForm h2 {
+    #socialLoginForm h3 {
         margin-bottom:  5px;
     }
 
@@ -485,6 +496,12 @@ textarea {
     margin: 20px 0 10px 0;
 }
 
+input[type="radio"]  
+{
+    width: 20px;
+    text-align: left;
+}
+
 .message-success {
     color: #7ac0da;
     font-size: 1.3em;
@@ -522,6 +539,18 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+progress {
+	width: 100%;
+	height: 14px;
+    -webkit-appearance: progress-bar;
+    box-sizing: border-box;
+}
+
+
+.form-control-cellwidth {
+	width: 100%;
 }
 
 
