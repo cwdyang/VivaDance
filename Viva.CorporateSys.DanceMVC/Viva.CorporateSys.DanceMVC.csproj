@@ -271,7 +271,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Judging\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -284,6 +283,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Judging.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Judging\ActiveCompetitions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Judging\JudgingComplete.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

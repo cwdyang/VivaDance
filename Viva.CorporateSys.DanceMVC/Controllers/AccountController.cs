@@ -64,6 +64,8 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
                         return RedirectToAction("ActiveCompetitions", "Judging");
                     else
                         return RedirectToAction("Index", "Home");
+
+
                 }
 
                 return RedirectToLocal(returnUrl);

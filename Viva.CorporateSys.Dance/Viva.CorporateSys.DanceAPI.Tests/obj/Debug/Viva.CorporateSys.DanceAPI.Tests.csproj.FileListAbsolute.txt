@@ -16,6 +16,6 @@ C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\ob
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.pdb
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\EntityFramework.SqlServer.dll
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\EntityFramework.SqlServer.xml
-C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\AutoMapper.Net4.dll
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\Ninject.dll
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\Ninject.xml
+C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\AutoMapper.Net4.dll

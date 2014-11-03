@@ -29,21 +29,39 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
 
         public IList<Competition> GetOpenCompetitionsForJudge(Guid judgeId)
         {
-            var list = GetOpenCompetitions().Where(x => x.JudgeCompetitions.First().JudgeId == judgeId);
-            return list.ToList();
+            var list = GetOpenCompetitions();
+            
+            var listFiletered = list.Where(x => x.JudgeCompetitions.Any(y=>y.JudgeId==judgeId));
+            return listFiletered.ToList();
         }
 
         public IList<Competition> GetOpenCompetitions()
         {
-            var list = DbContext.JudgeCompetitions.Select(x => x.Competition)
-                .Include(x => x.JudgeCompetitions.Select(y=>y.Judge).Select(z=>z.Organisation))
+            var allCompetitions = DbContext.Competitions
+                .Include(x => x.Category)
+                .Include(x => x.Category.Division)
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judge).Select(z => z.Organisation))
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judgings))
                 .Include(x => x.CompetitorCompetitions.Select(y => y.Competitor).Select(z => z.Organisation))
-                .Where(
+                .Include(x => x.CompetitorCompetitions.Select(y => y.Judgings));
+                
+
+            var incompleteCompetitions =
+                allCompetitions.Where(
+                x =>
+                    x.CompetitorCompetitions.SelectMany(y => y.Judgings).Count() <
+                    x.CompetitorCompetitions.Count()*
+                    (MinJudgingPerCriterion*NormalCriterionCount + PenalityCriterionCount)).ToList();
+
+            /*
+            var openCompetitions = allCompetitions.Where(
                     x =>
                         !new List<CompetitionStatus> {CompetitionStatus.Closed, CompetitionStatus.JudgingCompleted}
                             .Contains(x.CompetitionStatus))
                 ;
-            return list.ToList();
+            */
+
+            return incompleteCompetitions;
         }
 
         public bool IsJudgingCompleteForCompetition(Guid competitionId, Guid? judgeId)

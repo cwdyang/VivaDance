@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Datacom.CorporateSys.Hire.Helpers;
+using Ninject;
 using Viva.CorporateSys.DanceAPI;
 using Viva.CorporateSys.DanceMVC.Constants;
 using Viva.CorporateSys.DanceMVC.Helpers;
@@ -14,6 +15,21 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
     public class JudgingController : Controller
     {
         private ICompetitionService _competitionService;
+
+        public ICompetitionService CompetitionService
+        {
+            get { return _competitionService; }
+        }
+
+        public JudgingController(ICompetitionService competitionService)
+        {
+            _competitionService = competitionService;
+        }
+
+        public JudgingController()
+        {
+           
+        }
 
         protected JudgingViewModel ViewModel
         {
@@ -27,22 +43,80 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        [SessionCheckFilter]
+        public ActionResult SubmitJudgings(FormCollection items)
+        {
+
+            foreach (var key in items.AllKeys.Where(x => !x.StartsWith("submit")))
+            {
+                var value = Request.Form[key];
+
+                var judging = new Judging
+                {
+                    CompetitorCompetition = ViewModel.ActiveCompetitorCompetition,
+                    JudgeCompetition = ViewModel.ActiveJudgeCompetition,
+                    Id = Guid.NewGuid(),
+                    Criterion = ViewModel.AllowedCriteria.FirstOrDefault(x => x.Id.ToString() == key),
+                    ScorePoints = double.Parse(value)
+                };
+
+                var isJudgingComplete = _competitionService.IsJudgingCompleteForCompetitor(ViewModel.ActiveCompetitorCompetition.Id,
+                    ViewModel.ActiveCompetitorCompetition.Competitor.Id, ViewModel.ActiveJudgeCompetition.Judge.Id);
+
+                //if (!isJudgingComplete)
+                _competitionService.SubmitJudging(judging);
+            }
+
+            return RedirectToAction("ActiveCompetitions", "Judging");
+        }
+
         [SessionCheckFilter]
         public ActionResult ActiveCompetitions()
         {
+            /*
             if (ViewModel.Competitions == null || 
                 !ViewModel.Competitions.Any(x=>new List<CompetitionStatus>{
                     CompetitionStatus.Created,
                     CompetitionStatus.JudgingCompleted,
                     CompetitionStatus.JudgingStarted,
                     CompetitionStatus.JudgingSubmissionCompleted}.Contains(x.CompetitionStatus)))
+             */
             {
                 var comps = _competitionService.GetOpenCompetitionsForJudge(ViewModel.Judge.Id).OrderBy(x => x.StartedOn);
 
+                if(!comps.Any())
+                    return RedirectToAction("JudgingComplete", "Judging");
+
                 ViewModel.Competitions = comps.ToList();
+
+                ViewModel.ActiveCompetition = comps.First();
+
+                var allowedCriteria = _competitionService.GetAllowedCriteriaForJudge(ViewModel.ActiveCompetition.Id, ViewModel.Judge.Id);
+
+                ViewModel.ActiveCompetitorCompetition =
+                    ViewModel.ActiveCompetition.CompetitorCompetitions.Where(
+                        x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != ViewModel.Judge.Id)).OrderBy(x => x.Competitor.EntityNumber).FirstOrDefault();
+
+                if (ViewModel.ActiveCompetitorCompetition==null)
+                    return RedirectToAction("JudgingComplete", "Judging");
+
+                ViewModel.ActiveJudgeCompetition =
+                    ViewModel.ActiveCompetition.JudgeCompetitions.FirstOrDefault(x => x.Judge.Id == ViewModel.Judge.Id);
+
+                ViewModel.AllowedCriteria = allowedCriteria;
             }
 
             return View(ViewModel);
+        }
+
+        public ActionResult JudgingComplete()
+        {
+
+            ViewBag.Message = "Your judging is complete, please hand the equipment back to the organiser.";
+
+            return View(ViewModel);
+
         }
 
         // GET: Judging/Details/5

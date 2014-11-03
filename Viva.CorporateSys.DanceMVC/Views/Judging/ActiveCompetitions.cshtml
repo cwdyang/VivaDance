@@ -1,0 +1,128 @@
+﻿@model Viva.CorporateSys.DanceMVC.ViewModels.JudgingViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<article>
+    @using (Html.BeginForm("SubmitJudgings", "Judging", FormMethod.Post, new {id = "formSubmitJudgings"}))
+    {
+
+        <fieldset>
+
+
+            <div style="float: left; text-align: left;">
+
+                @{
+                    var competitionCurrent = Model.ActiveCompetition;
+
+                    var competitorCurrent = Model.ActiveCompetitorCompetition.Competitor;
+                }
+        
+                <table>
+                    <tr>
+                        <td>
+                            Competition Name:
+                        </td>
+                        <td>
+                            @competitionCurrent.Text
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Competition Location:
+                        </td>
+                        <td>
+                            @competitionCurrent.Location
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Start:
+                        </td>
+                        <td>
+                            @competitionCurrent.StartedOn
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Division:
+                        </td>
+                        <td>
+                            @competitionCurrent.DivisionName
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Category:
+                        </td>
+                        <td>
+                            @competitionCurrent.CategoryName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><br/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Competitor Name:
+                        </td>
+                        <td>
+                            @competitorCurrent.EntityName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Competitor Number:
+                        </td>
+                        <td>
+                            @competitorCurrent.EntityNumber
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><br />
+                            
+                        </td>
+                    </tr>
+                    @foreach (var criterion in Model.AllowedCriteria.OrderBy(x => x.DisplaySequence).ToList())
+                    {
+                        <tr>
+                            <td>
+                                @criterion.Text
+                            </td>
+                            <td>
+                                @if (criterion.ScorePoints > 0)
+                                {
+                                    <input type="number" id="@criterion.Id" name="@criterion.Id" min="0" max="@criterion.ScorePoints" step="1">
+                                }
+                                else
+                                {
+                                    <input type="number" id="@criterion.Id" name="@criterion.Id"  min=" -20" max="@criterion.ScorePoints" step="1">
+                                }
+                            </td>
+                        </tr>
+                    }
+            
+                    <tr>
+                        <td>
+                            <input id="submit" name="submit" type='submit' value='Confirm Answer' class="btn btn-default" />
+                        </td>
+                    </tr>
+
+
+                </table>
+
+
+
+
+
+
+            </div>
+        </fieldset>
+    }
+</article>
