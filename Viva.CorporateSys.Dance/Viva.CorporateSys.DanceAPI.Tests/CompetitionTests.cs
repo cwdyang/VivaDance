@@ -30,26 +30,28 @@ namespace Viva.CorporateSys.DanceAPI.Tests
             {
                 var listOfJudgings = new List<Judging>();
 
+
+
                 report.Append("<tr>");
-                report.Append("<td>" + "&nbsp;" + "</td><td colspan='10'>" + "" + "</td>");
+                report.Append("<td>" + "&nbsp;" + "</td><td colspan='6'>" + "" + "</td>");
                 report.Append("</tr>");
                 report.Append("<tr>");
-                report.Append("<td>" + "&nbsp;" + "</td><td colspan='10'>" + "" + "</td>");
+                report.Append("<td>" + "&nbsp;" + "</td><td colspan='6'>" + "" + "</td>");
                 report.Append("</tr>");
                 report.Append("<tr>");
-                report.Append("<td>" + "Competition" + "</td><td colspan='10'>" + comp.Text + "</td>");
+                report.Append("<td>" + "Competition" + "</td><td colspan='6'>" + comp.Text + "</td>");
                 report.Append("</tr>");
                 report.Append("<tr>");
-                report.Append("<td>" + "Division" + "</td><td colspan='10'>" + comp.DivisionName + "</td>");
+                report.Append("<td>" + "Division" + "</td><td colspan='6'>" + comp.DivisionName + "</td>");
                 report.Append("</tr>");
                 report.Append("<tr>");
-                report.Append("<td>" + "Category" + "</td><td colspan='10'>" + comp.CategoryName + "</td>");
+                report.Append("<td>" + "Category" + "</td><td colspan='6'>" + comp.CategoryName + "</td>");
                 report.Append("</tr>");
                 report.Append("<tr>");
-                report.Append("<td>" + "Location" + "</td><td colspan='10'>" + comp.Location + "</td>");
+                report.Append("<td>" + "Location" + "</td><td colspan='6'>" + comp.Location + "</td>");
                 report.Append("</tr>");
                 report.Append("<tr>");
-                report.Append("<td>" + "Start" + "</td><td colspan='10'>" + comp.StartedOn.Value.ToString("yyyy/MMM/dd HH:mm:ss") + "</td>");
+                report.Append("<td>" + "Start" + "</td><td colspan='6'>" + comp.StartedOn.Value.ToString("yyyy/MMM/dd HH:mm:ss") + "</td>");
                 report.Append("</tr>");
                 
 
@@ -58,8 +60,7 @@ namespace Viva.CorporateSys.DanceAPI.Tests
 
                     var allowedCriteria = compSvc.GetAllowedCriteriaForJudge(comps.First().Id, z.Judge.Id);
 
-                    var competitors = comps.First()
-                        .CompetitorCompetitions.Where(c => c.CompetitionId == z.CompetitionId);
+                    var competitors = comp.CompetitorCompetitions.Where(c => c.CompetitionId == z.CompetitionId);
 
 
 
@@ -111,26 +112,25 @@ namespace Viva.CorporateSys.DanceAPI.Tests
                     }
                 });
 
-
+                var rankings = new Dictionary<Competitor, double>();
 
                 listOfJudgingsGroupedByCompetitorQuery.ToList().ForEach(c =>
                 {
-                    Debug.WriteLine(c.Key.EntityName + "__" + c.Key.EntityNumber + "___" + c.Key.OrganisationName);
-
+                    
                     report.Append("<tr>");
-                    report.Append("<td>" + "&nbsp;" + "</td><td colspan='10'>" + "" + "</td>");
+                    report.Append("<td>" + "&nbsp;" + "</td><td colspan='6'>" + "" + "</td>");
                     report.Append("</tr>");
                     report.Append("<tr>");
-                    report.Append("<td>" + "&nbsp;" + "</td><td colspan='10'>" + "" + "</td>");
+                    report.Append("<td>" + "&nbsp;" + "</td><td colspan='6'>" + "" + "</td>");
                     report.Append("</tr>");
                     report.Append("<tr>");
-                    report.Append("<td>" + "Team #" + "</td><td colspan='10'>" + c.Key.EntityNumber + "</td>");
+                    report.Append("<td>" + "Team #" + "</td><td colspan='6'>" + c.Key.EntityNumber + "</td>");
                     report.Append("</tr>");
                     report.Append("<tr>");
-                    report.Append("<td>" + "Team Name" + "</td><td colspan='10'>" + c.Key.EntityName + " " + c.Key.FirstName + " " + c.Key.LastName + "</td>");
+                    report.Append("<td>" + "Team Name" + "</td><td colspan='6'>" + c.Key.EntityName + " " + c.Key.FirstName + " " + c.Key.LastName + "</td>");
                     report.Append("</tr>");
                     report.Append("<tr>");
-                    report.Append("<td>" + "&nbsp;" + "</td><td colspan='10'>" + "" + "</td>");
+                    report.Append("<td>" + "&nbsp;" + "</td><td colspan='6'>" + "" + "</td>");
                     report.Append("</tr>");
 
                     var total = 0.0;
@@ -188,11 +188,38 @@ namespace Viva.CorporateSys.DanceAPI.Tests
                         total += scoreAvg;
                     });
 
+                    rankings.Add(c.Key, total);
+
                     report.Append("<tr>");
-                    report.Append("<td>" + "Total" + "</td><td colspan='10'>" + total + "</td>");
+                    report.Append("<td>" + "Total" + "</td><td colspan='6'>" + total + "</td>");
                     report.Append("</tr>");
 
                 });
+
+                report.Append("</table><br/><table><tr>");
+                report.Append("<td>Rankings</td><td colspan='3'></td>");
+                report.Append("</tr>");
+
+                report.Append("<tr>");
+                report.Append("<td>Placing</td><td>Score</td><td>Team #</td><td>Team Name</td>");
+                report.Append("</tr>");
+
+                var placing = 0;
+                var previousScore = -9999.00;
+
+                rankings.OrderByDescending(x => x.Value).ToList().ForEach(c =>
+                {
+                    if (previousScore != c.Value)
+                        placing += 1;
+
+                    report.Append("<tr>");
+                    report.Append("<td>" + placing + "</td><td>" + c.Value + "</td><td>" + c.Key.EntityNumber + "</td><td>" + c.Key.EntityName + " " + c.Key.FirstName + " " + c.Key.LastName + "</td>");
+                    report.Append("</tr>");
+
+                    previousScore = c.Value;
+                }
+                    );   
+;
             });
 
             report.Append("</table>");
