@@ -3,22 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
+using Viva.CorporateSys.DanceAPI;
 
 namespace Viva.CorporateSys.DanceMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private IParticipantService _participantService;
+
+        public HomeController(IParticipantService participantService)
+        {
+            _participantService = participantService;
+        }
+
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "Viva Latino Dance Judging Panel";
+
+            var user = _participantService.GetJudge(User.Identity.Name);
+
+            if (user != null)
+                return RedirectToAction("ActiveCompetitions", "Judging");
 
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 

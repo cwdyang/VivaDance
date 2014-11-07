@@ -198,6 +198,7 @@ namespace Viva.CorporateSys.DanceAPI
             get
             {
                 var value = "";
+                return value;
 
                 try
                 {
@@ -208,7 +209,7 @@ namespace Viva.CorporateSys.DanceAPI
 
                 }
 
-                return value;
+                
             }
         }
     }

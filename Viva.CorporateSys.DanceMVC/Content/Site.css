@@ -14,6 +14,8 @@ body {
     padding: 0;
 }
 
+
+
 a {
     color: darkblue;
     outline: none;
@@ -366,6 +368,22 @@ aside {
         width: 250px;
     }
 
+    input[type="number"] {
+        width: 150px;
+        height: 60px;
+        font-size: 40px;
+    }
+
+    td.competitor {
+        font-size: 25px;
+    }
+
+    td.criterion {
+        font-size: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+
     #loginForm input[type="checkbox"],
     #loginForm input[type="submit"],
     #loginForm input[type="button"],
@@ -424,6 +442,8 @@ fieldset {
         fieldset ol li {
             padding-bottom: 5px;
         }
+
+        
 
 label {
     display: block;
@@ -521,6 +541,12 @@ input[type="radio"]
 
 .field-validation-valid {
     display: none;
+}
+
+input.submitJudging {
+    width: 150px;
+    font-size: 20px;
+    height: 50px;
 }
 
 input.input-validation-error {

@@ -55,7 +55,15 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
 
 
+            Mapper.CreateMap<Dance.Domain.Models.JudgingAssignment, JudgingAssignment>()
+                .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+                .ForMember(o => o.Criterion, opt => opt.MapFrom(d => d.Criterion))
+                .ForMember(o => o.Text, opt => opt.MapFrom(d => d.Caption));
 
+            Mapper.CreateMap<JudgingAssignment, Dance.Domain.Models.JudgingAssignment>()
+                .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+                .ForMember(o => o.Criterion, opt => opt.MapFrom(d => d.Criterion))
+                .ForMember(o => o.Caption, opt => opt.MapFrom(d => d.Text));
             
             
             Mapper.CreateMap<Organisation, Dance.Domain.Models.Organisation>()
@@ -65,6 +73,20 @@ namespace Viva.CorporateSys.DanceAPI
             Mapper.CreateMap<Dance.Domain.Models.Organisation,Organisation>()
                .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
                .ForMember(o => o.Text, opt => opt.MapFrom(d => d.Caption));
+
+            Mapper.CreateMap<JudgeCompetition, Dance.Domain.Models.JudgeCompetition>()
+                .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+                .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
+                .ForMember(o => o.CompetitionId, opt => opt.MapFrom(d => d.CompetitionId))
+                .ForMember(o => o.Judge, opt => opt.MapFrom(d => d.Judge));
+
+
+            Mapper.CreateMap<Dance.Domain.Models.JudgeCompetition, JudgeCompetition>()
+                .ForMember(o => o.Id, opt => opt.MapFrom(d => d.Id))
+                .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
+                .ForMember(o => o.CompetitionId, opt => opt.MapFrom(d => d.CompetitionId))
+                .ForMember(o => o.Judge, opt => opt.MapFrom(d => d.Judge));
+
 
         }
 

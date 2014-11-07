@@ -2,6 +2,14 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    var competitionCurrent = Model.ActiveCompetition;
+
+    var competitorCurrent = Model.ActiveCompetitorCompetition.Competitor;
+
+    var totalCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count;
+
+    var judgedCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count(x => x.Judgings.Count > 0);
 }
 
 
@@ -14,11 +22,7 @@
 
             <div style="float: left; text-align: left;">
 
-                @{
-                    var competitionCurrent = Model.ActiveCompetition;
-
-                    var competitorCurrent = Model.ActiveCompetitorCompetition.Competitor;
-                }
+              
         
                 <table>
                     <tr>
@@ -53,7 +57,9 @@
                             Division:
                         </td>
                         <td>
-                            @competitionCurrent.DivisionName
+                            <b>
+                                @competitionCurrent.DivisionName
+                            </b>
                         </td>
                     </tr>
 
@@ -62,28 +68,35 @@
                             Category:
                         </td>
                         <td>
-                            @competitionCurrent.CategoryName
+                            <b>
+                                @competitionCurrent.CategoryName
+                            </b>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            Marked: @judgedCompetitors/@totalCompetitors
+                        </td>
+                        <td>
+                           
+
+                            <progress max="@totalCompetitors" value="@judgedCompetitors" title="Your progress"></progress>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2"><br/></td>
                     </tr>
                     <tr>
-                        <td>
-                            Competitor Name:
+                        <td class="competitor">
+                            @competitorCurrent.EntityName<br/>
+                            @competitorCurrent.OrganisationName
                         </td>
-                        <td>
-                            @competitorCurrent.EntityName
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Competitor Number:
-                        </td>
-                        <td>
-                            @competitorCurrent.EntityNumber
+                        <td class="competitor">
+                                #@competitorCurrent.EntityNumber
                         </td>
                     </tr>
+                    
                     <tr>
                         <td colspan="2"><br />
                             
@@ -92,37 +105,68 @@
                     @foreach (var criterion in Model.AllowedCriteria.OrderBy(x => x.DisplaySequence).ToList())
                     {
                         <tr>
-                            <td>
+                            <td class="criterion">
                                 @criterion.Text
                             </td>
                             <td>
                                 @if (criterion.ScorePoints > 0)
                                 {
-                                    <input type="number" id="@criterion.Id" name="@criterion.Id" min="0" max="@criterion.ScorePoints" step="1">
+                                    <input type="number" id="@criterion.Id" description="@criterion.Text" name="@criterion.Id" min="0.0" max="@criterion.ScorePoints" step=".5">
                                 }
                                 else
                                 {
-                                    <input type="number" id="@criterion.Id" name="@criterion.Id"  min=" -20" max="@criterion.ScorePoints" step="1">
+                                    <input type="number" id="@criterion.Id" description="@criterion.Text" name="@criterion.Id" min=" -20.0" max="@criterion.ScorePoints" step=".5">
                                 }
                             </td>
                         </tr>
                     }
             
                     <tr>
+                        <td></td>
                         <td>
-                            <input id="submit" name="submit" type='submit' value='Confirm Answer' class="btn btn-default" />
+                            <input id="btnSubmit" name="btnSubmit" type='submit' value='Submit Judging' class="submitJudging" />
                         </td>
                     </tr>
 
 
-                </table>
-
-
-
-
-
+                </table>    
 
             </div>
         </fieldset>
     }
 </article>
+
+<script>
+    window.onload = (function () {
+        /*
+        $('input[type=number]').keyup(function () {
+            this.value = this.value.replace(/[^\-?[0-9]\d*(\.\d+)?$]/g, '');
+        });
+        */
+
+        $('input[type=number]').bind("keydown", function (event) {
+            event.preventDefault();
+        });
+
+        $("input[type='submit']").click(submitForm);
+    });
+
+
+    function submitForm(event) {
+
+        event.preventDefault();
+        
+
+        var summary = "You are about to submit your judging for <br/><br/> @competitorCurrent.EntityName   #@competitorCurrent.EntityNumber <br/><br/>Results:<br/><br/>";
+
+        $('input[type=number]').each(function (index) {
+            summary += (($(this).val() == "") ? "0" : $(this).val()) + " points for: " + $(this).attr("description") + " " + "<br/><br/>";
+        });
+
+        bootbox.confirm(summary, function (result) {
+                if (result)
+                    $("#formSubmitJudgings").submit();
+            }
+        );
+    }
+</script>

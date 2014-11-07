@@ -14,6 +14,9 @@ namespace Viva.CorporateSys.DanceAPI
         {
             Bind<ICompetitionRepository>().To<CompetitionRepository>().InTransientScope();
             Bind<IParticipantRepository>().To<ParticipantRepository>().InTransientScope();
+
+            Bind<ICompetitionService>().To<CompetitionService>().InTransientScope();
+            Bind<IParticipantService>().To<ParticipantService>().InTransientScope();
         }
     }
 }

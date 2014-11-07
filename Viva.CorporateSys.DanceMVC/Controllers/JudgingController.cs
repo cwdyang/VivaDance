@@ -31,7 +31,7 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
            
         }
 
-        protected JudgingViewModel ViewModel
+        public JudgingViewModel ViewModel
         {
             get { return Session.GetDataFromSession<JudgingViewModel>(SessionConstants.JudgingViewModel); }
             set { Session.SetDataToSession<JudgingViewModel>(SessionConstants.JudgingViewModel, value); }
@@ -83,6 +83,9 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
                     CompetitionStatus.JudgingSubmissionCompleted}.Contains(x.CompetitionStatus)))
              */
             {
+
+                
+
                 var comps = _competitionService.GetOpenCompetitionsForJudge(ViewModel.Judge.Id).OrderBy(x => x.StartedOn);
 
                 if(!comps.Any())

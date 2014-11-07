@@ -11,6 +11,7 @@ namespace Viva.CorporateSys.DanceAPI
         protected override string ResolveCore(Dance.Domain.Models.Judging source)
         {
             var value = "";
+            return value;
 
             try
             {
@@ -21,7 +22,7 @@ namespace Viva.CorporateSys.DanceAPI
                
             }
 
-            return value;
+            
 
         }
     }

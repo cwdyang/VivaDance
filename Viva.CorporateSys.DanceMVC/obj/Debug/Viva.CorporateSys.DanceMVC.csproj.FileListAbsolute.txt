@@ -61,3 +61,4 @@ C:\Development\Dance\Viva.CorporateSys.DanceMVC\bin\Ninject.Web.Mvc.xml
 C:\Development\Dance\Viva.CorporateSys.DanceMVC\bin\AutoMapper.xml
 C:\Development\Dance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.Domain.pdb
 C:\Development\Dance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.Datastore.pdb
+C:\Development\Dance\Viva.CorporateSys.DanceMVC\bin\AutoMapper.Net4.dll

@@ -52,21 +52,11 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                
                 var user = _participantService.GetJudge(model.UserName);
 
-
-
                 if (user != null)
-                {
-                    base.ViewModel = new JudgingViewModel(user, _competitionService.GetOpenCompetitionsForJudge(user.Id));
-
-                    if (ViewModel.Competitions.Count>0)
-                        return RedirectToAction("ActiveCompetitions", "Judging");
-                    else
-                        return RedirectToAction("Index", "Home");
-
-
-                }
+                    return RedirectToAction("ActiveCompetitions", "Judging");
 
                 return RedirectToLocal(returnUrl);
             }
