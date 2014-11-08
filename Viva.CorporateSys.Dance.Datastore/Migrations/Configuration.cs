@@ -60,6 +60,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
                 Caption = "Timing & Musicality",
                 Id = Guid.NewGuid(),
                 CreatedOn = DateTimeOffset.Now,
+                DisplaySequence = 5,
                 ScorePoints = 20
             };
 
@@ -68,6 +69,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
                 Caption = "Technique",
                 Id = Guid.NewGuid(),
                 CreatedOn = DateTimeOffset.Now,
+                DisplaySequence = 4,
                 ScorePoints = 20
             };
 
@@ -76,6 +78,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
                 Caption = "Difficulty",
                 Id = Guid.NewGuid(),
                 CreatedOn = DateTimeOffset.Now,
+                DisplaySequence = 3,
                 ScorePoints = 20
             };
 
@@ -84,6 +87,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
                 Caption = "Appearance, Connection & Synchronicity",
                 Id = Guid.NewGuid(),
                 CreatedOn = DateTimeOffset.Now,
+                DisplaySequence = 2,
                 ScorePoints = 20
             };
 
@@ -92,6 +96,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
                 Caption = "Choreography originality / Freestyle vocabulary",
                 Id = Guid.NewGuid(),
                 CreatedOn = DateTimeOffset.Now,
+                DisplaySequence = 1,
                 ScorePoints = 20
             };
 
@@ -100,6 +105,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
                 Caption = "Penalty",
                 Id = Guid.NewGuid(),
                 CreatedOn = DateTimeOffset.Now,
+                DisplaySequence = 6,
                 ScorePoints = 0
             };
 
@@ -436,6 +442,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             {
                 Id = Guid.NewGuid(),
                 EntityName = "JudgePanel",
+                Email = "J1",
                 FirstName = "J1",
                 LastName = "J1",
                 EntityNumber = 1,
@@ -469,6 +476,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             {
                 Id = Guid.NewGuid(),
                 EntityName = "JudgePanel",
+                Email = "J2",
                 FirstName = "J2",
                 LastName = "J2",
                 EntityNumber = 2,
@@ -497,6 +505,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             {
                 Id = Guid.NewGuid(),
                 EntityName = "JudgePanel",
+                Email = "J3",
                 FirstName = "J3",
                 LastName = "J3",
                 EntityNumber = 3,
@@ -525,6 +534,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             {
                 Id = Guid.NewGuid(),
                 EntityName = "JudgePanel",
+                Email = "J4",
                 FirstName = "J4",
                 LastName = "J4",
                 EntityNumber = 4,
@@ -553,6 +563,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             {
                 Id = Guid.NewGuid(),
                 EntityName = "JudgePanel",
+                Email = "J5",
                 FirstName = "J5",
                 LastName = "J5",
                 EntityNumber = 5,
@@ -583,30 +594,56 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             var compr1 = new Competitor
             {
                 Id = Guid.NewGuid(),
-                EntityName = "IrinaAdrianDuo",
+                EntityName = "Irina Leo",
                 EntityNumber = 1,
                 Email = "i@i.co.nz",
                 CompetitorType = CompetitorType.Couple,
                 Organisation = org1,
                 MobileNumber = "021",
                 FirstName = "Irina",
-                LastName = "Adrian"
+                LastName = "Leo"
             };
 
             var compr2 = new Competitor
             {
                 Id = Guid.NewGuid(),
-                EntityName = "IgorNa",
-                EntityNumber = 1,
+                EntityName = "Elena Casper",
+                EntityNumber = 2,
                 Email = "i@i.co.nz",
                 CompetitorType = CompetitorType.Couple,
                 Organisation = org1,
                 MobileNumber = "021",
-                FirstName = "Irina",
-                LastName = "Adrian"
+                FirstName = "Elena",
+                LastName = "Casper"
             };
 
-            new List<Competitor>{compr1,compr2}.ForEach(x=>context.Competitors.Add(x));
+            var compr3 = new Competitor
+            {
+                Id = Guid.NewGuid(),
+                EntityName = "Davidy",
+                EntityNumber = 3,
+                Email = "i@i.co.nz",
+                CompetitorType = CompetitorType.Soloist,
+                Organisation = org1,
+                MobileNumber = "021",
+                FirstName = "David",
+                LastName = "Yang"
+            };
+
+            var compr4 = new Competitor
+            {
+                Id = Guid.NewGuid(),
+                EntityName = "Sina",
+                EntityNumber = 4,
+                Email = "i@i.co.nz",
+                CompetitorType = CompetitorType.Soloist,
+                Organisation = org1,
+                MobileNumber = "021",
+                FirstName = "Sina",
+                LastName = "Mule"
+            };
+
+            new List<Competitor>{compr1,compr2,compr3,compr4}.ForEach(x=>context.Competitors.Add(x));
 
 
             var comp1 = new Competition
@@ -634,6 +671,13 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
                         Competitor = compr2,
                         Sequence = 2,
                         CompetitorType = compr2.CompetitorType
+                    },
+                    new CompetitorCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Competitor = compr3,
+                        Sequence = 3,
+                        CompetitorType = compr2.CompetitorType
                     }
                 },
                 JudgeCompetitions = new HashSet<JudgeCompetition>
@@ -643,37 +687,107 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
                     {
                         Id =  Guid.NewGuid(),
                         Judge = judge1,
-                        JudgeType = JudgeType.Normal
+                        JudgeType = judge1.JudgeType
                     },
                     new JudgeCompetition
                     {
                         Id =  Guid.NewGuid(),
                         Judge = judge2,
-                        JudgeType = JudgeType.Normal
+                        JudgeType = judge2.JudgeType
                     },
                     new JudgeCompetition
                     {
                         Id =  Guid.NewGuid(),
                         Judge = judge3,
-                        JudgeType = JudgeType.Normal
+                        JudgeType = judge3.JudgeType
                     },
                     new JudgeCompetition
                     {
                         Id =  Guid.NewGuid(),
                         Judge = judge4,
-                        JudgeType = JudgeType.Normal
+                        JudgeType = judge4.JudgeType
                     },
                     new JudgeCompetition
                     {
                         Id =  Guid.NewGuid(),
                         Judge = judge5,
-                        JudgeType = JudgeType.Head
+                        JudgeType = judge5.JudgeType
+                    }
+                }
+            };
+
+            var comp2 = new Competition
+            {
+                Id = Guid.NewGuid(),
+                Location = "Viva Studio",
+                Name = "Test Comp 2",
+                Category = div1.Categories.First(),
+                CompetitionStatus = CompetitionStatus.Created,
+                StartedOn = DateTimeOffset.Parse("2014-11-02 14:20"),
+                CompletedOn = DateTimeOffset.Parse("2014-11-02 15:20"),
+                CreatedOn = DateTimeOffset.Now,
+                CompetitorCompetitions = new HashSet<CompetitorCompetition>
+                {
+                    new CompetitorCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Competitor = compr4,
+                        Sequence = 1,
+                        CompetitorType = compr1.CompetitorType
+                    },
+                    new CompetitorCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Competitor = compr2,
+                        Sequence = 2,
+                        CompetitorType = compr2.CompetitorType
+                    },
+                    new CompetitorCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Competitor = compr1,
+                        Sequence = 3,
+                        CompetitorType = compr2.CompetitorType
+                    }
+                },
+                JudgeCompetitions = new HashSet<JudgeCompetition>
+                {
+
+                    new JudgeCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Judge = judge1,
+                        JudgeType = judge1.JudgeType
+                    },
+                    new JudgeCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Judge = judge2,
+                        JudgeType = judge2.JudgeType
+                    },
+                    new JudgeCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Judge = judge3,
+                        JudgeType = judge3.JudgeType
+                    },
+                    new JudgeCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Judge = judge4,
+                        JudgeType = judge4.JudgeType
+                    },
+                    new JudgeCompetition
+                    {
+                        Id =  Guid.NewGuid(),
+                        Judge = judge5,
+                        JudgeType = judge5.JudgeType
                     }
                 }
             };
 
 
-            new List<Competition>{comp1}.ForEach(x=>context.Competitions.Add(x));
+            new List<Competition>{comp1,comp2}.ForEach(x=>context.Competitions.Add(x));
 
             context.SaveChanges();
         }

@@ -10,5 +10,3 @@ C:\Development\Dance\Viva.CorporateSys.Dance.Datastore\bin\Debug\EntityFramework
 C:\Development\Dance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.csprojResolveAssemblyReference.cache
 C:\Development\Dance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.dll
 C:\Development\Dance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.pdb
-C:\Development\Dance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.Migrations.initial.resources
-C:\Development\Dance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.csproj.GenerateResource.Cache

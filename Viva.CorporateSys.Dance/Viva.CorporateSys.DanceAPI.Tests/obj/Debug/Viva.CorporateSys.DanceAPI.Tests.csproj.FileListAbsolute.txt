@@ -18,3 +18,4 @@ C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bi
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\EntityFramework.SqlServer.xml
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\Ninject.dll
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\Ninject.xml
+C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\AutoMapper.Net4.dll
