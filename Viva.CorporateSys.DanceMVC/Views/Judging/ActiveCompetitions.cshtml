@@ -9,7 +9,7 @@
 
     var totalCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count;
 
-    var judgedCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count(x => x.Judgings.Count > 0);
+    var judgedCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count(x => x.Judgings.Any(j=>j.JudgeCompetition.Judge.Id==Model.Judge.Id));
 }
 
 

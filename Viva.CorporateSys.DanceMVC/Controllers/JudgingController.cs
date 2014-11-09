@@ -122,6 +122,16 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
             return View(ViewModel);
         }
 
+        public ActionResult JudgingResults()
+        {
+            var viewModel = new JudgingResultViewModel();
+
+            viewModel.ActiveCompetitions = _competitionService.GetOpenCompetitions().OrderBy(x => x.StartedOn).ToList();
+            viewModel.Criteria = _competitionService.GetAllCriteria().OrderBy(x => x.DisplaySequence).ToList();
+
+            return View(viewModel);
+        }
+
         public ActionResult JudgingComplete()
         {
 

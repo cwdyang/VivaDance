@@ -83,12 +83,14 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
                         }
 
 
-                        if (viewModel.ActiveCompetitorCompetition == null)
+                        if (viewModel.ActiveCompetition==null||
+                            viewModel.ActiveCompetitorCompetition == null)
                         {
                             var url = new UrlHelper(filterContext.RequestContext);
                             var urlContent = url.Content("~/Judging/JudgingComplete");
                             filterContext.HttpContext.Response.Redirect(urlContent, true);
                             filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Redirect); //STOPS execution!!
+                            return;
                         }
 
                         
@@ -113,6 +115,7 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
                         var loginUrl = url.Content("~/Account/Login");
                         filterContext.HttpContext.Response.Redirect(loginUrl, true);
                         filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Redirect); //STOPS execution!!
+                        return;
                     }
                 }
             }

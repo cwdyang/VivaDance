@@ -41,6 +41,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
                 .Include(x => x.Category)
                 .Include(x => x.Category.Division)
                 .Include(x => x.JudgeCompetitions.Select(y => y.Judge).Select(z => z.Organisation))
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judgings.Select(z=>z.Criterion)))
                 .Include(x => x.JudgeCompetitions.Select(y => y.Judgings))
                 .Include(x => x.CompetitorCompetitions.Select(y => y.Competitor).Select(z => z.Organisation))
                 .Include(x => x.CompetitorCompetitions.Select(y => y.Judgings));
@@ -162,7 +163,8 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
         {
             DbContext.JudgeCompetitions.Attach(judging.JudgeCompetition);
             DbContext.CompetitorCompetitions.Attach(judging.CompetitorCompetition);
-            DbContext.Criteria.Attach(judging.Criterion);
+
+            //DbContext.Criteria.Attach(judging.Criterion);
 
             var judgingFound = DbContext.Judgings.FirstOrDefault(x=>
                 x.CriterionId == judging.Criterion.Id &&
@@ -176,6 +178,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
             }
             else
             {
+                judging.Criterion = null;
                 DbContext.Judgings.Add(judging);
                 judgingFound = judging;
             }
