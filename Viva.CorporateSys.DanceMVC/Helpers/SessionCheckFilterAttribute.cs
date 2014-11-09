@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Security.Principal;
 using System.Web.Mvc;
 using Datacom.CorporateSys.Hire.Helpers;
@@ -59,12 +60,42 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
 
                 if (userName != null)
                 {
+
                     var user = _participantService.GetJudge(userName);
 
                     if (user != null)
                     {
                         viewModel = new JudgingViewModel(user, _competitionService.GetOpenCompetitionsForJudge(user.Id));
 
+                        viewModel.ActiveCompetition = 
+                        viewModel.Competitions.Where(c => c.CompetitorCompetitions.Any(
+                            x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id)))
+                            .OrderBy(x => x.StartedOn)
+                            .FirstOrDefault();
+
+                        if (viewModel.ActiveCompetition != null)
+                        {
+                            viewModel.ActiveCompetitorCompetition =
+                                viewModel.ActiveCompetition.CompetitorCompetitions.Where(
+                                    x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id))
+                                    .OrderBy(x => x.Competitor.EntityNumber)
+                                    .FirstOrDefault();
+                        }
+
+
+                        if (viewModel.ActiveCompetitorCompetition == null)
+                        {
+                            var url = new UrlHelper(filterContext.RequestContext);
+                            var urlContent = url.Content("~/Judging/JudgingComplete");
+                            filterContext.HttpContext.Response.Redirect(urlContent, true);
+                            filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Redirect); //STOPS execution!!
+                        }
+
+                        
+                        viewModel.ActiveJudgeCompetition =
+                            viewModel.ActiveCompetition.JudgeCompetitions.FirstOrDefault(x => x.Judge.Id == viewModel.Judge.Id);
+
+                        viewModel.AllowedCriteria = _competitionService.GetAllowedCriteriaForJudge(viewModel.ActiveCompetition.Id, viewModel.Judge.Id);
                         filterContext.HttpContext.Session.SetDataToSession<JudgingViewModel>(SessionConstants.JudgingViewModel,  viewModel);
                         return;
                     }

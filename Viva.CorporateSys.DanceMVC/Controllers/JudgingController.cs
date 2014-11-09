@@ -84,7 +84,8 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
              */
             {
 
-                
+                if(ViewModel.ActiveCompetition!=null)
+                    return View(ViewModel);
 
                 var comps = _competitionService.GetOpenCompetitionsForJudge(ViewModel.Judge.Id).OrderBy(x => x.StartedOn);
 
@@ -93,13 +94,20 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
 
                 ViewModel.Competitions = comps.ToList();
 
-                ViewModel.ActiveCompetition = comps.First();
+                ViewModel.ActiveCompetition =
+                        ViewModel.Competitions.Where(c => c.CompetitorCompetitions.Any(
+                            x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != ViewModel.Judge.Id)))
+                            .OrderBy(x => x.StartedOn)
+                            .FirstOrDefault();
 
-                var allowedCriteria = _competitionService.GetAllowedCriteriaForJudge(ViewModel.ActiveCompetition.Id, ViewModel.Judge.Id);
-
-                ViewModel.ActiveCompetitorCompetition =
-                    ViewModel.ActiveCompetition.CompetitorCompetitions.Where(
-                        x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != ViewModel.Judge.Id)).OrderBy(x => x.Competitor.EntityNumber).FirstOrDefault();
+                if (ViewModel.ActiveCompetition != null)
+                {
+                    ViewModel.ActiveCompetitorCompetition =
+                        ViewModel.ActiveCompetition.CompetitorCompetitions.Where(
+                            x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != ViewModel.Judge.Id))
+                            .OrderBy(x => x.Competitor.EntityNumber)
+                            .FirstOrDefault();
+                }
 
                 if (ViewModel.ActiveCompetitorCompetition==null)
                     return RedirectToAction("JudgingComplete", "Judging");
@@ -107,7 +115,8 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
                 ViewModel.ActiveJudgeCompetition =
                     ViewModel.ActiveCompetition.JudgeCompetitions.FirstOrDefault(x => x.Judge.Id == ViewModel.Judge.Id);
 
-                ViewModel.AllowedCriteria = allowedCriteria;
+                ViewModel.AllowedCriteria = _competitionService.GetAllowedCriteriaForJudge(ViewModel.ActiveCompetition.Id, ViewModel.Judge.Id);
+;
             }
 
             return View(ViewModel);

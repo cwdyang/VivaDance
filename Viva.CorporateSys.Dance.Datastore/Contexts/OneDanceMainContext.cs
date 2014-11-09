@@ -84,7 +84,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Contexts
             if (!Database.Exists())
             {
                 ((IObjectContextAdapter)this).ObjectContext.CreateDatabase();
-                //new Configuration().SeedDb(this);
+                new Configuration().SeedDb(this);
             }
 
 		}
