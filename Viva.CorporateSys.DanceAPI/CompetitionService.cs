@@ -321,6 +321,20 @@ namespace Viva.CorporateSys.DanceAPI
             }
         }
 
+        public List<Competition> GetNotClosedCompetitions()
+        {
+            var listToReturn = Enumerable.Empty<Competition>().ToList();
+
+            using (var repo = GetCompetitionRepository())
+            {
+                var list = repo.GetNotClosedCompetitions();
+
+                listToReturn = Mapper.Map<List<Competition>>(list);
+            }
+
+            return listToReturn;
+        }
+
         public List<Competition> GetOpenCompetitions()
         {
             var listToReturn = Enumerable.Empty<Competition>().ToList();

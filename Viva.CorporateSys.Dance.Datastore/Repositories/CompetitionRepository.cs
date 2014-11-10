@@ -35,20 +35,33 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
             return listFiletered.ToList();
         }
 
-        public IList<Competition> GetOpenCompetitions()
+        private IQueryable<Competition> GetAllCompetitions()
         {
-            var allCompetitions = DbContext.Competitions
+            var allCompetitionsQuery = DbContext.Competitions
                 .Include(x => x.Category)
                 .Include(x => x.Category.Division)
                 .Include(x => x.JudgeCompetitions.Select(y => y.Judge).Select(z => z.Organisation))
-                .Include(x => x.JudgeCompetitions.Select(y => y.Judgings.Select(z=>z.Criterion)))
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judgings.Select(z => z.Criterion)))
                 .Include(x => x.JudgeCompetitions.Select(y => y.Judgings))
                 .Include(x => x.CompetitorCompetitions.Select(y => y.Competitor).Select(z => z.Organisation))
                 .Include(x => x.CompetitorCompetitions.Select(y => y.Judgings));
-                
+
+            return allCompetitionsQuery;
+        }
+
+        public IList<Competition> GetNotClosedCompetitions()
+        {
+            var notClosedCompetitions =
+                GetAllCompetitions().Where(x=>x.CompetitionStatus!=CompetitionStatus.Closed).ToList();
+
+            return notClosedCompetitions;
+        }
+
+        public IList<Competition> GetOpenCompetitions()
+        {
 
             var incompleteCompetitions =
-                allCompetitions.Where(
+                GetAllCompetitions().Where(
                 x =>
                     x.CompetitorCompetitions.SelectMany(y => y.Judgings).Count() <
                     x.CompetitorCompetitions.Count()*
