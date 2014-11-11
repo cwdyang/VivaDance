@@ -137,16 +137,46 @@
     }
 </article>
 
+
+
 <script>
     window.onload = (function () {
-        /*
+        
         $('input[type=number]').keyup(function () {
-            this.value = this.value.replace(/[^\-?[0-9]\d*(\.\d+)?$]/g, '');
-        });
-        */
+            var desc = this.getAttribute("description");
+            var canBeNegative = desc.indexOf("Penalty") > -1;
+            var value = $(this).val();
 
-        $('input[type=number]').bind("keydown", function (event) {
-            event.preventDefault();
+            
+            if (canBeNegative && value > 0)
+                $(this).val(0.0 - value);
+
+            if (canBeNegative && value < -20)
+                $(this).val(-20);
+
+            if (!canBeNegative && value > 20)
+                $(this).val(20);
+        });
+        
+
+
+        $('input[type=number]').bind("keydown", function (e) {
+            var desc = this.getAttribute("description");
+            var canBeNegative = desc.indexOf("Penalty") > -1;
+           
+            var value = $(this).val();
+            var hasPoint = value.indexOf(".") > -1;
+            var hasMinus = value.indexOf("-") > -1;
+
+            if (!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 97 && e.keyCode <= 105) || ((canBeNegative && e.keyCode == 189) || e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 190 || e.keyCode == 46 || e.keyCode == 8 || e.keyCode == 9))) {
+                
+                e.preventDefault();
+            }
+
+            if ((hasPoint&&e.keyCode==190)||
+                 (hasMinus && e.keyCode == 189))
+                e.preventDefault();
+            
         });
 
         $("input[type='submit']").click(submitForm);

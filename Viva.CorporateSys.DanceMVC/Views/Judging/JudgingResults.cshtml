@@ -61,6 +61,7 @@
                 Value = g.Select(y => y).ToList()
             }).OrderBy(x=>x.Key.CompetitorCompetitions.First().Sequence);
 
+            /*
             listOfJudgingsGroupedByCompetitorQuery.ToList().ForEach(c =>
             {
                 if (!c.Value.Any(x => x.IsExcluded))
@@ -75,6 +76,7 @@
                     //compSvc.SubmitJudging(orderedJudgings.First());
                 }
             });
+            */
 
             var rankings = new Dictionary<Competitor, double>();
 
@@ -105,7 +107,7 @@
                 judges.ForEach(x => judgeValues += "<td><b>" + x.FirstName + "<br/>" + x.LastName + "</b></td>");
 
                 report.Append("<tr>");
-                report.Append("<td><b>Judges</b></td>" + judgeValues + "<td></td>");
+                report.Append("<td><b>Judges</b></td>" + judgeValues + "<td><b>Break down</b></td>");
                 report.Append("</tr>");
 
 

@@ -51,6 +51,9 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
             foreach (var key in items.AllKeys.Where(x => !x.StartsWith("submit")))
             {
                 var value = Request.Form[key];
+                var valueDouble = 0.0;
+
+                double.TryParse(value, out valueDouble);
 
                 var judging = new Judging
                 {
@@ -58,11 +61,16 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
                     JudgeCompetition = ViewModel.ActiveJudgeCompetition,
                     Id = Guid.NewGuid(),
                     Criterion = ViewModel.AllowedCriteria.FirstOrDefault(x => x.Id.ToString() == key),
-                    ScorePoints = double.Parse(value)
+                    ScorePoints = valueDouble
                 };
 
+                /*
                 var isJudgingComplete = _competitionService.IsJudgingCompleteForCompetitor(ViewModel.ActiveCompetitorCompetition.Id,
                     ViewModel.ActiveCompetitorCompetition.Competitor.Id, ViewModel.ActiveJudgeCompetition.Judge.Id);
+                */
+
+                if (judging.Criterion==null)
+                    return RedirectToAction("ActiveCompetitions", "Judging");
 
                 //if (!isJudgingComplete)
                 _competitionService.SubmitJudging(judging);
