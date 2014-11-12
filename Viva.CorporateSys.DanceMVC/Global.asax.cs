@@ -24,5 +24,17 @@ namespace Viva.CorporateSys.DanceMVC
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var ex = Server.GetLastError();
+
+            if (ex is HttpAntiForgeryException)
+            {
+                Response.Clear();
+                Server.ClearError(); //make sure you log the exception first
+                Response.Redirect("/Account/LogOff", true);
+            }
+        }
     }
 }

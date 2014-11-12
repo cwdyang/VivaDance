@@ -1,4 +1,4 @@
-﻿html {
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
@@ -46,12 +46,12 @@ mark {
 
 .float-left {
     float: left;
-    background-color: #F6F6F7;
+    
 }
 
 .float-right {
     float: right;
-    background-color: #F6F6F7;
+    
 }
 
 .clear-fix:after {
@@ -100,7 +100,7 @@ h5, h6 {
 .content-wrapper {
     margin: 0 auto;
     max-width: 960px;
-    background-color: #F6F6F7;
+    
 }
 
 #body {
@@ -121,7 +121,7 @@ h5, h6 {
 
 header .content-wrapper {
     padding-top: 20px; 
-    background-color: #F6F6F7;
+    
 }
 
 footer {
@@ -629,11 +629,11 @@ th {
     }
 
     th.asc a:after {
-        content: '▲';
+        content: '?';
     }
 
     th.desc a:after {
-        content: '▼';
+        content: '?';
     }
 
 td {
@@ -722,7 +722,7 @@ tr.pager td {
     .content-wrapper {
         padding-right: 10px;
         padding-left: 10px;
-        background-color: #F6F6F7;
+        
     }
 
     .featured .content-wrapper {

@@ -140,44 +140,49 @@
 
 
 <script>
+    
+    function keyupLeave(e) {
+        var desc = this.getAttribute("description");
+        var canBeNegative = desc.indexOf("Penalty") > -1;
+        var value = $(this).val();
+
+            
+        if (canBeNegative && value > 0)
+            $(this).val(0.0 - value);
+
+        if (canBeNegative && value < -20)
+            $(this).val(-20);
+
+        if (!canBeNegative && value > 20)
+            $(this).val(20);
+    }
+
+    function keydown(e) {
+        var desc = this.getAttribute("description");
+        var canBeNegative = desc.indexOf("Penalty") > -1;
+           
+        var value = $(this).val();
+        var hasPoint = value.indexOf(".") > -1;
+        var hasMinus = value.indexOf("-") > -1;
+
+        if (!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 97 && e.keyCode <= 105) || ((canBeNegative && e.keyCode == 189) || e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 190 || e.keyCode == 46 || e.keyCode == 8 || e.keyCode == 9))) {
+                
+            e.preventDefault();
+        }
+
+        if ((hasPoint&&e.keyCode==190)||
+        (hasMinus && e.keyCode == 189))
+            e.preventDefault();
+            
+    }
+
     window.onload = (function () {
         
-        $('input[type=number]').keyup(function () {
-            var desc = this.getAttribute("description");
-            var canBeNegative = desc.indexOf("Penalty") > -1;
-            var value = $(this).val();
+        $('input[type=number]').keyup(keyupLeave);
 
-            
-            if (canBeNegative && value > 0)
-                $(this).val(0.0 - value);
-
-            if (canBeNegative && value < -20)
-                $(this).val(-20);
-
-            if (!canBeNegative && value > 20)
-                $(this).val(20);
-        });
+        $('input[type=number]').blur(keyupLeave);
         
-
-
-        $('input[type=number]').bind("keydown", function (e) {
-            var desc = this.getAttribute("description");
-            var canBeNegative = desc.indexOf("Penalty") > -1;
-           
-            var value = $(this).val();
-            var hasPoint = value.indexOf(".") > -1;
-            var hasMinus = value.indexOf("-") > -1;
-
-            if (!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 97 && e.keyCode <= 105) || ((canBeNegative && e.keyCode == 189) || e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 190 || e.keyCode == 46 || e.keyCode == 8 || e.keyCode == 9))) {
-                
-                e.preventDefault();
-            }
-
-            if ((hasPoint&&e.keyCode==190)||
-                 (hasMinus && e.keyCode == 189))
-                e.preventDefault();
-            
-        });
+        $('input[type=number]').bind("keydown", keydown);
 
         $("input[type='submit']").click(submitForm);
     });
@@ -196,8 +201,15 @@
 
         bootbox.confirm(summary, function (result) {
                 if (result)
+                {
                     $("#formSubmitJudgings").submit();
+
+                    bootbox.alert("Submitting results to the server, please wait.", function (result) {
+                    });
+                }
             }
         );
+
+        
     }
 </script>

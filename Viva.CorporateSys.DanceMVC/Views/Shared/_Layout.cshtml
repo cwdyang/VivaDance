@@ -26,17 +26,17 @@
 
     </head>
 <body style="background-color: #F6F6F7;">
-    <header style="">
-        <div class="content-wrapper" style="">
-            <div class="float-left" style="">
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
                 <img src="~/Images/index.PNG" />
             </div>
-            <div class="float-right" style="">
-                <section id="login" style="">
+            <div class="float-right">
+                <section id="login">
                     @Html.Partial("_LoginPartial")
                 </section>
-                <nav style="">
-                    <ul id="menu" style="">
+                <nav>
+                    <ul id="menu">
                         <li>@Html.ActionLink("ReadMe", "Index", "Home")</li>
                         <li>@Html.ActionLink("Judgings", "ActiveCompetitions", "Judging")</li>
                         <li>@Html.ActionLink("Results", "JudgingResults", "Judging")</li>
