@@ -31,3 +31,13 @@ db.DisplaySequence
 , jp.Email
 , cpp.EntityNumber
 , crp.DisplaySequence 
+
+
+/*
+delete from Dance.Judging where id in 
+(
+'88D42847-556A-4BB2-B561-E2A3B74611EA',
+'F7C8782E-B559-4815-808A-AED6BCD100CD',
+'C7D47882-E105-45BA-B5C1-ABBACA5455C4'
+)
+*/

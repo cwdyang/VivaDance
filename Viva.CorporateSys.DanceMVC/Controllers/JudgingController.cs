@@ -130,11 +130,22 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
             return View(ViewModel);
         }
 
-        public ActionResult JudgingResults()
+        public ActionResult JudgingResults(Guid? competitionId ,Guid? competitorId )
         {
             var viewModel = new JudgingResultViewModel();
 
-            viewModel.ActiveCompetitions = _competitionService.GetNotClosedCompetitions().OrderBy(x => x.StartedOn).ToList();
+            var openCompetitions = _competitionService.GetNotClosedCompetitions().OrderBy(x => x.StartedOn);
+
+            viewModel.ActiveCompetitionListOnly = openCompetitions.ToList();
+            viewModel.ActiveCompetitorListOnly = openCompetitions.Select(x => x.CompetitorCompetitions.Select(y => y.Competitor)).SelectMany(y=>y).Distinct().ToList();
+
+
+            var query = openCompetitions.AsQueryable();
+
+            query = (competitionId == null || competitionId == Guid.Empty) ? query : query.Where(x => x.Id == competitionId);
+            query = (competitorId == null || competitorId == Guid.Empty) ? query : query.Where(x => x.CompetitorCompetitions.Any(y => y.Competitor.Id == competitorId));
+
+            viewModel.ActiveCompetitions = query.ToList();
             viewModel.Criteria = _competitionService.GetAllCriteria().OrderBy(x => x.DisplaySequence).ToList();
 
             return View(viewModel);

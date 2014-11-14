@@ -4,6 +4,12 @@
 
 @{
     ViewBag.Title = "Judging Results";
+    Model.ActiveCompetitionListOnly.Add(new Competition { Id = Guid.Empty, DivisionName = "Show all" });
+    Model.ActiveCompetitionListOnly = Model.ActiveCompetitionListOnly.OrderBy(x => x.StartedOn).ThenBy(x=>x.CompetitionName).ToList();
+    Model.ActiveCompetitorListOnly.Add(new Competitor { Id = Guid.Empty, EntityNumber = 0, EntityName = "Show all" });
+    Model.ActiveCompetitorListOnly = Model.ActiveCompetitorListOnly.OrderBy(x => x.EntityNumberName).ToList();
+    var competitionList = new SelectList(Model.ActiveCompetitionListOnly, "Id", "CompetitionName");
+    var competitorList = new SelectList(Model.ActiveCompetitorListOnly, "Id", "EntityNumberName");
 }
 
 <style type='text/css' media='screen'>
@@ -21,14 +27,61 @@
 
 
 <h2>JudgingResults</h2>
+@using (Html.BeginForm("JudgingResults", "Judging", FormMethod.Post, new { id = "formFilterJudgings" }))
+    {
 
-<p>
-    @{
+    <fieldset>
+        <div>
+            Select a competition:  @Html.DropDownList("competitionId", competitionList, new
+                              {
+                                  size = "1",
+                                  style = "width: 100%"
+                              }
+            )
+            <br /><br />
+            Select a competitor:  @Html.DropDownList("competitorId", competitorList, new
+                              {
+                                  size = "1",
+                                  style = "width: 100%"
+                              })
+
+
+            <br /><br />
+            <input type="submit" id="submit" name="submit" value="Apply filter"/>
+            <input type="button" id="reset" name="reset" value="Show all" />
+        </div>
+        </fieldset>
+    
+    <script>
+        window.onload = (function () {
+
+           
+            $("input[id='reset']").click(resetForm);
+
+            if ($('#competitorId').val() != '@Guid.Empty') {
+                $("table[description='team']").hide(100);
+                $("tr[description='team']").hide(100);
+                $("table[id='" + $("#competitorId").val() + "']").show(200);
+                $("tr[id='" + $("#competitorId").val() + "']").show(200);
+            }
+        });
+
+
+        function resetForm(event) {
+            
+            $('select').val("@Guid.Empty");
+            $('#formFilterJudgings').submit();
+        }
+    </script>
+                  
+}
+        <p>
+            @{
         var comps = Model.ActiveCompetitions;
-        var criteria = Model.Criteria; 
+        var criteria = Model.Criteria;
         var report = new StringBuilder();
 
-        
+
         comps.ToList().ForEach(comp =>
         {
             var listOfJudgings = new List<Judging>();
@@ -37,7 +90,7 @@
             report.Append("<table>");
 
             report.Append("<tr>");
-            report.Append("<td><b>Competition</b></td><td colspan='6'><b>" + comp.Text + "</b></td>");
+            report.Append("<td><b>Competition</b></td><td colspan='6' style='width:60%'><b>" + comp.CompetitionName + "</b></td>");
             report.Append("</tr>");
             report.Append("<tr>");
             report.Append("<td>" + "Division" + "</td><td colspan='6'>" + comp.DivisionName + "</td>");
@@ -50,7 +103,7 @@
             report.Append("</tr>");
             report.Append("<tr>");
             report.Append("<td>" + "Start" + "</td><td colspan='6'>" + comp.StartedOn.Value.ToString("yyyy/MMM/dd HH:mm:ss") + "</td>");
-            report.Append("</tr>");
+            report.Append("</tr></table>");
 
             listOfJudgings = comp.JudgeCompetitions.SelectMany(x => x.Judgings).ToList();
 
@@ -80,17 +133,17 @@
 
             var rankings = new Dictionary<Competitor, double>();
 
-            listOfJudgingsGroupedByCompetitorQuery.ToList().ForEach(c =>
+            listOfJudgingsGroupedByCompetitorQuery.OrderBy(x=>x.Key.EntityNumberName).ToList().ForEach(c =>
             {
 
-   
-                report.Append("<tr><td colspan='11'></td></tr>");
-               
+
+                report.Append("<table description='team' id='" + c.Key.Id.ToString() + "'><tr><td colspan='11'></td></tr>");
+
                 report.Append("<tr>");
                 report.Append("<td><b>Team #</b></td><td colspan='6'><b>" + c.Key.EntityNumber + "</b></td>");
                 report.Append("</tr>");
                 report.Append("<tr>");
-                report.Append("<td><b>Team Name</b></td><td colspan='6'><b>" + c.Key.EntityName + " " + c.Key.FirstName + " " + c.Key.LastName + "</b></td>");
+                report.Append("<td><b>Team Name</b></td><td colspan='6' style='width:60%'><b>" + c.Key.EntityName + " " + c.Key.FirstName + " " + c.Key.LastName + "</b></td>");
                 report.Append("</tr>");
                 report.Append("<tr>");
                 report.Append("<td>" + "&nbsp;" + "</td><td colspan='6'>" + "" + "</td>");
@@ -155,12 +208,12 @@
 
                 report.Append("<tr>");
                 report.Append("<td><b>Total</b></td><td colspan='6'><b>" + total + "</b></td>");
-                report.Append("</tr>");
+                report.Append("</tr></table>");
 
             });
 
             report.Append("</table><table><tr>");
-            report.Append("<td><b>Rankings</b></td><td colspan='3'></td>");
+            report.Append("<td><b>Rankings</b></td><td style='width:60%' colspan='3'></td>");
             report.Append("</tr>");
 
             report.Append("<tr>");
@@ -175,7 +228,7 @@
                 if (previousScore != c.Value)
                     placing += 1;
 
-                report.Append("<tr>");
+                report.Append("<tr description='team' id='" + c.Key.Id.ToString() + "'>");
                 report.Append("<td><b>" + placing + "</b></td><td>" + c.Value + "</td><td>" + c.Key.EntityNumber + "</td><td>" + c.Key.EntityName + " " + c.Key.FirstName + " " + c.Key.LastName + "</td>");
                 report.Append("</tr>");
 
@@ -185,10 +238,10 @@
             report.Append("</table><br/><br/><HR>");
         });
 
-      
 
 
-    }
-    
-    @Html.Raw(report.ToString());
-</p>
+
+            }
+
+            @Html.Raw(report.ToString());
+        </p>

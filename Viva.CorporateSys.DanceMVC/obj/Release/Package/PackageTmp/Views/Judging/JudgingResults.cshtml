@@ -1,0 +1,194 @@
+﻿@using System.Text
+@using Viva.CorporateSys.DanceAPI
+@model Viva.CorporateSys.DanceMVC.ViewModels.JudgingResultViewModel
+
+@{
+    ViewBag.Title = "Judging Results";
+}
+
+<style type='text/css' media='screen'>
+    table{border-collapse:collapse;border: 1px solid lightgray; width:100%;}table td{border:1px solid lightgray;padding: 5px;}
+    hr { 
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: solid;
+        border-width: 2px;
+    }
+</style>
+
+
+<h2>JudgingResults</h2>
+
+<p>
+    @{
+        var comps = Model.ActiveCompetitions;
+        var criteria = Model.Criteria; 
+        var report = new StringBuilder();
+
+        
+        comps.ToList().ForEach(comp =>
+        {
+            var listOfJudgings = new List<Judging>();
+
+
+            report.Append("<table>");
+
+            report.Append("<tr>");
+            report.Append("<td><b>Competition</b></td><td colspan='6'><b>" + comp.Text + "</b></td>");
+            report.Append("</tr>");
+            report.Append("<tr>");
+            report.Append("<td>" + "Division" + "</td><td colspan='6'>" + comp.DivisionName + "</td>");
+            report.Append("</tr>");
+            report.Append("<tr>");
+            report.Append("<td>" + "Category" + "</td><td colspan='6'>" + comp.CategoryName + "</td>");
+            report.Append("</tr>");
+            report.Append("<tr>");
+            report.Append("<td>" + "Location" + "</td><td colspan='6'>" + comp.Location + "</td>");
+            report.Append("</tr>");
+            report.Append("<tr>");
+            report.Append("<td>" + "Start" + "</td><td colspan='6'>" + comp.StartedOn.Value.ToString("yyyy/MMM/dd HH:mm:ss") + "</td>");
+            report.Append("</tr>");
+
+            listOfJudgings = comp.JudgeCompetitions.SelectMany(x => x.Judgings).ToList();
+
+            var listOfJudgingsGroupedByCompetitorQuery =
+            listOfJudgings.GroupBy(x => x.CompetitorCompetition.Competitor).Select(g => new
+            {
+                Key = g.Key,
+                Value = g.Select(y => y).ToList()
+            }).OrderBy(x=>x.Key.CompetitorCompetitions.First().Sequence);
+
+            /*
+            listOfJudgingsGroupedByCompetitorQuery.ToList().ForEach(c =>
+            {
+                if (!c.Value.Any(x => x.IsExcluded))
+                {
+                    var orderedJudgings =
+                        c.Value.Where(x => x.ScorePoints > 0).OrderBy(x => x.ScorePoints).ToList();
+
+                    orderedJudgings.Last().IsExcluded = true;
+                    orderedJudgings.First().IsExcluded = true;
+
+                    //compSvc.SubmitJudging(orderedJudgings.Last());
+                    //compSvc.SubmitJudging(orderedJudgings.First());
+                }
+            });
+            */
+
+            var rankings = new Dictionary<Competitor, double>();
+
+            listOfJudgingsGroupedByCompetitorQuery.ToList().ForEach(c =>
+            {
+
+   
+                report.Append("<tr><td colspan='11'></td></tr>");
+               
+                report.Append("<tr>");
+                report.Append("<td><b>Team #</b></td><td colspan='6'><b>" + c.Key.EntityNumber + "</b></td>");
+                report.Append("</tr>");
+                report.Append("<tr>");
+                report.Append("<td><b>Team Name</b></td><td colspan='6'><b>" + c.Key.EntityName + " " + c.Key.FirstName + " " + c.Key.LastName + "</b></td>");
+                report.Append("</tr>");
+                report.Append("<tr>");
+                report.Append("<td>" + "&nbsp;" + "</td><td colspan='6'>" + "" + "</td>");
+                report.Append("</tr>");
+
+                var total = 0.0;
+
+                var criteriaIds = criteria.OrderBy(x => x.DisplaySequence).Select(x => x.Id).Distinct().ToList(); //c.Value.Select(x => x.Criterion.Id).Distinct().ToList();
+
+                var judges = c.Value.Select(x => x.JudgeCompetition.Judge).Distinct().OrderBy(x => x.LastName).ThenBy(x => x.FirstName).ToList();
+
+                var judgeValues = "";
+
+                judges.ForEach(x => judgeValues += "<td><b>" + x.FirstName + "<br/>" + x.LastName + "</b></td>");
+
+                report.Append("<tr>");
+                report.Append("<td><b>Judges</b></td>" + judgeValues + "<td><b>Break down</b></td>");
+                report.Append("</tr>");
+
+
+
+                criteriaIds.ForEach(cr =>
+                {
+                    var judgingMatched = c.Value.FirstOrDefault(x => x.Criterion.Id == cr);
+                    var criterion = (judgingMatched != null) ? judgingMatched.Criterion : criteria.FirstOrDefault(x => x.Id == cr);
+                    var scoresAllQuery = c.Value.Where(x => x.Criterion.Id == cr);
+                    var scoreQuery = scoresAllQuery.Where(x => !x.IsExcluded);
+                    var scores = scoreQuery.ToList();
+                    var scoresAll =
+                        scoresAllQuery.OrderBy(x => x.JudgeCompetition.Judge.LastName)
+                            .ThenBy(x => x.JudgeCompetition.Judge.FirstName)
+                            .ToList();
+                    var scoreAvg = (scores.Count == 0) ? 0 : scoreQuery.Average(x => x.ScorePoints);
+
+
+
+                    var scoreValues = "";
+
+                    var cursor = 0;
+
+                    judges.ForEach(x =>
+                    {
+                        var matchedJudging = scoresAll.FirstOrDefault(y => y.JudgeCompetition.Judge.Id == x.Id);
+
+                        if (matchedJudging == null)
+                            scoreValues += "<td></td>";
+                        else
+                            scoreValues += "<td>" + ((matchedJudging.IsExcluded) ? "<strike><b><font color='red'>" : "") +
+                                           matchedJudging.ScorePoints +
+                                           ((matchedJudging.IsExcluded) ? "</font></b></strike>" : "") + "</td>";
+                    });
+
+
+                    report.Append("<tr>");
+                    report.Append("<td>" + criterion.Text + "</td>" + scoreValues + "<td>" + scoreAvg + "</td>");
+                    report.Append("</tr>");
+
+                    total += scoreAvg;
+                });
+
+                rankings.Add(c.Key, total);
+
+                report.Append("<tr>");
+                report.Append("<td><b>Total</b></td><td colspan='6'><b>" + total + "</b></td>");
+                report.Append("</tr>");
+
+            });
+
+            report.Append("</table><table><tr>");
+            report.Append("<td><b>Rankings</b></td><td colspan='3'></td>");
+            report.Append("</tr>");
+
+            report.Append("<tr>");
+            report.Append("<td>Placing</td><td>Score</td><td>Team #</td><td>Team Name</td>");
+            report.Append("</tr>");
+
+            var placing = 0;
+            var previousScore = -9999.00;
+
+            rankings.OrderByDescending(x => x.Value).ToList().ForEach(c =>
+            {
+                if (previousScore != c.Value)
+                    placing += 1;
+
+                report.Append("<tr>");
+                report.Append("<td><b>" + placing + "</b></td><td>" + c.Value + "</td><td>" + c.Key.EntityNumber + "</td><td>" + c.Key.EntityName + " " + c.Key.FirstName + " " + c.Key.LastName + "</td>");
+                report.Append("</tr>");
+
+                previousScore = c.Value;
+            });
+
+            report.Append("</table><br/><br/><HR>");
+        });
+
+      
+
+
+    }
+    
+    @Html.Raw(report.ToString());
+</p>

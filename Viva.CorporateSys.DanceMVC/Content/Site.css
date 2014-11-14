@@ -486,6 +486,7 @@ textarea {
 
     input[type="submit"],
     input[type="button"],
+    input[type="reset"],
     button {
         background-color: #d3dce0;
         border: 1px solid #787878;

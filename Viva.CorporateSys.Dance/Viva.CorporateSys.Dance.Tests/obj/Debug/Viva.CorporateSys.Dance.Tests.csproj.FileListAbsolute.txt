@@ -76,3 +76,4 @@ C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.Dance.Tests\bin\D
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.Dance.Tests\bin\Debug\zh-Hant\System.Spatial.resources.dll
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.Dance.Tests\obj\Debug\Viva.CorporateSys.Dance.Tests.dll
 C:\Development\Dance\Viva.CorporateSys.Dance\Viva.CorporateSys.Dance.Tests\obj\Debug\Viva.CorporateSys.Dance.Tests.pdb
+C:\Development\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.Dance.Tests\obj\Debug\Viva.CorporateSys.Dance.Tests.csprojResolveAssemblyReference.cache

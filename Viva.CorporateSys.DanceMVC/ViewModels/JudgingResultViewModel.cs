@@ -9,6 +9,8 @@ namespace Viva.CorporateSys.DanceMVC.ViewModels
     public class JudgingResultViewModel
     {
         public List<Competition> ActiveCompetitions { get; set; }
+        public List<Competition> ActiveCompetitionListOnly { get; set; }
+        public List<Competitor> ActiveCompetitorListOnly { get; set; }
         public List<Criterion> Criteria { get; set; }
     }
 }

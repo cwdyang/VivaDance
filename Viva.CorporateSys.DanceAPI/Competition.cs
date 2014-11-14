@@ -89,6 +89,11 @@ namespace Viva.CorporateSys.DanceAPI
 
         [DataMember]
         public string EntityName { get; set; }
+
+        [DataMember]
+        public string EntityNumberName { get {
+            return ((EntityNumber==0)?"":EntityNumber.ToString()) + " " + EntityName;
+        } }
     }
 
     [DataContract]
@@ -118,6 +123,11 @@ namespace Viva.CorporateSys.DanceAPI
             JudgeCompetitions = new HashSet<JudgeCompetition>();
             CompetitorCompetitions = new HashSet<CompetitorCompetition>();
         }
+
+        [DataMember]
+        public string CompetitionName { get {
+            return DivisionName + " " + CategoryName + " " + ((StartedOn==null)?"":StartedOn.Value.ToString("yyyy MMM dd hh:mm tt"));
+        } }
 
         [DataMember]
         public string CategoryName { get; set; }

@@ -1,0 +1,215 @@
+﻿@model Viva.CorporateSys.DanceMVC.ViewModels.JudgingViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    var competitionCurrent = Model.ActiveCompetition;
+
+    var competitorCurrent = Model.ActiveCompetitorCompetition.Competitor;
+
+    var totalCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count;
+
+    var judgedCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count(x => x.Judgings.Any(j=>j.JudgeCompetition.Judge.Id==Model.Judge.Id));
+}
+
+
+<article>
+    @using (Html.BeginForm("SubmitJudgings", "Judging", FormMethod.Post, new {id = "formSubmitJudgings"}))
+    {
+
+        <fieldset>
+
+
+            <div style="float: left; text-align: left;">
+
+              
+        
+                <table>
+                    <tr>
+                        <td><b>
+    Competition Name:
+</b>
+                        </td>
+                        <td><b>
+                            @competitionCurrent.Text</b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Competition Location:
+                        </td>
+                        <td>
+                            @competitionCurrent.Location
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Start:
+                        </td>
+                        <td>
+                            @competitionCurrent.StartedOn
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Division:
+                        </td>
+                        <td>
+                            <b>
+                                @competitionCurrent.DivisionName
+                            </b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Category:
+                        </td>
+                        <td>
+                            <b>
+                                @competitionCurrent.CategoryName
+                            </b>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            Marked: @judgedCompetitors/@totalCompetitors
+                        </td>
+                        <td>
+                           
+
+                            <progress max="@totalCompetitors" value="@judgedCompetitors" title="Your progress"></progress>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><br/></td>
+                    </tr>
+                    <tr>
+                        <td class="competitor">
+                            @competitorCurrent.EntityName<br/>
+                            @competitorCurrent.OrganisationName
+                        </td>
+                        <td class="competitor">
+                                #@competitorCurrent.EntityNumber
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2"><br />
+                            
+                        </td>
+                    </tr>
+                    @foreach (var criterion in Model.AllowedCriteria.OrderBy(x => x.DisplaySequence).ToList())
+                    {
+                        <tr>
+                            <td class="criterion">
+                                @criterion.Text
+                            </td>
+                            <td>
+                                @if (criterion.ScorePoints > 0)
+                                {
+                                    <input type="number" id="@criterion.Id" description="@criterion.Text" name="@criterion.Id" min="0.0" max="@criterion.ScorePoints" step=".5">
+                                }
+                                else
+                                {
+                                    <input type="number" id="@criterion.Id" description="@criterion.Text" name="@criterion.Id" min=" -20.0" max="@criterion.ScorePoints" step=".5">
+                                }
+                            </td>
+                        </tr>
+                    }
+            
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input id="btnSubmit" name="btnSubmit" type='submit' value='Submit Judging' class="submitJudging" />
+                        </td>
+                    </tr>
+
+
+                </table>    
+
+            </div>
+        </fieldset>
+    }
+</article>
+
+
+
+<script>
+    
+    function keyupLeave(e) {
+        var desc = this.getAttribute("description");
+        var canBeNegative = desc.indexOf("Penalty") > -1;
+        var value = $(this).val();
+
+            
+        if (canBeNegative && value > 0)
+            $(this).val(0.0 - value);
+
+        if (canBeNegative && value < -20)
+            $(this).val(-20);
+
+        if (!canBeNegative && value > 20)
+            $(this).val(20);
+    }
+
+    function keydown(e) {
+        var desc = this.getAttribute("description");
+        var canBeNegative = desc.indexOf("Penalty") > -1;
+           
+        var value = $(this).val();
+        var hasPoint = value.indexOf(".") > -1;
+        var hasMinus = value.indexOf("-") > -1;
+
+        if (!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 97 && e.keyCode <= 105) || ((canBeNegative && e.keyCode == 189) || e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 190 || e.keyCode == 46 || e.keyCode == 8 || e.keyCode == 9))) {
+                
+            e.preventDefault();
+        }
+
+        if ((hasPoint&&e.keyCode==190)||
+        (hasMinus && e.keyCode == 189))
+            e.preventDefault();
+            
+    }
+
+    window.onload = (function () {
+        
+        $('input[type=number]').keyup(keyupLeave);
+
+        $('input[type=number]').blur(keyupLeave);
+        
+        $('input[type=number]').bind("keydown", keydown);
+
+        $("input[type='submit']").click(submitForm);
+    });
+
+
+    function submitForm(event) {
+
+        event.preventDefault();
+        
+
+        var summary = "You are about to submit your judging for <br/><br/> @competitorCurrent.EntityName   #@competitorCurrent.EntityNumber <br/><br/>Results:<br/><br/>";
+
+        $('input[type=number]').each(function (index) {
+            summary += (($(this).val() == "") ? "0" : $(this).val()) + " points for: " + $(this).attr("description") + " " + "<br/><br/>";
+        });
+
+        bootbox.confirm(summary, function (result) {
+                if (result)
+                {
+                    $("#formSubmitJudgings").submit();
+
+                    bootbox.alert("Submitting results to the server, please wait.", function (result) {
+                    });
+                }
+            }
+        );
+
+        
+    }
+</script>

@@ -1,0 +1,5 @@
+C:\Development\VivaDance\Viva.CorporateSys.Dance.Domain\bin\Release\Viva.CorporateSys.Dance.Domain.dll
+C:\Development\VivaDance\Viva.CorporateSys.Dance.Domain\bin\Release\Viva.CorporateSys.Dance.Domain.pdb
+C:\Development\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Release\Viva.CorporateSys.Dance.Domain.csprojResolveAssemblyReference.cache
+C:\Development\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Release\Viva.CorporateSys.Dance.Domain.dll
+C:\Development\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Release\Viva.CorporateSys.Dance.Domain.pdb
