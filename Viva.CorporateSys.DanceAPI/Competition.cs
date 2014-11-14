@@ -51,6 +51,9 @@ namespace Viva.CorporateSys.DanceAPI
 
         [DataMember]
         public string OrganisationName { get; set; }
+
+        [DataMember]
+        public Guid OrganisationId{ get; set; }
     }
 
     [DataContract]

@@ -58,6 +58,7 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
                 .ForMember(o => o.JudgeCompetitions, opt => opt.MapFrom(d => d.JudgeCompetitions))
                 .ForMember(o => o.OrganisationName, opt => opt.MapFrom(d => d.Organisation.Caption))
+                .ForMember(o => o.OrganisationId, opt => opt.MapFrom(d => d.OrganisationId))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
 
@@ -66,7 +67,7 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Email, opt => opt.MapFrom(d => d.Email))
                 .ForMember(o => o.JudgeType, opt => opt.MapFrom(d => d.JudgeType))
                 .ForMember(o => o.JudgeCompetitions, opt => opt.MapFrom(d => d.JudgeCompetitions))
-                
+                .ForMember(o => o.OrganisationId, opt => opt.MapFrom(d => d.OrganisationId))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
 
@@ -77,6 +78,7 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.EntityNumber, opt => opt.MapFrom(d => d.EntityNumber))
                 .ForMember(o => o.EntityName, opt => opt.MapFrom(d => d.EntityName))
                 .ForMember(o => o.OrganisationName, opt => opt.MapFrom(d => d.Organisation.Caption))
+                .ForMember(o => o.OrganisationId, opt => opt.MapFrom(d => d.OrganisationId))
                 .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));
@@ -87,7 +89,7 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.CompetitorType, opt => opt.MapFrom(d => d.CompetitorType))
                 .ForMember(o => o.EntityNumber, opt => opt.MapFrom(d => d.EntityNumber))
                 .ForMember(o => o.EntityName, opt => opt.MapFrom(d => d.EntityName))
-                
+                .ForMember(o => o.OrganisationId, opt => opt.MapFrom(d => d.OrganisationId))
                 .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.FirstName, opt => opt.MapFrom(d => d.FirstName))
                 .ForMember(o => o.LastName, opt => opt.MapFrom(d => d.LastName));

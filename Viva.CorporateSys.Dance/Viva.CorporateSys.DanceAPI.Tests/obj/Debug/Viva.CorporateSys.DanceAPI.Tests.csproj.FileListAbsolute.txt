@@ -38,4 +38,3 @@ C:\Development\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Test
 C:\Development\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.csprojResolveAssemblyReference.cache
 C:\Development\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.dll
 C:\Development\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.pdb
-C:\Development\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\AutoMapper.Net4.dll

@@ -65,41 +65,54 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
 
                     if (user != null)
                     {
-                        viewModel = new JudgingViewModel(user, _competitionService.GetOpenCompetitionsForJudge(user.Id));
 
-                        viewModel.ActiveCompetition = 
-                        viewModel.Competitions.Where(c => c.CompetitorCompetitions.Any(
-                            x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id)))
-                            .OrderBy(x => x.StartedOn)
-                            .FirstOrDefault();
+                        switch(filterContext.ActionDescriptor.ActionName)
+                        { 
+                            case "JudgingResults":
+                                if(userName!="administrator")
+                                {
+                                    filterContext.Result = new EmptyResult();
+                                    return;
+                                }
+                                break;
+                            case "ActiveCompetitions":
+                            viewModel = new JudgingViewModel(user, _competitionService.GetOpenCompetitionsForJudge(user.Id));
 
-                        if (viewModel.ActiveCompetition != null)
-                        {
-                            viewModel.ActiveCompetitorCompetition =
-                                viewModel.ActiveCompetition.CompetitorCompetitions.Where(
-                                    x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id))
-                                    .OrderBy(x => x.Competitor.EntityNumber)
-                                    .FirstOrDefault();
-                        }
+                            viewModel.ActiveCompetition = 
+                            viewModel.Competitions.Where(c => c.CompetitorCompetitions.Any(
+                                x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id)))
+                                .OrderBy(x => x.StartedOn)
+                                .FirstOrDefault();
+
+                            if (viewModel.ActiveCompetition != null)
+                            {
+                                viewModel.ActiveCompetitorCompetition =
+                                    viewModel.ActiveCompetition.CompetitorCompetitions.Where(
+                                        x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id))
+                                        .OrderBy(x => x.Sequence)
+                                        .FirstOrDefault();
+                            }
 
 
-                        if (viewModel.ActiveCompetition==null||
-                            viewModel.ActiveCompetitorCompetition == null)
-                        {
-                            var url = new UrlHelper(filterContext.RequestContext);
-                            var urlContent = url.Content("~/Judging/JudgingComplete");
-                            filterContext.HttpContext.Response.Redirect(urlContent, true);
-                            filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Redirect); //STOPS execution!!
-                            return;
-                        }
+                            if (viewModel.ActiveCompetition==null||
+                                viewModel.ActiveCompetitorCompetition == null)
+                            {
+                                var url = new UrlHelper(filterContext.RequestContext);
+                                var urlContent = url.Content("~/Judging/JudgingComplete");
+                                filterContext.HttpContext.Response.Redirect(urlContent, true);
+                                filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Redirect); //STOPS execution!!
+                                return;
+                            }
 
                         
-                        viewModel.ActiveJudgeCompetition =
-                            viewModel.ActiveCompetition.JudgeCompetitions.FirstOrDefault(x => x.Judge.Id == viewModel.Judge.Id);
+                            viewModel.ActiveJudgeCompetition =
+                                viewModel.ActiveCompetition.JudgeCompetitions.FirstOrDefault(x => x.Judge.Id == viewModel.Judge.Id);
 
-                        viewModel.AllowedCriteria = _competitionService.GetAllowedCriteriaForJudge(viewModel.ActiveCompetition.Id, viewModel.Judge.Id);
-                        filterContext.HttpContext.Session.SetDataToSession<JudgingViewModel>(SessionConstants.JudgingViewModel,  viewModel);
-                        return;
+                            viewModel.AllowedCriteria = _competitionService.GetAllowedCriteriaForJudge(viewModel.ActiveCompetition.Id, viewModel.Judge.Id);
+                            filterContext.HttpContext.Session.SetDataToSession<JudgingViewModel>(SessionConstants.JudgingViewModel,  viewModel);
+                            return;
+
+                        }
                     }
                 }
 

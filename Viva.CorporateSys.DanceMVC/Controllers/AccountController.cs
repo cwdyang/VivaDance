@@ -105,6 +105,14 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
 
                     //_competitionService
 
+                    var organisation = new Organisation
+                    {
+                        Id = Guid.NewGuid(),
+                        Text = model.OrganisationName
+                    };
+
+                    _participantService.AddOrganisation(organisation);
+
                     switch (model.EntityType)
                     {
                         case EntityType.Competitor_Soloist:
@@ -119,8 +127,8 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
                                 LastName = model.LastName,
                                 CompetitorType = (CompetitorType)model.EntityType,
                                 Email = model.UserName,
-                                
-                                OrganisationName = model.OrganisationName
+                                OrganisationId = organisation.Id,
+                                OrganisationName = organisation.Text
                             };
                             _participantService.AddCompetitor(competitor);
                             break;
@@ -136,7 +144,8 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
                                 LastName = model.LastName,
                                 JudgeType = (model.EntityType==EntityType.Judge_Head)?JudgeType.Head : JudgeType.Normal,
                                 Email = model.UserName,
-                                OrganisationName = model.OrganisationName
+                                OrganisationId = organisation.Id,
+                                OrganisationName = organisation.Text
                             };
                             _participantService.AddJudge(judge);
 
@@ -148,13 +157,7 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
 
                     }
 
-                    var organisation = new Organisation
-                    {
-                        Id = Guid.NewGuid(),
-                        Text = model.OrganisationName
-                    };
-
-                    _participantService.AddOrganisation(organisation);
+                    
 
 
 

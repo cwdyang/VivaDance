@@ -155,6 +155,14 @@
 
         if (!canBeNegative && value > 20)
             $(this).val(20);
+
+        if(!IsNumeric(value))
+            $(this).val("");
+    }
+
+    function IsNumeric(n) {
+        return Object.prototype.toString.call(n) !== '[object Array]' && !isNaN(parseFloat(n)) && isFinite(n);
+
     }
 
     function keydown(e) {
@@ -165,10 +173,13 @@
         var hasPoint = value.indexOf(".") > -1;
         var hasMinus = value.indexOf("-") > -1;
 
-        if (!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 97 && e.keyCode <= 105) || ((canBeNegative && e.keyCode == 189) || e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 190 || e.keyCode == 46 || e.keyCode == 8 || e.keyCode == 9))) {
+        if (!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 97 && e.keyCode <= 105) || ((canBeNegative && e.keyCode == 189)  || e.keyCode == 39 || e.keyCode == 37 || e.keyCode == 190 || e.keyCode == 46 || e.keyCode == 8 || e.keyCode == 9))) {
                 
             e.preventDefault();
         }
+
+        if (e.keyCode == 41 || e.keyCode == 40 || e.keyCode == 59 || e.keyCode == 36 || e.keyCode == 34 || e.keyCode == 64 || e.keyCode == 64)
+            e.preventDefault();
 
         if ((hasPoint&&e.keyCode==190)||
         (hasMinus && e.keyCode == 189))

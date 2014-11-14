@@ -124,4 +124,3 @@ C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.Datastore.pdb
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.dll
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.pdb
-C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\AutoMapper.Net4.dll
