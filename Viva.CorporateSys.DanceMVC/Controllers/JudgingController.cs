@@ -113,7 +113,7 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
                     ViewModel.ActiveCompetitorCompetition =
                         ViewModel.ActiveCompetition.CompetitorCompetitions.Where(
                             x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != ViewModel.Judge.Id))
-                            .OrderBy(x => x.Competitor.EntityNumber)
+                            .OrderBy(x => x.Sequence)
                             .FirstOrDefault();
                 }
 

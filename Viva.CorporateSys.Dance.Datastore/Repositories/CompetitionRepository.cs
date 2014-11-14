@@ -18,6 +18,8 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
         public static int NormalCriterionCount = 5;
         public static int PenalityCriterionCount = 1;
 
+        public static int TotalCriteriaExPenaltyCount = int.Parse(ConfigurationSettings.AppSettings["TotalCriteriaExPenaltyCount"]);
+
         public CompetitionRepository()
         {
         }
