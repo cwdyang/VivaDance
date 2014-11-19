@@ -131,7 +131,7 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
         }
 
         [SessionCheckFilterAttribute]
-        public ActionResult JudgingResults(Guid? competitionId ,Guid? competitorId )
+        public ActionResult JudgingResults(Guid? competitionId, Guid? competitorId, string reset)
         {
             
 

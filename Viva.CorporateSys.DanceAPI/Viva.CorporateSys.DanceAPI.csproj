@@ -70,6 +70,8 @@
     <Compile Include="APIModule.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="GroupByCompetitorCriterionResolver.cs" />
+    <Compile Include="JudgingsRecordedResolver.cs" />
+    <Compile Include="JudgingsTotalRequiredResolver.cs" />
     <Compile Include="ParticipantService.cs" />
     <Compile Include="DivisionNameResolver.cs" />
     <Compile Include="IParticipantService.cs" />

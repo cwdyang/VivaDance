@@ -148,6 +148,8 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.JudgeCompetitions, opt => opt.MapFrom(d => d.JudgeCompetitions))
                 .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.CompetitionStatus, opt => opt.MapFrom(d => d.CompetitionStatus))
+                .ForMember(o => o.JudgingsRecorded, opt => opt.ResolveUsing<JudgingsRecordedResolver>())
+                .ForMember(o => o.JudgingsTotalRequired, opt => opt.ResolveUsing<JudgingsTotalRequiredResolver>())
                 .ForMember(o => o.CreatedOn, opt => opt.MapFrom(d => d.CreatedOn))
                 .ForMember(o => o.StartedOn, opt => opt.MapFrom(d => d.StartedOn));
 
@@ -351,4 +353,5 @@ namespace Viva.CorporateSys.DanceAPI
             return listToReturn;
         }
     }
+
 }

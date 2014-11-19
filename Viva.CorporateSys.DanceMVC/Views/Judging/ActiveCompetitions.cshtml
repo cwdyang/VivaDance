@@ -31,49 +31,32 @@
 </b>
                         </td>
                         <td><b>
-                            @competitionCurrent.Text</b>
+                            @competitionCurrent.Text - @competitionCurrent.CompetitionName</b>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>
-                            Competition Location:
-                        </td>
-                        <td>
-                            @competitionCurrent.Location
-                        </td>
-                    </tr>
+                    
 
                     <tr>
                         <td>
                             Start:
                         </td>
-                        <td>
-                            @competitionCurrent.StartedOn
+                        <td><font color="darkgreen"><b>
+                            @competitionCurrent.StartedOn</b></font>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            Division:
+                            Division / Category:
                         </td>
                         <td>
                             <b>
-                                @competitionCurrent.DivisionName
+                                @competitionCurrent.DivisionName / @competitionCurrent.CategoryName
                             </b>
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>
-                            Category:
-                        </td>
-                        <td>
-                            <b>
-                                @competitionCurrent.CategoryName
-                            </b>
-                        </td>
-                    </tr>
                     
                     <tr>
                         <td>
@@ -89,13 +72,10 @@
                         <td colspan="2"><br/></td>
                     </tr>
                     <tr>
-                        <td class="competitor">
-                            @competitorCurrent.EntityName<br/>
-                            @competitorCurrent.OrganisationName
+                        <td class="competitor" colspan="2">
+                            @competitorCurrent.EntityName
                         </td>
-                        <td class="competitor">
-                                #@competitorCurrent.EntityNumber
-                        </td>
+                       
                     </tr>
                     
                     <tr>
@@ -125,10 +105,18 @@
                     <tr>
                         <td></td>
                         <td>
+                            <br />
                             <input id="btnSubmit" name="btnSubmit" type='submit' value='Submit Judging' class="submitJudging" />
                         </td>
                     </tr>
-
+                    <tr>
+                        <td></td>
+                        <td>
+                            <br/>
+                            <input type="button" id="reset" name="reset" value="Reset" class="resetJudging" />
+                            
+                        </td>
+                    </tr>
 
                 </table>    
 
@@ -197,8 +185,14 @@
 
         $("input[type='submit']").click(submitForm);
 
-
+        $("input[id='reset']").click(resetForm);
     });
+
+
+    function resetForm(event) {
+
+        $('input[type=number]').val("");
+    }
 
     
     function submitForm(event) {

@@ -1,250 +1,4 @@
-vivdance
-!itiq99!!
-vodafone	6788303067
-
-
-extra functions:
-
-put teams on hold
-insert teams into category comps ad hoc
-create competition (division, category, name)
-close competition
-modify scores post entry
-delete competition
-results page auto poll
-results page list teams even if not ready (green for judging complete, orange for incomplete)
-judging page show competition progress, prev and next division category
-competitor defaulting option > 0 marks last place?
-judging results sort teams by competitorcompeition.sequence
-
-
-issues:
-
-ipad connectivity
-
-process improvements:
-
-sync lists before comp
-
-
-Head Judge : 
-Greydis Montero Liranza, criteria 4 : Timing & Musicality , Originality of Choreography / OR Freestyle vocabulary, Appearance, Connection & Synchronicity 
-Juan Carlos Ospina Sanchez: 3 Difficulty, Technique, Originality of Choreography / OR Freestyle vocabulary
-Sharon Pakir Krygger: 3  Timing & Musicality, Technique, Originality of Choreography / OR Freestyle vocabulary
-Alex Bryan 4 : Difficulty, Technique, Appearance, Connection & Synchronicity
-Vivio Ramos: 3 Timing & Musicality , Difficulty, Technique 
-
-
-competitors
-
-Aveo Latin Ladies Team 
-Aveo Latin Team 
-Aveo Men’s Shines Team 
-Aveo Open Salsa Team 
-Aveo Team 
-Cornelia Mu and Mitchell Kwan 
-Dharshana Ratnayake and Deepika Goundar 
-E Dance Productions Cha Mania 
-Eloise Gantuangco and Victor Zapata 
-Emily Woodfield and Sonia Hems
-Heidi Cone and Daniel Munro 
-Irina Kapeli 
-Izadora Campos 
-Jeremy Sim 
-Jeremy Sim and Mia Yatiswara 
-Joanne Mijares-Supelana 
-Jordan Paranihi and Ken Hudson (Star dos locos)
-Julian Zhu 
-Larissa RaukawaSonia Hems 
-Latin Addiction Bachatango Team 
-Latin Addiction Cha Cha Ladies
-Latin Addictoin Salsa Ladies 
-Latinissimo Mens Shines 
-Latinissimo Zouk Team
-Mai Dahlberg 
-Mai Dahlberg(AM) and Gino Giancarlo Mayaute 
-Mia YatiswaraEmily Woodfield 
-Nicola Taylor and Juan Sandoval 
-Richie Nanales( Am ) and Eloise Gantuangco 
-Ritmos Candentes from Salsa Latina 
-Salsa Revolution from Salsa Latina 
-Sara Djuric and Sebastian Vera 
-Scott Suen and Mia Yatiswara 
-Sweet Azucar! BachaTango 
-Viva Bachata Team
-VIva Black 
-Viva Chocolat 
-Vyara Bridgeman and Jorge Sequeiros  
-Yanita McLeay and Julian Zhu 
- 
-
-
-var comptr = new Competitor{Id = Guid.NewGuid(),EntityName = "",EntityNumber = ,Email = "",CompetitorType = CompetitorType.Couple,Organisation = orgVivaDance,MobileNumber = "021",FirstName = "",LastName = ""};
-
-
-
-
-
-
-
-
-
-
-
-
-
-competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptr, comptr });
-
-
-
-divYouth
-divAdultFree
-divAmatuer
-divSemiPro
-divProf
-divOpen
-divProAm
-
- var comp1 = new Competition { Id = Guid.NewGuid(), Location = "Viva Studio", Name = "Test Comp 1", Category = divYouth.Categories.First(), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-02 13:20"), CompletedOn = DateTimeOffset.Parse("2014-11-02 14:20"), CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = new HashSet<CompetitorCompetition> {}, JudgeCompetitions = new HashSet<JudgeCompetition> { new JudgeCompetition { Id = Guid.NewGuid(), Judge = judgeGML, JudgeType = judgeGML.JudgeType }, new JudgeCompetition { Id = Guid.NewGuid(), Judge = judgeJCOS, JudgeType = judgeJCOS.JudgeType }, new JudgeCompetition { Id = Guid.NewGuid(), Judge = judgeSPK, JudgeType = judgeSPK.JudgeType }, new JudgeCompetition { Id = Guid.NewGuid(), Judge = judgeAB, JudgeType = judgeAB.JudgeType }, new JudgeCompetition { Id = Guid.NewGuid(), Judge = judgeVR, JudgeType = judgeVR.JudgeType } } };
-4.30pm divAmatuer Salsa Couples Semi Final – Choreography 
-
- Sara Djuric and Sebastian Vera 
-  
-4.33pm divSemiPro Salsa Couples Semi-Pro Semi Final – Choreography 
- Dharshana Ratnayake and Deepika Goundar 
- Scott Suen and Mia Yatiswara 
-  
-4.40pm divProf Salsa Couples Professional Semi Final – Choreography 
- Vyara Bridgeman and Jorge Sequeiros 
- Eloise Gantuangco and Victor Zapata 
-  
-4.47pm divAmatuer Salsa Couples Amateur Final – Improvisation 
- Sara Djuric and Sebastian Vera 
-  
-4.50pm divSemiPro Salsa Couples Semi-Pro Final- Improvisation 
- Dharshana Ratnayake and Deepika Goundar 
- Scott Suen and Mia Yatiswara 
-  
-4.56pm divProf Salsa Couples Professional Final- Improvisation 
- Vyara Bridgeman and Jorge Sequeiros 
- Eloise Gantuangco and Victor Zapata 
-  
-5.02pm Bachata Couples Amateur Semi Final Choreography 
- Sara Djuric and Sebastian Vera 
- Yanita McLeay and Julian Zhu 
- Nicola Taylor and Juan Sandoval 
-  
-5.14pm Bachata Professional Couples Semi Final Choreography 
- Vyara Bridgeman and Jorge Sequeiros 
-  
-5.18pm Bachata Couples Amateur Final- Improvisation 
- Sara Djuric and Sebastian Vera 
- Yanita McLeay and Julian Zhu 
- Nicola Taylor and Juan Sandoval 
-  
-5.27pm Bachata Professional Couples Improvisation 
- Vyara Bridgeman and Jorge Sequeiros 
-  
-5.30pm Zouk Couples Amateur Semi Final – Choreography 
- Cornelia Mu and Mitchell Kwan 
- Heidi Cone and Daniel Munro 
-  
-5.40pm Zouk Couples Amateur Amateur Final Improvisation 
- Cornelia Mu and Mitchell Kwan 
- Heidi Cone and Daniel Munro 
-  
-5.46pm Pro/Am Semi Finals Choreography 
- Richie Nanales( Am ) and Eloise Guantuangco 
- Mai Dahlberg(AM) and Gino Giancarlo Mayaute 
-  
-5.54pm Pro/Am Finals Improvisation 
- Richie Nanales( Am ) and Eloise Gantuangco 
- Mai Dahlberg(AM) and Gino Giancarlo Mayaute 
-  
-6.00pm Presentations and freestyle 
-  
-6.20pm Amateur Solo Female 
- Joanne Mijares-Supelana 
- Mai Dahlberg 
- Izadora Campos 
-  
-6.30pm Amateur Solo Male 
- Julian Zhu 
-  
-6.34pm Semi Pro Solo Female 
- Mia YatiswaraEmily Woodfield 
-  
-6.38pm Semi-Pro Solo Male 
- Jeremy Sim 
-  
-6.42pm Professional Solo Female 
- Irina Kapeli 
- Larissa RaukawaSonia Hems 
-  
-6.52pm Open Duets 
- Jeremy Sim and Mia Yatiswara 
- Jordan Paranihi and Ken Hudson (Star dos locos)
-
- 
-
-Emily Woodfield and Sonia Hems
- 
-  
-7.00pm Presentations 
-  
-7.10pm Amateur Salsa Team 
- Aveo Team 
-  
-7.14pm Open Salsa Teams 
- VIva Black 
- Aveo Open Salsa Team 
-  
-7.22pm Open Latin Team 
- Latin Addiction Bachatango Team 
- Sweet Azucar! BachaTango 
- Aveo Latin Team 
- Latinissimo Zouk Team
-
- 
-
-Viva Bachata Team
- 
-  
-7.38pm Open Salsa Shines Teams 
- Viva Chocolat 
- Latin Addictoin Salsa Ladies 
- Aveo Men’s Shines Team 
- Latinissimo Mens Shines 
- Ritmos Candentes from Salsa Latina 
-  
-7.58pm Open Latin Shines Teams 
-  
- Salsa Revolution from Salsa Latina 
- E Dance Productions Cha Mania 
- Aveo Latin Ladies Team 
- Ritmos Candentes from Salsa Latina 
-
-Latin Addiction Cha Cha Ladies
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Viva.CorporateSys.Dance.Datastore.Contexts;
@@ -286,9 +40,10 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             //    );
             //
 
+            context.DeleteAll<Judging>();
             context.DeleteAll<JudgeCompetition>();
             context.DeleteAll<CompetitorCompetition>();
-            context.DeleteAll<Judging>();
+            
             context.DeleteAll<JudgingAssignment>();
             context.DeleteAll<Competition>();
             context.DeleteAll<Category>();
@@ -889,55 +644,80 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge>{ judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR});
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrSaraDjuricandSebastianVera });
-            var compSalsaCouplesAmateurSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Amateur Semi Final Choreography", Category = divAmatuer.Categories.First(x=>x.Caption=="Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4.30pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compSalsaCouplesAmateurSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Amateur Semi Final Choreography", Category = divAmatuer.Categories.First(x=>x.Caption=="Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4:30pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrDharshanaRatnayakeandDeepikaGoundar, comptrScottSuenandMiaYatiswara });
-            var compSalsaCouplesSemiProSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Semi Pro Semi Final Choreography ", Category = divSemiPro.Categories.First(x=>x.Caption=="Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4.33pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compSalsaCouplesSemiProSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Semi Pro Semi Final Choreography ", Category = divSemiPro.Categories.First(x=>x.Caption=="Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4:33pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrVyaraBridgemanandJorgeSequeiros, comptrEloiseGantuangcoandVictorZapata });
-            var compSalsaCouplesProfessionalSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Professional Semi Final Choreography ", Category = divProf.Categories.First(x=>x.Caption=="Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4.40pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compSalsaCouplesProfessionalSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Professional Semi Final Choreography ", Category = divProf.Categories.First(x=>x.Caption=="Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4:40pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrSaraDjuricandSebastianVera }); 
-            var compSalsaCouplesAmateurFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Amateur Final Improvisation", Category = divAmatuer.Categories.First(x => x.Caption == "Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4.47pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compSalsaCouplesAmateurFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Amateur Final Improvisation", Category = divAmatuer.Categories.First(x => x.Caption == "Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4:47pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrDharshanaRatnayakeandDeepikaGoundar, comptrScottSuenandMiaYatiswara });
-            var compSalsaCouplesSemiProFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Semi-Pro Final Improvisation ", Category = divSemiPro.Categories.First(x => x.Caption == "Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4.50pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compSalsaCouplesSemiProFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Semi-Pro Final Improvisation ", Category = divSemiPro.Categories.First(x => x.Caption == "Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4:50pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrVyaraBridgemanandJorgeSequeiros, comptrEloiseGantuangcoandVictorZapata });
-            var compSalsaCouplesProfessionalFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Professional Final Improvisation ", Category = divProf.Categories.First(x => x.Caption == "Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4.56pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compSalsaCouplesProfessionalFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Salsa Couples Professional Final Improvisation ", Category = divProf.Categories.First(x => x.Caption == "Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 4:56pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrSaraDjuricandSebastianVera, comptrYanitaMcLeayandJulianZhu, comptrNicolaTaylorandJuanSandoval });
-            var compBachataCouplesAmateurSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Bachata Couples Amateur Semi Final Choreography", Category = divAmatuer.Categories.First(x => x.Caption == "Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5.02pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrVyaraBridgemanandJorgeSequeiros});
-            var compBachataProfessionalCouplesSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Bachata Professional Couples Semi Final Choreography ", Category = divProf.Categories.First(x => x.Caption == "Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5.14pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrSaraDjuricandSebastianVera, comptrYanitaMcLeayandJulianZhu, comptrNicolaTaylorandJuanSandoval });
-            var compBachataCouplesAmateurFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Bachata Couples Amateur Final- Improvisation ", Category = divAmatuer.Categories.First(x => x.Caption == "Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5.18pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compBachataCouplesAmateurSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Bachata Couples Amateur Semi Final Choreography", Category = divAmatuer.Categories.First(x => x.Caption == "Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5:02pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrVyaraBridgemanandJorgeSequeiros });
-            var compBachataProfessionalCouplesImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Bachata Professional Couples Improvisation", Category = divProf.Categories.First(x => x.Caption == "Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5.27pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compBachataProfessionalCouplesSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Bachata Professional Couples Semi Final Choreography ", Category = divProf.Categories.First(x => x.Caption == "Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5:14pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrSaraDjuricandSebastianVera, comptrYanitaMcLeayandJulianZhu, comptrNicolaTaylorandJuanSandoval });
+            var compBachataCouplesAmateurFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Bachata Couples Amateur Final- Improvisation ", Category = divAmatuer.Categories.First(x => x.Caption == "Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5:18pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrVyaraBridgemanandJorgeSequeiros });
+            var compBachataProfessionalCouplesImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Bachata Professional Couples Improvisation", Category = divProf.Categories.First(x => x.Caption == "Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5:27pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrCorneliaMuandMitchellKwan, comptrHeidiConeandDanielMunro });
-            var compZoukCouplesAmateurSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Zouk Couples Amateur Semi Final Choreography ", Category = divAmatuer.Categories.First(x => x.Caption == "Zouk Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5.30pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compZoukCouplesAmateurSemiFinalChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Zouk Couples Amateur Semi Final Choreography ", Category = divAmatuer.Categories.First(x => x.Caption == "Zouk Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5:30pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrCorneliaMuandMitchellKwan, comptrHeidiConeandDanielMunro });
-            var compZoukCouplesAmateurAmateurFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Zouk Couples Amateur Amateur Final Improvisation ", Category = divAmatuer.Categories.First(x => x.Caption == "Zouk Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5.40pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compZoukCouplesAmateurAmateurFinalImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Zouk Couples Amateur Amateur Final Improvisation ", Category = divAmatuer.Categories.First(x => x.Caption == "Zouk Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5:40pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrRichieNanalesAmandEloiseGantuangco, comptrMaiDahlbergAMandGinoGiancarloMayaute });
-            var compProAmSemiFinalsChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Pro Am Semi Finals Choreography ", Category = divProAm.Categories.First(x => x.Caption == "Salsa Couples Lead Pro"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5.46pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compProAmSemiFinalsChoreography = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Pro Am Semi Finals Choreography ", Category = divProAm.Categories.First(x => x.Caption == "Salsa Couples Lead Pro"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5:46pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrRichieNanalesAmandEloiseGantuangco, comptrMaiDahlbergAMandGinoGiancarloMayaute });
-            var compProAmFinalsImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Pro Am Finals Improvisation ", Category = divProAm.Categories.First(x => x.Caption == "Salsa Couples Lead Pro"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5.54pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrJoanneMijaresSupelana, comptrMaiDahlberg,comptrIzadoraCampos });
-            var compAmateurSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Solo Female ", Category = divAmatuer.Categories.First(x => x.Caption == "Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6.20pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compProAmFinalsImprovisation = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Pro Am Finals Improvisation ", Category = divProAm.Categories.First(x => x.Caption == "Salsa Couples Lead Pro"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 5:54pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrJoanneMijaresSupelana, comptrMaiDahlberg, comptrIzadoraCampos });
+            var compAmateurSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Solo Female ", Category = divAmatuer.Categories.First(x => x.Caption == "Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6:20pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrJulianZhu });
-            var compAmateurSoloMale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Solo Male ", Category = divAmatuer.Categories.First(x => x.Caption == "Salsa Solo Male"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6.30pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compAmateurSoloMale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Solo Male ", Category = divAmatuer.Categories.First(x => x.Caption == "Salsa Solo Male"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6:30pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrMiaYatiswaraEmilyWoodfield });
-            var compSemiProSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Semi Pro Solo Female ", Category = divSemiPro.Categories.First(x => x.Caption == "Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6.34pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrJeremySim});
-            var compSemiProSoloMale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Semi Pro Solo Male ", Category = divSemiPro.Categories.First(x => x.Caption == "Salsa Solo Male"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6.38pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compSemiProSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Semi Pro Solo Female ", Category = divSemiPro.Categories.First(x => x.Caption == "Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6:34pm"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrJeremySim });
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            var compSemiProSoloMale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Semi Pro Solo Male ", Category = divSemiPro.Categories.First(x => x.Caption == "Salsa Solo Male"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6:38pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrIrinaKapeli, comptrLarissaRaukawaSoniaHems });
-            var compProfessionalSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Solo Female ", Category = divProf.Categories.First(x => x.Caption == "Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6.42pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrJeremySimandMiaYatiswara, comptrJordanParanihiandKenHudsonStardoslocos, comptrEmilyWoodfieldandSoniaHems});
-            var compOpenDuets = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Duets ", Category = divOpen.Categories.First(x => x.Caption == "Salsa Shines Duets"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6.52pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compProfessionalSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Solo Female ", Category = divProf.Categories.First(x => x.Caption == "Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6:42pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrJeremySimandMiaYatiswara, comptrJordanParanihiandKenHudsonStardoslocos, comptrEmilyWoodfieldandSoniaHems });
+            var compOpenDuets = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Duets ", Category = divOpen.Categories.First(x => x.Caption == "Salsa Shines Duets"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 6:52pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrAveoTeam });
-            var compAmateurSalsaTeam = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Salsa Team ", Category = divAmatuer.Categories.First(x => x.Caption == "Salsa Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7.10pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compAmateurSalsaTeam = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Salsa Team ", Category = divAmatuer.Categories.First(x => x.Caption == "Salsa Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7:10pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrVIvaBlack, comptrAveoOpenSalsaTeam });
-            var compOpenSalsaTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Teams ", Category = divOpen.Categories.First(x => x.Caption == "Salsa Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7.14pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrLatinAddictionBachatangoTeam, comptrSweetAzucarBachaTango,comptrAveoLatinTeam,comptrLatinissimoZoukTeam,comptrVivaBachataTeam });
-            var compOpenLatinTeam = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Team ", Category = divOpen.Categories.First(x => x.Caption == "Latin Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7.22pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrVivaChocolat, comptrLatinAddictoinSalsaLadies,comptrAveoMensShinesTeam,comptrLatinissimoMensShines,comptrRitmosCandentesfromSalsaLatina });
-            var compOpenSalsaShinesTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Shines Teams ", Category = divOpen.Categories.First(x => x.Caption == "Salsa Shines Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7.38pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrSalsaRevolutionfromSalsaLatina, comptrEDanceProductionsChaMania,comptrAveoLatinLadiesTeam,comptrRitmosCandentesfromSalsaLatina,comptrLatinAddictionChaChaLadies });
-            var compOpenLatinShinesTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Shines Teams ", Category = divOpen.Categories.First(x => x.Caption == "Latin Shines Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7.58pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compOpenSalsaTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Teams ", Category = divOpen.Categories.First(x => x.Caption == "Salsa Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7:14pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrLatinAddictionBachatangoTeam, comptrSweetAzucarBachaTango, comptrAveoLatinTeam, comptrLatinissimoZoukTeam, comptrVivaBachataTeam });
+            var compOpenLatinTeam = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Team ", Category = divOpen.Categories.First(x => x.Caption == "Latin Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7:22pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrVivaChocolat, comptrLatinAddictoinSalsaLadies, comptrAveoMensShinesTeam, comptrLatinissimoMensShines, comptrRitmosCandentesfromSalsaLatina });
+            var compOpenSalsaShinesTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Shines Teams ", Category = divOpen.Categories.First(x => x.Caption == "Salsa Shines Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7:38pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeGML, judgeJCOS, judgeSPK, judgeAB, judgeVR });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { comptrSalsaRevolutionfromSalsaLatina, comptrEDanceProductionsChaMania, comptrAveoLatinLadiesTeam, comptrRitmosCandentesfromSalsaLatina, comptrLatinAddictionChaChaLadies });
+            var compOpenLatinShinesTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Shines Teams ", Category = divOpen.Categories.First(x => x.Caption == "Latin Shines Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2014-11-15 7:58pm "), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             new List<Competition> { compOpenLatinShinesTeams, compOpenSalsaShinesTeams, compOpenLatinTeam, compOpenSalsaTeams, compAmateurSalsaTeam, compOpenDuets, compProfessionalSoloFemale, compSemiProSoloMale, compSemiProSoloFemale, compAmateurSoloMale, compAmateurSoloFemale, compProAmFinalsImprovisation, compProAmSemiFinalsChoreography, compZoukCouplesAmateurAmateurFinalImprovisation, compZoukCouplesAmateurSemiFinalChoreography, compBachataProfessionalCouplesImprovisation, compBachataCouplesAmateurFinalImprovisation, compBachataProfessionalCouplesSemiFinalChoreography, compBachataCouplesAmateurSemiFinalChoreography, compSalsaCouplesProfessionalFinalImprovisation, compSalsaCouplesSemiProFinalImprovisation, compSalsaCouplesAmateurFinalImprovisation, compSalsaCouplesProfessionalSemiFinalChoreography, compSalsaCouplesSemiProSemiFinalChoreography, compSalsaCouplesAmateurSemiFinalChoreography, }.ForEach(x => context.Competitions.Add(x));
 
@@ -949,7 +729,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
         {
             var competitorCompetitions = new HashSet<CompetitorCompetition>();
 
-            var sequence = 0;
+            var sequence = 1;
 
             competitors.ForEach(x => competitorCompetitions.Add(new CompetitorCompetition
             {
@@ -979,3 +759,4 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
         }
     }
 }
+*/

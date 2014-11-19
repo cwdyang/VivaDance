@@ -58,6 +58,8 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
 
                 var userName = filterContext.RequestContext.HttpContext.User.Identity.Name;
 
+                var isAdmin = userName == "administrator";
+
                 if (userName != null)
                 {
 
@@ -69,11 +71,17 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
                         switch(filterContext.ActionDescriptor.ActionName)
                         { 
                             case "JudgingResults":
-                                if(userName!="administrator")
+                                if (!isAdmin)
                                 {
-                                    filterContext.Result = new EmptyResult();
+                                    var url = new UrlHelper(filterContext.RequestContext);
+                                    var urlContent = url.Content("~/Judging/ActiveCompetitions");
+                                    filterContext.HttpContext.Response.Redirect(urlContent, true);
+                                    filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Redirect); //STOPS execution!!
+                                    
                                     return;
                                 }
+                                else
+                                    return;
                                 break;
                             case "ActiveCompetitions":
                             viewModel = new JudgingViewModel(user, _competitionService.GetOpenCompetitionsForJudge(user.Id));

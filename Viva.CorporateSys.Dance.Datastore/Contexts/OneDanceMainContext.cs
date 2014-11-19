@@ -70,7 +70,9 @@ namespace Viva.CorporateSys.Dance.Datastore.Contexts
         public OneDanceMainContext()
             : base("name=dbOneDance")
 		{
-			Configuration.LazyLoadingEnabled = false;
+			Configuration.LazyLoadingEnabled = true;
+            Configuration.ProxyCreationEnabled = true;
+                
             Database.SetInitializer<OneDanceMainContext>(null);
 
             /*

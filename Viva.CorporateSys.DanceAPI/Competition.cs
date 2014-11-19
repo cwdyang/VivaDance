@@ -133,6 +133,21 @@ namespace Viva.CorporateSys.DanceAPI
         } }
 
         [DataMember]
+        public string CompetitionDropdownName
+        {
+            get
+            {
+                return CompetitionName + " Judging Progress:" + this.JudgingsRecorded + "/" + this.JudgingsTotalRequired;
+            }
+        }
+
+        [DataMember]
+        public int JudgingsTotalRequired { get; set; }
+
+        [DataMember]
+        public int JudgingsRecorded { get; set; }
+
+        [DataMember]
         public string CategoryName { get; set; }
 
         [DataMember]
@@ -240,6 +255,8 @@ namespace Viva.CorporateSys.DanceAPI
         public Guid CompetitionId { get; set; }
     }
 
+
+
     [DataContract]
     public class CompetitorCompetition : ParticipantCompetition
     {
@@ -258,6 +275,8 @@ namespace Viva.CorporateSys.DanceAPI
         [DataMember]
         public double TotalPenaltyPoints { get; set; }
 
+        [DataMember]
+        public double TotalCombined { get { return TotalScorePoints + TotalPenaltyPoints; } }
 
         
     }

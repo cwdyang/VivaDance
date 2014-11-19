@@ -39,10 +39,11 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
 
         private IQueryable<Competition> GetAllCompetitions()
         {
-            var allCompetitionsQuery = DbContext.Competitions
+            var allCompetitionsQuery = DbContext.Competitions.Where(x=>x.CompetitionStatus==CompetitionStatus.Created)
                 .Include(x => x.Category)
                 .Include(x => x.Category.Division)
                 .Include(x => x.JudgeCompetitions.Select(y => y.Judge).Select(z => z.Organisation))
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judge).Select(z => z.JudgingAssignments))
                 .Include(x => x.JudgeCompetitions.Select(y => y.Judgings.Select(z => z.Criterion)))
                 .Include(x => x.JudgeCompetitions.Select(y => y.Judgings))
                 .Include(x => x.CompetitorCompetitions.Select(y => y.Competitor).Select(z => z.Organisation))
@@ -53,8 +54,52 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
 
         public IList<Competition> GetNotClosedCompetitions()
         {
-            var notClosedCompetitions =
-                GetAllCompetitions().Where(x=>x.CompetitionStatus!=CompetitionStatus.Closed).ToList();
+            var notClosedCompetitions = GetAllCompetitions().Where(x=>x.CompetitionStatus==CompetitionStatus.Created).ToList();
+
+            /* 
+            
+            //this is SLOW
+            var notClosedCompetitions = DbContext.Competitions.Where(x => x.CompetitionStatus != CompetitionStatus.Closed).ToList();
+
+            notClosedCompetitions.ForEach(x =>
+           {
+               DbContext.Entry(x).Reference(y => y.Category).Load();
+
+
+               DbContext.Entry(x.Category).Reference(y => y.Division).Load();
+               DbContext.Entry(x).Collection(y => y.JudgeCompetitions).Load();
+
+               x.JudgeCompetitions.ToList().ForEach(jc =>
+               {
+                   DbContext.Entry(jc).Collection(y => y.Judgings).Load();
+                   DbContext.Entry(jc).Reference(y => y.Judge).Load();
+                   DbContext.Entry(jc.Judge).Reference(y => y.Organisation).Load();
+                   DbContext.Entry(jc.Judge).Collection(y => y.JudgingAssignments).Load();
+
+                   jc.Judgings.ToList().ForEach(j =>
+                   {
+                       DbContext.Entry(j).Reference(y => y.Criterion).Load();
+                   });
+               });
+
+               DbContext.Entry(x).Collection(y => y.CompetitorCompetitions).Load();
+
+                x.CompetitorCompetitions.ToList().ForEach(jc =>
+               {
+                   DbContext.Entry(jc).Collection(y => y.Judgings).Load();
+                   DbContext.Entry(jc).Reference(y => y.Competitor).Load();
+                   DbContext.Entry(jc.Competitor).Reference(y => y.Organisation).Load();
+                   
+                   jc.Judgings.ToList().ForEach(j =>
+                   {
+                       DbContext.Entry(j).Reference(y => y.Criterion).Load();
+                   });
+               });
+
+           });
+              
+
+            */
 
             return notClosedCompetitions;
         }
@@ -62,13 +107,14 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
         public IList<Competition> GetOpenCompetitions()
         {
 
+           
             var incompleteCompetitions =
                 GetAllCompetitions().Where(
                 x =>
                     x.CompetitorCompetitions.SelectMany(y => y.Judgings).Count() <
-                    x.CompetitorCompetitions.Count()*
-                    (MinJudgingPerCriterion*NormalCriterionCount + PenalityCriterionCount)).ToList();
-
+                    x.CompetitorCompetitions.Count() * x.JudgeCompetitions.Sum(xy=> xy.Judge.JudgingAssignments.Count)
+                   ).ToList();
+            // (MinJudgingPerCriterion*NormalCriterionCount + PenalityCriterionCount)
             /*
             var openCompetitions = allCompetitions.Where(
                     x =>
@@ -107,10 +153,8 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
                 return false;
 
             var judgingCountCap = (judge == null)
-                ? (MinJudgingPerCriterion*NormalCriterionCount + PenalityCriterionCount)
-                : MinJudgingPerCriterion + ((judgeCC.JudgeType == JudgeType.Head)
-                    ? PenalityCriterionCount
-                    : 0);
+                ? DbContext.Competitions.FirstOrDefault(x=>x.Id==competitionId).JudgeCompetitions.SelectMany(x=>x.Judge.JudgingAssignments).Count()
+                : judge.JudgingAssignments.Count;
 
 
             var isComplete = (judgingCount >= judgingCountCap) &&

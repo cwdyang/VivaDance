@@ -78,10 +78,7 @@ C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Ninject.Extensions.Facto
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Ninject.MVC.dll
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Ninject.Web.Common.dll
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Ninject.Web.Mvc.dll
-C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Net.Http.Formatting.dll
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Helpers.dll
-C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Http.dll
-C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Http.WebHost.dll
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Mvc.dll
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Optimization.dll
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Razor.dll
@@ -113,9 +110,6 @@ C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Razor.xml
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.WebPages.xml
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.WebPages.Deployment.xml
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.WebPages.Razor.xml
-C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Net.Http.Formatting.xml
-C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Http.xml
-C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\System.Web.Http.WebHost.xml
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\WebMatrix.Data.xml
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\WebMatrix.WebData.xml
@@ -124,3 +118,4 @@ C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.Datastore.pdb
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.dll
 C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.pdb
+C:\Development\VivaDance\Viva.CorporateSys.DanceMVC\bin\AutoMapper.Net4.dll
