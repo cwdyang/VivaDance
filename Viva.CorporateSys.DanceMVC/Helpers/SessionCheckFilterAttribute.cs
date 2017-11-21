@@ -60,6 +60,8 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
 
                 var isAdmin = userName == "administrator";
 
+                
+
                 if (userName != null)
                 {
 
@@ -84,21 +86,32 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
                                     return;
                                 break;
                             case "ActiveCompetitions":
-                            viewModel = new JudgingViewModel(user, _competitionService.GetOpenCompetitionsForJudge(user.Id));
+                                viewModel = new JudgingViewModel(user, _competitionService.GetOpenCompetitionsForJudge(user.Id));
+                                //viewModel = new JudgingViewModel(user, _competitionService.GetLatestOpenCompetitionForJudge(user.Id));
 
-                            viewModel.ActiveCompetition = 
-                            viewModel.Competitions.Where(c => c.CompetitorCompetitions.Any(
-                                x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id)))
-                                .OrderBy(x => x.StartedOn)
-                                .FirstOrDefault();
+                                //viewModel = new JudgingViewModel(user, _competitionService.GetLatestOpenCompetitionForJudge(user.Id));
+
+                                
+                                viewModel.ActiveCompetition = 
+                                viewModel.Competitions.Where(c => c.CompetitorCompetitions.Any(
+                                    x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id)))
+                                    .OrderBy(x => x.StartedOn)
+                                    .FirstOrDefault();
+                                    
+
+                                //viewModel.ActiveCompetition = viewModel.Competitions.FirstOrDefault();
 
                             if (viewModel.ActiveCompetition != null)
                             {
+                                    //viewModel.ActiveCompetitorCompetition =
+                                    //viewModel.ActiveCompetition.CompetitorCompetitions.FirstOrDefault();
+                                    
                                 viewModel.ActiveCompetitorCompetition =
                                     viewModel.ActiveCompetition.CompetitorCompetitions.Where(
                                         x => x.Judgings.All(y => y.JudgeCompetition.Judge.Id != viewModel.Judge.Id))
                                         .OrderBy(x => x.Sequence)
                                         .FirstOrDefault();
+                                        
                             }
 
 
@@ -124,7 +137,12 @@ namespace Viva.CorporateSys.DanceMVC.Helpers
                     }
                 }
 
+                if (isAdmin)
+                    return;
+
                 var sessionCheckFail = (_checkCompetitionNotNull) ? (viewModel == null || viewModel.Judge == null || viewModel.Competitions == null) : (viewModel == null || viewModel.Competitions == null);
+
+
 
                 if (sessionCheckFail || !filterContext.HttpContext.Request.IsAuthenticated)
                 {

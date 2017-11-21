@@ -37,6 +37,23 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
             return listFiletered.ToList();
         }
 
+        public Competition GetLatestOpenCompetitionForJudge(Guid judgeId)
+        {
+            var allCompetitionsQuery = DbContext.Competitions.Where(x => x.CompetitionStatus == CompetitionStatus.Created &&
+                x.JudgeCompetitions.Any(y=>y.JudgeId== judgeId)
+            )
+                .Include(x => x.Category)
+                .Include(x => x.Category.Division)
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judge).Select(z => z.Organisation))
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judge).Select(z => z.JudgingAssignments))
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judgings.Select(z => z.Criterion)))
+                .Include(x => x.JudgeCompetitions.Select(y => y.Judgings))
+                .Include(x => x.CompetitorCompetitions.Select(y => y.Competitor).Select(z => z.Organisation))
+                .Include(x => x.CompetitorCompetitions.Select(y => y.Judgings)).OrderBy(z=>z.StartedOn).FirstOrDefault();
+
+            return allCompetitionsQuery;
+        }
+
         private IQueryable<Competition> GetAllCompetitions()
         {
             var allCompetitionsQuery = DbContext.Competitions.Where(x=>x.CompetitionStatus==CompetitionStatus.Created)
@@ -108,7 +125,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
         {
 
            
-            var incompleteCompetitions =
+            var incompleteCompetitions = 
                 GetAllCompetitions().Where(
                 x =>
                     x.CompetitorCompetitions.SelectMany(y => y.Judgings).Count() <

@@ -8,6 +8,8 @@ namespace Viva.CorporateSys.DanceAPI
     public interface ICompetitionService
     {
         [OperationContract]
+        List<Competition> GetLatestOpenCompetitionForJudge(Guid judgeId);
+        [OperationContract]
         List<Competition> GetNotClosedCompetitions();
         [OperationContract]
         List<Competition> GetOpenCompetitionsForJudge(Guid judgeId);

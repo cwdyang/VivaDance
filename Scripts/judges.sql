@@ -16,6 +16,6 @@ inner join Dance.Division d on d.Id = ca.DivisionId
 inner join Dance.BaseObject db on db.id = d.Id
 
 order by c.StartedOn, c.Name,
-db.DisplaySequence
+db.DisplaySequence	`
 , cab.DisplaySequence
 , jp.Email

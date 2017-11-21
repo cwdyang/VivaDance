@@ -9,9 +9,12 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
 {
     public class ParticipantRepository : OneDanceBaseRepository, IParticipantRepository
     {
-        public Judge GetJudge(string emailAddress)
+        public Judge GetJudge(string emailAddress,bool includeDependencies = false)
         {
-            return DbContext.Judges.Where(x => x.Email == emailAddress).Include(x => x.JudgeCompetitions).FirstOrDefault();
+            if (includeDependencies)
+                return DbContext.Judges.Where(x => x.Email == emailAddress).Include(x => x.JudgeCompetitions).FirstOrDefault();
+            else
+                return DbContext.Judges.FirstOrDefault(x => x.Email == emailAddress);
         }
 
         public Judge GetJudge(Guid judgeId)

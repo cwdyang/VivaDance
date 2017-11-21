@@ -13,6 +13,8 @@ namespace Viva.CorporateSys.Dance.Datastore.Contexts
     {
         string ConnectionString { get; }
 
+        void Reseed();
+
         IDbSet<BaseObject> BaseObjects { get; set; }
 
         IDbSet<Category> Categories { get; set; }

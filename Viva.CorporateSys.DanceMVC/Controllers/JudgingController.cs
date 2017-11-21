@@ -47,34 +47,41 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
         [SessionCheckFilter]
         public ActionResult SubmitJudgings(FormCollection items)
         {
-
-            foreach (var key in items.AllKeys.Where(x => !x.StartsWith("submit")))
+            try
             {
-                var value = Request.Form[key];
-                var valueDouble = 0.0;
-
-                double.TryParse(value, out valueDouble);
-
-                var judging = new Judging
+                foreach (var key in items.AllKeys.Where(x => !x.StartsWith("submit")))
                 {
-                    CompetitorCompetition = ViewModel.ActiveCompetitorCompetition,
-                    JudgeCompetition = ViewModel.ActiveJudgeCompetition,
-                    Id = Guid.NewGuid(),
-                    Criterion = ViewModel.AllowedCriteria.FirstOrDefault(x => x.Id.ToString() == key),
-                    ScorePoints = valueDouble
-                };
+                    var value = Request.Form[key];
+                    var valueDouble = 0.0;
 
-                /*
-                var isJudgingComplete = _competitionService.IsJudgingCompleteForCompetitor(ViewModel.ActiveCompetitorCompetition.Id,
-                    ViewModel.ActiveCompetitorCompetition.Competitor.Id, ViewModel.ActiveJudgeCompetition.Judge.Id);
-                */
+                    double.TryParse(value, out valueDouble);
 
-                if (judging.Criterion==null)
-                    return RedirectToAction("ActiveCompetitions", "Judging");
+                    var judging = new Judging
+                    {
+                        CompetitorCompetition = ViewModel.ActiveCompetitorCompetition,
+                        JudgeCompetition = ViewModel.ActiveJudgeCompetition,
+                        Id = Guid.NewGuid(),
+                        Criterion = ViewModel.AllowedCriteria.FirstOrDefault(x => x.Id.ToString() == key),
+                        ScorePoints = valueDouble
+                    };
 
-                //if (!isJudgingComplete)
-                _competitionService.SubmitJudging(judging);
+                    /*
+                    var isJudgingComplete = _competitionService.IsJudgingCompleteForCompetitor(ViewModel.ActiveCompetitorCompetition.Id,
+                        ViewModel.ActiveCompetitorCompetition.Competitor.Id, ViewModel.ActiveJudgeCompetition.Judge.Id);
+                    */
+
+                    if (judging.Criterion == null)
+                        return RedirectToAction("ActiveCompetitions", "Judging");
+
+                    //if (!isJudgingComplete)
+                    _competitionService.SubmitJudging(judging);
+                }
             }
+            catch(Exception ex)
+            {
+
+            }
+            
 
             return RedirectToAction("ActiveCompetitions", "Judging");
         }
@@ -82,6 +89,7 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
         [SessionCheckFilter]
         public ActionResult ActiveCompetitions()
         {
+            if(ViewModel!=null)
             /*
             if (ViewModel.Competitions == null || 
                 !ViewModel.Competitions.Any(x=>new List<CompetitionStatus>{
@@ -133,28 +141,35 @@ namespace Viva.CorporateSys.DanceMVC.Controllers
         [SessionCheckFilterAttribute]
         public ActionResult JudgingResults(Guid? competitionId, Guid? competitorId, string reset)
         {
-            
-
             var viewModel = new JudgingResultViewModel();
 
-            var openCompetitions = _competitionService.GetNotClosedCompetitions().OrderBy(x => x.StartedOn);
+            try
+            {
+               
+                var openCompetitions = _competitionService.GetNotClosedCompetitions().OrderBy(x => x.StartedOn);
 
-            viewModel.ActiveCompetitionListOnly = openCompetitions.ToList();
-            viewModel.ActiveCompetitorListOnly = openCompetitions.Select(x => x.CompetitorCompetitions.Select(y => y.Competitor)).SelectMany(y=>y).Distinct().ToList();
-
-                
-
-            var query = openCompetitions.AsQueryable();
-
+                viewModel.ActiveCompetitionListOnly = openCompetitions.ToList();
+                viewModel.ActiveCompetitorListOnly = openCompetitions.Select(x => x.CompetitorCompetitions.Select(y => y.Competitor)).SelectMany(y => y).Distinct().ToList();
 
 
-            query = (competitionId == null || competitionId == Guid.Empty) ? query : query.Where(x => x.Id == competitionId);
-            query = (competitorId == null || competitorId == Guid.Empty) ? query : query.Where(x => x.CompetitorCompetitions.Any(y => y.Competitor.Id == competitorId));
-            query = ((competitionId == null || competitionId == Guid.Empty) && (competitorId == null || competitorId == Guid.Empty)) ? openCompetitions.AsQueryable().Where(x=>x.Id==Guid.Empty) : query;
+
+                var query = openCompetitions.AsQueryable();
+
+
+
+                query = (competitionId == null || competitionId == Guid.Empty) ? query : query.Where(x => x.Id == competitionId);
+                query = (competitorId == null || competitorId == Guid.Empty) ? query : query.Where(x => x.CompetitorCompetitions.Any(y => y.Competitor.Id == competitorId));
+                query = ((competitionId == null || competitionId == Guid.Empty) && (competitorId == null || competitorId == Guid.Empty)) ? openCompetitions.AsQueryable().Where(x => x.Id == Guid.Empty) : query;
+
+                viewModel.ActiveCompetitions = query.ToList();
+                viewModel.Criteria = _competitionService.GetAllCriteria().OrderBy(x => x.DisplaySequence).ToList();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
             
-            viewModel.ActiveCompetitions = query.ToList();
-            viewModel.Criteria = _competitionService.GetAllCriteria().OrderBy(x => x.DisplaySequence).ToList();
-
             return View(viewModel);
         }
 

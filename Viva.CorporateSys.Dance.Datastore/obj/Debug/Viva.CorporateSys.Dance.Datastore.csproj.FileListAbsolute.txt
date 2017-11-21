@@ -22,3 +22,17 @@ C:\Development\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\EntityFrame
 C:\Development\VivaDance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.csprojResolveAssemblyReference.cache
 C:\Development\VivaDance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.dll
 C:\Development\VivaDance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.pdb
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\Viva.CorporateSys.Dance.Datastore.dll.config
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\Viva.CorporateSys.Dance.Datastore.dll
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\Viva.CorporateSys.Dance.Datastore.pdb
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\EntityFramework.dll
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\EntityFramework.SqlServer.dll
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\Viva.CorporateSys.Dance.Domain.dll
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\Viva.CorporateSys.Dance.Domain.pdb
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\EntityFramework.xml
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\bin\Debug\EntityFramework.SqlServer.xml
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.csprojResolveAssemblyReference.cache
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.dll
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.pdb
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.Migrations.Initial.resources
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore\obj\Debug\Viva.CorporateSys.Dance.Datastore.csproj.GenerateResource.Cache

@@ -1,0 +1,61 @@
+﻿@model Viva.CorporateSys.DanceMVC.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<section id="loginForm">
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+    <table style="padding: 10px">
+        <tr>
+            <td>@Html.LabelFor(m => m.UserName) (Email)</td>
+            <td>@Html.TextBoxFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName)</td>
+        </tr>
+        <tr><td>
+                @Html.LabelFor(m => m.Password)</td><td>
+                                                        @Html.PasswordFor(m => m.Password)
+                                                    </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td><td></td></tr>
+<tr>
+    <td>
+        
+    </td>
+    <td style="text-align: right">@Html.CheckBoxFor(m => m.RememberMe)
+        @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+        
+        <input type="submit" value="Log in" />
+    </td>
+    </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    
+        </table>
+   
+</fieldset>
+    <p>
+        @Html.ActionLink("Register", "Register") if you don't have an account.
+    </p>
+}
+</section>
+
+<section class="social" id="socialLoginForm">
+    
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

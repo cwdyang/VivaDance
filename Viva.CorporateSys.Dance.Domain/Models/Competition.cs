@@ -31,6 +31,8 @@ namespace Viva.CorporateSys.Dance.Domain.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+        public byte? GroupComp { get; set; }
+
         public Competition()
         {
             this.JudgeCompetitions = new HashSet<JudgeCompetition>();

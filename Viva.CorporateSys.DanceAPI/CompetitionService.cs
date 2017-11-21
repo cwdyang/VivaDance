@@ -19,6 +19,8 @@ namespace Viva.CorporateSys.DanceAPI
             return Kernel.Get<ICompetitionRepository>();
         }
 
+        
+
         static CompetitionService()
         {
 
@@ -145,6 +147,7 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Text, opt => opt.MapFrom(d => d.Name))
                 .ForMember(o => o.Requirements, opt => opt.MapFrom(d => d.Category.Requirements))
                 .ForMember(o => o.Location, opt => opt.MapFrom(d => d.Location))
+                .ForMember(o => o.GroupComp, opt => opt.MapFrom(d => d.GroupComp))
                 .ForMember(o => o.JudgeCompetitions, opt => opt.MapFrom(d => d.JudgeCompetitions))
                 .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.CompetitionStatus, opt => opt.MapFrom(d => d.CompetitionStatus))
@@ -161,6 +164,7 @@ namespace Viva.CorporateSys.DanceAPI
                 .ForMember(o => o.Name, opt => opt.MapFrom(d => d.Text))
                 //.ForMember(o => o.Category.Requirements, opt => opt.MapFrom(d => d.Requirements))
                 .ForMember(o => o.Location, opt => opt.MapFrom(d => d.Location))
+                 .ForMember(o => o.Location, opt => opt.MapFrom(d => d.Location))
                 .ForMember(o => o.JudgeCompetitions, opt => opt.MapFrom(d => d.JudgeCompetitions))
                 .ForMember(o => o.CompetitorCompetitions, opt => opt.MapFrom(d => d.CompetitorCompetitions))
                 .ForMember(o => o.CompetitionStatus, opt => opt.MapFrom(d => d.CompetitionStatus))
@@ -207,14 +211,31 @@ namespace Viva.CorporateSys.DanceAPI
             oSmtpClient.Send(msg);
         }
 
-        public List<Competition> GetOpenCompetitionsForJudge(Guid judgeId)
+        public List<Competition> GetLatestOpenCompetitionForJudge(Guid judgeId)
         {
             var listToReturn = Enumerable.Empty<Competition>().ToList();
 
             using (var repo = GetCompetitionRepository())
             {
-                var list = repo.GetOpenCompetitionsForJudge( judgeId);
+                var comp = repo.GetLatestOpenCompetitionForJudge(judgeId);
 
+                if (comp != null)
+                    listToReturn.Add(Mapper.Map<Competition>(comp));
+            }
+            return listToReturn;
+        }
+        public List<Competition> GetOpenCompetitionsForJudge(Guid judgeId)
+        {
+            var listToReturn = Enumerable.Empty<Competition>().ToList();
+            var startTime = DateTime.Now;
+
+            using (var repo = GetCompetitionRepository())
+            {
+                var list = repo.GetOpenCompetitionsForJudge( judgeId);
+                var endTime = DateTime.Now;
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine(string.Format("time take to get opencompetitions {0} ms", (endTime - startTime).Milliseconds));
+#endif
                 listToReturn = Mapper.Map<List<Competition>>(list);
             }
 
@@ -309,9 +330,20 @@ namespace Viva.CorporateSys.DanceAPI
 
         public Judging SubmitJudging(Judging judging)
         {
+
+            var startTime = DateTime.Now;
+
+
+
             using (var repo = GetCompetitionRepository())
             {
                 var judgingToReturn = repo.SubmitJudging(Mapper.Map<Dance.Domain.Models.Judging>(judging));
+
+                var endTime = DateTime.Now;
+
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine(string.Format("time take to submit judging {0} ms", (endTime - startTime).Milliseconds));
+#endif
 
                 return Mapper.Map<Judging>(judgingToReturn);
             } 

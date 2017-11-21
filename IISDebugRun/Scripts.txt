@@ -1,0 +1,23 @@
+c:\Users\administrator\Documents\IISExpress\config\applicationhost.config
+
+ <site name="Viva.CorporateSys.DanceMVC" id="2">
+                <application path="/" applicationPool="Clr4IntegratedAppPool">
+                    <virtualDirectory path="/" physicalPath="C:\Development\VivaDance\Viva.CorporateSys.DanceMVC" />
+                </application>
+                <bindings>
+                    <binding protocol="http" bindingInformation="*:55645:localhost" />
+<binding protocol="http" bindingInformation="*:55645:192.168.0.105" />
+			<!--<binding protocol="http" bindingInformation="*:55645:192.168.0.105" />-->
+<binding protocol="http" bindingInformation="*:55645:DANA-LT7B" />
+                </bindings>
+            </site>
+
+cmdline
+
+netsh advfirewall set allprofiles state off
+netsh advfirewall set allprofiles state on
+
+netsh http show urlacl
+netsh http delete urlacl url=http://*:55645/
+netsh http add urlacl url=http://192.168.0.105:55645/ user=everyone
+netsh advfirewall firewall add rule name="IISExpressWeb" dir=in protocol=tcp localport=55645 profile=private remoteip=localsubnet action=allow

@@ -37,11 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\Viva.CorporateSys.Dance\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\Viva.CorporateSys.Dance\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\Viva.CorporateSys.Dance\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\Viva.CorporateSys.Dance\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
@@ -112,8 +110,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\Viva.CorporateSys.Dance\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\Viva.CorporateSys.Dance\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
-  <Import Project="..\Viva.CorporateSys.Dance\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\Viva.CorporateSys.Dance\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -7,7 +7,7 @@ namespace Viva.CorporateSys.DanceAPI
     {
 
         [OperationContract]
-        Judge GetJudge(string emailAddress);
+        Judge GetJudge(string emailAddress,bool includeDependencies = false);
 
         [OperationContract]
         Competitor GetCompetitor(string emailAddress);

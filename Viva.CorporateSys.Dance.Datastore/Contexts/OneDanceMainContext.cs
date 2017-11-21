@@ -89,7 +89,14 @@ namespace Viva.CorporateSys.Dance.Datastore.Contexts
                 new Configuration().SeedDb(this);
             }
 
+           
+
 		}
+
+        public void Reseed()
+        {
+            new Configuration().SeedDb(this);
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

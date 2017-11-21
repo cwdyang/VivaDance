@@ -9,6 +9,13 @@
 
     var totalCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count;
 
+    var isGroupComp = ((competitionCurrent.GroupComp.HasValue) ? competitionCurrent.GroupComp.Value.ToString() : string.Empty)=="1";
+    var competitorSequence = competitionCurrent.CompetitorCompetitions.FirstOrDefault(x => x.Competitor.Id == competitorCurrent.Id).Sequence;
+    var isFirstInGroupComp = (isGroupComp && (competitorSequence == 1)).ToString().ToLower();
+
+    var isLastInGroupComp = (isGroupComp && (competitorSequence == totalCompetitors)).ToString().ToLower();
+    
+    
     var judgedCompetitors = Model.ActiveCompetition.CompetitorCompetitions.Count(x => x.Judgings.Any(j=>j.JudgeCompetition.Judge.Id==Model.Judge.Id));
 }
 
@@ -37,7 +44,7 @@
 
                     
 
-                    <tr>
+                    <tr style="display: none;">
                         <td>
                             Start:
                         </td>
@@ -46,7 +53,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr style="display: none;">
                         <td>
                             Division / Category:
                         </td>
@@ -115,6 +122,8 @@
                             <br/>
                             <input type="button" id="reset" name="reset" value="Reset" class="resetJudging" />
                             
+                            <input type="button" id="refresh" name="refresh" value="Refresh" class="resetJudging" onclicky="window.location.reload()" />
+
                         </td>
                     </tr>
 
@@ -128,7 +137,9 @@
 
 
 <script>
+
     
+
     function keyupLeave(e) {
         var desc = this.getAttribute("description");
         var canBeNegative = desc.indexOf("Penalty") > -1;
@@ -186,7 +197,16 @@
         $("input[type='submit']").click(submitForm);
 
         $("input[id='reset']").click(resetForm);
+
+    
+        $("#refresh").click(refreshForm);
+   
+        groupCheck();
     });
+
+    function refreshForm(event) {
+        window.location.reload();
+    }
 
 
     function resetForm(event) {
@@ -194,24 +214,38 @@
         $('input[type=number]').val("");
     }
 
+    function groupCheck() {
+        if (@isFirstInGroupComp) {
+            var summary = "This is a multi group category, <br/>please use the sheets provided to record the scores for the next  <br/><br/><b> @totalCompetitors  contestants</b><br/><br/>then enter the scores into the system one by one.";
+            bootbox.confirm(summary, function (result) {
+                if (result) {
+                }
+            });
+        };
+    }
     
     function submitForm(event) {
 
         event.preventDefault();
         
+        //<i class='fa fa-cog fa-spin fa-3x fa-fw'></i>;
 
-        var summary = "You are about to submit your judging for <br/><br/> @competitorCurrent.EntityName   #@competitorCurrent.EntityNumber <br/><br/>Results:<br/><br/>";
+        var summary = "<script>//alert('ss');<\/script>You are about to submit your judging for <br/><br/> @competitorCurrent.EntityName   #@competitorCurrent.EntityNumber <br/><br/>Results:<br/><br/>";
+
 
         $('input[type=number]').each(function (index) {
             summary += (($(this).val() == "") ? "0" : $(this).val()) + " points for: " + $(this).attr("description") + " " + "<br/><br/>";
         });
+
+        summary += (@isLastInGroupComp) ? "<b>This is the last entry in the group category.</b>" : "";
+
 
         bootbox.confirm(summary, function (result) {
                 if (result)
                 {
                     $("#formSubmitJudgings").submit();
 
-                    bootbox.alert("Submitting results to the server, please wait.", function (result) {
+                    //bootbox.alert("<i class='fa fa-cog fa-spin fa-3x fa-fw'></i>Submitting results to the server, please wait.", function (result) {
                     });
                 }
             }

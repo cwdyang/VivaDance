@@ -1,12 +1,12 @@
 --JUDGINGS LIST
 
 select c.Name ,
+c.GroupComp,
 c.StartedOn,
 cab.Caption as Category,
 db.Caption as Division,
-
-cpp.EntityName as Competitor
-
+cpp.EntityName as Competitor,
+cc.sequence as CompOrder
 from 
  Dance.Competition c
 inner join Dance.Category ca on ca.Id = c.CategoryId

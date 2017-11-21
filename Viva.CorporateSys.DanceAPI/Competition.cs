@@ -166,6 +166,9 @@ namespace Viva.CorporateSys.DanceAPI
         public string Location { get; set; }
 
         [DataMember]
+        public byte? GroupComp { get; set; }
+
+        [DataMember]
         public string Requirements { get; set; }
 
         [DataMember]

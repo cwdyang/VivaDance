@@ -10,6 +10,8 @@ namespace Viva.CorporateSys.DanceAPI.Tests
     [TestClass]
     public class CompetitionTests
     {
+        
+
         [TestMethod]
         public void CompetitionTest()
         {

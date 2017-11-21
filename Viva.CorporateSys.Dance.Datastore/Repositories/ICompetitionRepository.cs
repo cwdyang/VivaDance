@@ -6,6 +6,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Repositories
 {
     public interface ICompetitionRepository:IOneDanceBaseRepository
     {
+        Competition GetLatestOpenCompetitionForJudge(Guid judgeId);
         IList<Competition> GetOpenCompetitionsForJudge(Guid judgeId);
         bool IsJudgingCompleteForCompetition(Guid competitionId, Guid? judgeId);
         bool IsJudgingCompleteForCompetitor(Guid competitionId, Guid competitorId, Guid? judgeId);

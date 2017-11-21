@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Viva.CorporateSys.Dance.Datastore.Contexts;
 using Viva.CorporateSys.Dance.Datastore.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Viva.CorporateSys.Dance.Domain.Models;
@@ -16,6 +17,15 @@ namespace Viva.CorporateSys.Dance.Datastore.Tests
         public void Setup()
         {
             
+        }
+
+        [TestMethod]
+        public void ReseedDb()
+        {
+            using (var contxt = new OneDanceMainContext())
+            {
+                contxt.Reseed();
+            }
         }
 
         [TestMethod]
