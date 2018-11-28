@@ -6,6 +6,7 @@ using Viva.CorporateSys.Dance.Datastore.Migrations;
 using Viva.CorporateSys.Dance.Domain.Models;
 
 using System.Data.Linq;
+using System.Configuration;
 
 namespace Viva.CorporateSys.Dance.Datastore.Contexts
 {
@@ -83,13 +84,19 @@ namespace Viva.CorporateSys.Dance.Datastore.Contexts
             Configuration.ValidateOnSaveEnabled = false;
             */
 
-            if (!Database.Exists())
-            {
-                ((IObjectContextAdapter)this).ObjectContext.CreateDatabase();
-                new Configuration().SeedDb(this);
-            }
+            var isDbExists = Database.Exists();
+            var isReseed = bool.Parse(ConfigurationSettings.AppSettings["DbReseed"] ?? "false");
+            var isClearJudging = bool.Parse(ConfigurationSettings.AppSettings["ClearJudgings"] ?? "false");
 
-           
+            if(!isDbExists)
+                ((IObjectContextAdapter)this).ObjectContext.CreateDatabase();
+
+            if (isClearJudging)
+                new Configuration().ClearJudgings(this);
+
+            if (isReseed)
+                new Configuration().SeedDb(this);
+
 
 		}
 
