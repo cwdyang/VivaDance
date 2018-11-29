@@ -63,7 +63,9 @@ C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\bin\Debug\Newtonsoft.Json.xml
 C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\bin\Debug\Ninject.xml
 C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\bin\Debug\Ninject.Extensions.Factory.xml
 C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\bin\Debug\EntityFramework.xml
-C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.csprojResolveAssemblyReference.cache
 C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.dll
 C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.pdb
 C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\bin\Debug\Viva.CorporateSys.Dance.Datastore.dll.config
+C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.csprojAssemblyReference.cache
+C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.csproj.CoreCompileInputs.cache
+C:\Clients\VivaDance\Viva.CorporateSys.DanceAPI\obj\Debug\Viva.CorporateSys.DanceAPI.csproj.CopyComplete

@@ -174,8 +174,10 @@ C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\bin\WebMatrix.WebData.xml
 C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\bin\AutoMapper.xml
 C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.Domain.pdb
 C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.Datastore.pdb
-C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.csprojResolveAssemblyReference.cache
 C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.dll
 C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.pdb
 C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.DanceAPI.dll.config
 C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\bin\Viva.CorporateSys.Dance.Datastore.dll.config
+C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.csprojAssemblyReference.cache
+C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.csproj.CoreCompileInputs.cache
+C:\Clients\VivaDance\Viva.CorporateSys.DanceMVC\obj\Debug\Viva.CorporateSys.DanceMVC.csproj.CopyComplete

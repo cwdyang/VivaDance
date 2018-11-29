@@ -38,7 +38,9 @@ C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.Corp
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Domain.pdb
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\EntityFramework.xml
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\EntityFramework.SqlServer.xml
-C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.csprojResolveAssemblyReference.cache
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.dll
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.pdb
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\bin\Debug\Viva.CorporateSys.Dance.Datastore.dll.config
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.csprojAssemblyReference.cache
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.csproj.CoreCompileInputs.cache
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Datastore.Tests\obj\Debug\Viva.CorporateSys.Dance.Datastore.Tests.csproj.CopyComplete

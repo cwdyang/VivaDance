@@ -57,8 +57,10 @@ C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bi
 C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\AutoMapper.xml
 C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\Viva.CorporateSys.Dance.Domain.pdb
 C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\Viva.CorporateSys.Dance.Datastore.pdb
-C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.csprojResolveAssemblyReference.cache
 C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.dll
 C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.pdb
 C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\Viva.CorporateSys.DanceAPI.dll.config
 C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\bin\Debug\Viva.CorporateSys.Dance.Datastore.dll.config
+C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.csprojAssemblyReference.cache
+C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.csproj.CoreCompileInputs.cache
+C:\Clients\VivaDance\Viva.CorporateSys.Dance\Viva.CorporateSys.DanceAPI.Tests\obj\Debug\Viva.CorporateSys.DanceAPI.Tests.csproj.CopyComplete

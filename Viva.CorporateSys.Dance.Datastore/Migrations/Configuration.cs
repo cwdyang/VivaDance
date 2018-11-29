@@ -137,9 +137,7 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             //Update from spreadsheet
             #region DIVISIONS CATEGORIES
 
-
             HashSet<Category> categories = null;
-
 
             categories = new HashSet<Category>(); var divAdultFree = new Division() { Caption = "Adult Freestyle", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now, Categories = categories };
             categories = new HashSet<Category>(); var divAmatuer = new Division() { Caption = "Amateur", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now, Categories = categories };
@@ -153,37 +151,9 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             categories = new HashSet<Category>(); var divSemiPro = new Division() { Caption = "Semi_Pro", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now, Categories = categories };
             categories = new HashSet<Category>(); var divSemiProChor = new Division() { Caption = "Semi_Pro Choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now, Categories = categories };
             categories = new HashSet<Category>(); var divSemiProImprov = new Division() { Caption = "Semi_Pro Improvisation", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now, Categories = categories };
+            categories = new HashSet<Category>(); var divNovice = new Division() { Caption = "Novice", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now, Categories = categories };
+            categories = new HashSet<Category>(); var divMasters = new Division() { Caption = "Masters", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now, Categories = categories };
             categories = new HashSet<Category>(); var divYouth = new Division() { Caption = "Youth", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now, Categories = categories };
-
-
-
-            divYouth.Categories.Add(new Category { Caption = "Youth Salsa Solo Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divYouth.Categories.Add(new Category { Caption = "Youth Latin Solo Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divYouth.Categories.Add(new Category { Caption = "Youth Salsa Solo Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divYouth.Categories.Add(new Category { Caption = "Youth Latin Solo Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divYouth.Categories.Add(new Category { Caption = "Youth Salsa Duets Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divYouth.Categories.Add(new Category { Caption = "Youth Latin Duets Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divAmatuer.Categories.Add(new Category { Caption = "Amateur Salsa Solo Female", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divSemiPro.Categories.Add(new Category { Caption = "Semi_Pro Salsa Solo Female", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divProf.Categories.Add(new Category { Caption = "Professional Salsa Solo Female", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divProf.Categories.Add(new Category { Caption = "Professional Salsa Solo Male", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Latin Solo", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divSemiPro.Categories.Add(new Category { Caption = "Semi_Pro Salsa Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divProf.Categories.Add(new Category { Caption = "Professional Salsa Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Salsa Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divSemiPro.Categories.Add(new Category { Caption = "Semi_Pro Bachata Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divProf.Categories.Add(new Category { Caption = "Professional Bachata Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Latin Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Salsa Shines Duets", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Latin Shines Duets", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divProAm.Categories.Add(new Category { Caption = "Pro_Am Latin Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divAmatuer.Categories.Add(new Category { Caption = "Amateur Salsa Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Salsa Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Latin Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Salsa Shines Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-            divOpen.Categories.Add(new Category { Caption = "Open Latin Shines Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
-
-
 
 
             context.Divisions.AddOrUpdate(divAdultFree);
@@ -198,9 +168,34 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             context.Divisions.AddOrUpdate(divSemiPro);
             context.Divisions.AddOrUpdate(divSemiProChor);
             context.Divisions.AddOrUpdate(divSemiProImprov);
+            context.Divisions.AddOrUpdate(divNovice);
+            context.Divisions.AddOrUpdate(divMasters);
             context.Divisions.AddOrUpdate(divYouth);
 
-
+            divNovice.Categories.Add(new Category { Caption = "Novice Salsa Solo Female", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divAmatuer.Categories.Add(new Category { Caption = "Amateur Salsa Solo Male", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divAmatuer.Categories.Add(new Category { Caption = "Amateur Salsa Solo Female", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divProf.Categories.Add(new Category { Caption = "Professional Salsa Solo Female", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divProf.Categories.Add(new Category { Caption = "Professional Salsa Solo Male", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divOpen.Categories.Add(new Category { Caption = "Open Latin Solo Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divMasters.Categories.Add(new Category { Caption = "Masters Salsa Solo Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divOpen.Categories.Add(new Category { Caption = "Open Salsa Shines Duets", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divOpen.Categories.Add(new Category { Caption = "Open Latin Shines Duets", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divAmatuer.Categories.Add(new Category { Caption = "Amateur Salsa Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divProf.Categories.Add(new Category { Caption = "Professional Salsa Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divAmatuer.Categories.Add(new Category { Caption = "Amateur Bachata Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divProf.Categories.Add(new Category { Caption = "Professional Bachata Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divProAm.Categories.Add(new Category { Caption = "Pro_Am Salsa Couples Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divProAm.Categories.Add(new Category { Caption = "Pro_Am Latin Couples Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divMasters.Categories.Add(new Category { Caption = "Masters Salsa Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divMasters.Categories.Add(new Category { Caption = "Masters Latin Couples", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divAmatuer.Categories.Add(new Category { Caption = "Amateur Salsa Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divOpen.Categories.Add(new Category { Caption = "Open Salsa Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divOpen.Categories.Add(new Category { Caption = "Open Latin Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divOpen.Categories.Add(new Category { Caption = "Open Salsa Shines Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divOpen.Categories.Add(new Category { Caption = "Open Latin Shines Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divOpen.Categories.Add(new Category { Caption = "Open Showcase Teams", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
+            divMasters.Categories.Add(new Category { Caption = "Masters Latin Teams Mixed", Requirements = "100% choreography", Id = Guid.NewGuid(), CreatedOn = DateTimeOffset.Now });
 
             #endregion DIVISIONS CATEGORIES
 
@@ -416,64 +411,52 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             //Update from spreadsheet
             #region COMPETITORS
 
-            var comptrAcereBongo_SalsaConCoco = new Competitor { Id = Guid.NewGuid(), EntityName = "Acere Bongo", EntityNumber = 5, Email = "AcereBongo_SalsaConCoco", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrAdvancedAllianceDanceTeam_CarineMoraisandRafaelBarros_Brazil = new Competitor { Id = Guid.NewGuid(), EntityName = "Advanced Alliance Dance Team _ Carine Morais and Rafael Barros _ Brazil", EntityNumber = 5, Email = "AdvancedAllianceDanceTeam_CarineMoraisandRafaelBarros_Brazil", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrAlanaMace_RainesSuavesitas = new Competitor { Id = Guid.NewGuid(), EntityName = "Alana Mace", EntityNumber = 5, Email = "AlanaMace_RainesSuavesitas", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrAlinaSolomkinaandCorwinRuegg_EDP = new Competitor { Id = Guid.NewGuid(), EntityName = "Alina Solomkina and Corwin Ruegg", EntityNumber = 6, Email = "AlinaSolomkinaandCorwinRuegg_EDP", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrAndradaNeaguandAlbertoJuarez_PassionofExpression = new Competitor { Id = Guid.NewGuid(), EntityName = "Andrada Neagu and Alberto Juarez", EntityNumber = 6, Email = "AndradaNeaguandAlbertoJuarez_PassionofExpression", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrBachasalsa_SalsaConCoco = new Competitor { Id = Guid.NewGuid(), EntityName = "Bachasalsa", EntityNumber = 7, Email = "Bachasalsa_SalsaConCoco", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrCaitlinQuinn_LatinFire = new Competitor { Id = Guid.NewGuid(), EntityName = "Caitlin Quinn", EntityNumber = 8, Email = "CaitlinQuinn_LatinFire", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrCharlotteJaneBuccahanandCharmaineJoyBuccahan_RaineSymons = new Competitor { Id = Guid.NewGuid(), EntityName = "Charlotte Jane Buccahan and Charmaine Joy Buccahan", EntityNumber = 9, Email = "CharlotteJaneBuccahanandCharmaineJoyBuccahan_RaineSymons", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrDeborahChou_SalsaConCoco = new Competitor { Id = Guid.NewGuid(), EntityName = "Deborah Chou", EntityNumber = 10, Email = "DeborahChou_SalsaConCoco", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrDeborahChouandJeorgeSequeiros_SalsaConCoco = new Competitor { Id = Guid.NewGuid(), EntityName = "Deborah Chou and Jeorge Sequeiros", EntityNumber = 11, Email = "DeborahChouandJeorgeSequeiros_SalsaConCoco", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrEDanceProductions_EDP = new Competitor { Id = Guid.NewGuid(), EntityName = "E Dance Productions", EntityNumber = 12, Email = "EDanceProductions_EDP", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrEmilyWoodfield_StellarPerformingArts = new Competitor { Id = Guid.NewGuid(), EntityName = "Emily Woodfield", EntityNumber = 13, Email = "EmilyWoodfield_StellarPerformingArts", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrEstherMeenken_MamboLab = new Competitor { Id = Guid.NewGuid(), EntityName = "Esther Meenken", EntityNumber = 14, Email = "EstherMeenken_MamboLab", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrEstherMeenkenandCorwinRuegg_MamboLab = new Competitor { Id = Guid.NewGuid(), EntityName = "Esther Meenken and Corwin Ruegg", EntityNumber = 15, Email = "EstherMeenkenandCorwinRuegg_MamboLab", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrEstherMeenkenandEllenHume_MamboLab = new Competitor { Id = Guid.NewGuid(), EntityName = "Esther Meenken and Ellen Hume", EntityNumber = 16, Email = "EstherMeenkenandEllenHume_MamboLab", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrGiancarloJohanssonandHeidiCone_Latinissimo = new Competitor { Id = Guid.NewGuid(), EntityName = "Giancarlo Johansson and Heidi Cone", EntityNumber = 17, Email = "GiancarloJohanssonandHeidiCone_Latinissimo", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrGraceBerge_RaineSymons = new Competitor { Id = Guid.NewGuid(), EntityName = "Grace Berge", EntityNumber = 18, Email = "GraceBerge_RaineSymons", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrHollyBayne_LatinFire = new Competitor { Id = Guid.NewGuid(), EntityName = "Holly Bayne", EntityNumber = 19, Email = "HollyBayne_LatinFire", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrHollyBayneandCaitlinQuin_LatinFire = new Competitor { Id = Guid.NewGuid(), EntityName = "Holly Bayne and Caitlin Quin", EntityNumber = 20, Email = "HollyBayneandCaitlinQuin_LatinFire", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrIntermediateAllianceDanceTeam_CarineMoraisandRafaelBarros_Brazil = new Competitor { Id = Guid.NewGuid(), EntityName = "Intermediate Alliance Dance Team _ Carine Morais and Rafael Barros _ Brazil", EntityNumber = 21, Email = "IntermediateAllianceDanceTeam_CarineMoraisandRafaelBarros_Brazil", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrJeorgeSequeiros_SalsaConCoco = new Competitor { Id = Guid.NewGuid(), EntityName = "Jeorge Sequeiros", EntityNumber = 22, Email = "JeorgeSequeiros_SalsaConCoco", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrJeremySim_EncantoEntertainment = new Competitor { Id = Guid.NewGuid(), EntityName = "Jeremy Sim", EntityNumber = 23, Email = "JeremySim_EncantoEntertainment", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrJessicaAbelenandLevGimelfarb_LatinissimoNelson = new Competitor { Id = Guid.NewGuid(), EntityName = "Jessica Abelen and Lev Gimelfarb", EntityNumber = 24, Email = "JessicaAbelenandLevGimelfarb_LatinissimoNelson", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrKarenForcanoLadiesShinesTeam_SaraDjuric = new Competitor { Id = Guid.NewGuid(), EntityName = "Karen Forcano Ladies Shines Team", EntityNumber = 25, Email = "KarenForcanoLadiesShinesTeam_SaraDjuric", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrKatrinPechingerandKahuLeary_Self = new Competitor { Id = Guid.NewGuid(), EntityName = "Katrin Pechinger and Kahu Leary", EntityNumber = 27, Email = "KatrinPechingerandKahuLeary_Self", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrKearaTyler_Self = new Competitor { Id = Guid.NewGuid(), EntityName = "Keara Tyler", EntityNumber = 28, Email = "KearaTyler_Self", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrKristinaKostevc_Self = new Competitor { Id = Guid.NewGuid(), EntityName = "Kristina Kostevc", EntityNumber = 28, Email = "KristinaKostevc_Self", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrLatinFireBachataTeam_LatinFire = new Competitor { Id = Guid.NewGuid(), EntityName = "Latin Fire Bachata Team", EntityNumber = 29, Email = "LatinFireBachataTeam_LatinFire", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrLatinFireYouthTeam = new Competitor { Id = Guid.NewGuid(), EntityName = "Latin Fire Youth Team", EntityNumber = 30, Email = "LatinFireYouthTeam", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrLaylaMoutrib_EDP = new Competitor { Id = Guid.NewGuid(), EntityName = "Layla Moutrib", EntityNumber = 31, Email = "LaylaMoutrib_EDP", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrMandyYap_Self = new Competitor { Id = Guid.NewGuid(), EntityName = "Mandy Yap", EntityNumber = 33, Email = "MandyYap_Self", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrMareeHanford_LatinAddiction = new Competitor { Id = Guid.NewGuid(), EntityName = "Maree Hanford", EntityNumber = 34, Email = "MareeHanford_LatinAddiction", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrMiaYatiswara_SalsaLatina = new Competitor { Id = Guid.NewGuid(), EntityName = "Mia Yatiswara", EntityNumber = 34, Email = "MiaYatiswara_SalsaLatina", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrMiaYatiswaraandJeremySim_SalsaLatinaandEncantoEntertainment = new Competitor { Id = Guid.NewGuid(), EntityName = "Mia Yatiswara and Jeremy Sim", EntityNumber = 35, Email = "MiaYatiswaraandJeremySim_SalsaLatinaandEncantoEntertainment", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrMichaelHobbsandStephanieHampson_Am_LatinFire = new Competitor { Id = Guid.NewGuid(), EntityName = "Michael Hobbs and Stephanie Hampson_AM", EntityNumber = 36, Email = "MichaelHobbsandStephanieHampson_Am_LatinFire", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrNatashaFrost_LatinFire = new Competitor { Id = Guid.NewGuid(), EntityName = "Natasha Frost", EntityNumber = 37, Email = "NatashaFrost_LatinFire", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrNatashaFrostandMaggieKwon_LatinFire = new Competitor { Id = Guid.NewGuid(), EntityName = "Natasha Frost and Maggie Kwon", EntityNumber = 38, Email = "NatashaFrostandMaggieKwon_LatinFire", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrNazeefKhanAMandEmilyGlubbPro_EDP = new Competitor { Id = Guid.NewGuid(), EntityName = "Nazeef Khan AM and Emily Glubb Pro", EntityNumber = 39, Email = "NazeefKhanAMandEmilyGlubbPro_EDP", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrPassionOfExpressionBachataTeam_PassionofExpression = new Competitor { Id = Guid.NewGuid(), EntityName = "Passion Of Expression Bachata Team", EntityNumber = 40, Email = "PassionOfExpressionBachataTeam_PassionofExpression", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrPassionOfExpressionSalsaTeam_PassionOfExpression = new Competitor { Id = Guid.NewGuid(), EntityName = "Passion Of Expression Salsa Team", EntityNumber = 42, Email = "PassionOfExpressionSalsaTeam_PassionOfExpression", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrPhyllisannTyler_Bray_Self = new Competitor { Id = Guid.NewGuid(), EntityName = "Phyllisann Tyler_Bray", EntityNumber = 42, Email = "PhyllisannTyler_Bray_Self", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrRaineSymons_RainesSuavesitas = new Competitor { Id = Guid.NewGuid(), EntityName = "Raine Symons", EntityNumber = 43, Email = "RaineSymons_RainesSuavesitas", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrRainesSuavesitas_RaineSymons = new Competitor { Id = Guid.NewGuid(), EntityName = "Raines Suavesitas", EntityNumber = 45, Email = "RainesSuavesitas_RaineSymons", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrRicardoGreccoandYanZhou_Self = new Competitor { Id = Guid.NewGuid(), EntityName = "Ricardo Grecco and Yan Zhou", EntityNumber = 46, Email = "RicardoGreccoandYanZhou_Self", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrRitmosCandentes_SalsaLatina = new Competitor { Id = Guid.NewGuid(), EntityName = "Ritmos Candentes", EntityNumber = 47, Email = "RitmosCandentes_SalsaLatina", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrRowenaDalumpienesandJeninaMangoma_RainesSuavesitas = new Competitor { Id = Guid.NewGuid(), EntityName = "Rowena Dalumpienes and Jenina Mangoma", EntityNumber = 48, Email = "RowenaDalumpienesandJeninaMangoma_RainesSuavesitas", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrRubyGilligan_LatinFire = new Competitor { Id = Guid.NewGuid(), EntityName = "Ruby Gilligan", EntityNumber = 49, Email = "RubyGilligan_LatinFire", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrSalsaSabrosa_SalsaLatina = new Competitor { Id = Guid.NewGuid(), EntityName = "Salsa Sabrosa", EntityNumber = 50, Email = "SalsaSabrosa_SalsaLatina", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrSaraDjuricandSebastianVera_SaraandSebastian = new Competitor { Id = Guid.NewGuid(), EntityName = "Sara Djuric and Sebastian Vera", EntityNumber = 51, Email = "SaraDjuricandSebastianVera_SaraandSebastian", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrSarahSonalandLeylaMoutrib_EDP = new Competitor { Id = Guid.NewGuid(), EntityName = "Sarah Sonal and Leyla Moutrib", EntityNumber = 52, Email = "SarahSonalandLeylaMoutrib_EDP", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrSebastianVeraandKearaTyler_AM_SaraandSebastian = new Competitor { Id = Guid.NewGuid(), EntityName = "Sebastian Vera and Keara Tyler _AM", EntityNumber = 53, Email = "SebastianVeraandKearaTyler_AM_SaraandSebastian", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrSharonMiddletonandDarcyLange_Self = new Competitor { Id = Guid.NewGuid(), EntityName = "Sharon Middleton and Darcy Lange", EntityNumber = 54, Email = "SharonMiddletonandDarcyLange_Self", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrShawneeDeath_RainesSuavesitas = new Competitor { Id = Guid.NewGuid(), EntityName = "Shawnee Death", EntityNumber = 55, Email = "ShawneeDeath_RainesSuavesitas", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrTaniaGordon_SalsaLatina = new Competitor { Id = Guid.NewGuid(), EntityName = "Tania Gordon", EntityNumber = 56, Email = "TaniaGordon_SalsaLatina", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrYanZhou_EDanceProductions = new Competitor { Id = Guid.NewGuid(), EntityName = "Yan Zhou", EntityNumber = 57, Email = "YanZhou_EDanceProductions", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            var comptrYoheiMikawa_TempoDanceCompany = new Competitor { Id = Guid.NewGuid(), EntityName = "Yohei Mikawa", EntityNumber = 58, Email = "YoheiMikawa_TempoDanceCompany", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
-            new List<Competitor> { comptrYoheiMikawa_TempoDanceCompany, comptrYanZhou_EDanceProductions, comptrTaniaGordon_SalsaLatina, comptrShawneeDeath_RainesSuavesitas, comptrSharonMiddletonandDarcyLange_Self, comptrSebastianVeraandKearaTyler_AM_SaraandSebastian, comptrSarahSonalandLeylaMoutrib_EDP, comptrSaraDjuricandSebastianVera_SaraandSebastian, comptrSalsaSabrosa_SalsaLatina, comptrRubyGilligan_LatinFire, comptrRowenaDalumpienesandJeninaMangoma_RainesSuavesitas, comptrRitmosCandentes_SalsaLatina, comptrRicardoGreccoandYanZhou_Self, comptrRainesSuavesitas_RaineSymons, comptrRaineSymons_RainesSuavesitas, comptrPassionOfExpressionSalsaTeam_PassionOfExpression, comptrPassionOfExpressionBachataTeam_PassionofExpression, comptrNazeefKhanAMandEmilyGlubbPro_EDP, comptrNatashaFrostandMaggieKwon_LatinFire, comptrNatashaFrost_LatinFire, comptrMichaelHobbsandStephanieHampson_Am_LatinFire, comptrMiaYatiswaraandJeremySim_SalsaLatinaandEncantoEntertainment, comptrMiaYatiswara_SalsaLatina, comptrMandyYap_Self, comptrLaylaMoutrib_EDP, comptrLatinFireYouthTeam, comptrLatinFireBachataTeam_LatinFire, comptrKristinaKostevc_Self, comptrKatrinPechingerandKahuLeary_Self, comptrKarenForcanoLadiesShinesTeam_SaraDjuric, comptrJessicaAbelenandLevGimelfarb_LatinissimoNelson, comptrJeremySim_EncantoEntertainment, comptrJeorgeSequeiros_SalsaConCoco, comptrIntermediateAllianceDanceTeam_CarineMoraisandRafaelBarros_Brazil, comptrHollyBayneandCaitlinQuin_LatinFire, comptrHollyBayne_LatinFire, comptrGraceBerge_RaineSymons, comptrGiancarloJohanssonandHeidiCone_Latinissimo, comptrEstherMeenkenandEllenHume_MamboLab, comptrEstherMeenkenandCorwinRuegg_MamboLab, comptrEstherMeenken_MamboLab, comptrEmilyWoodfield_StellarPerformingArts, comptrEDanceProductions_EDP, comptrDeborahChouandJeorgeSequeiros_SalsaConCoco, comptrDeborahChou_SalsaConCoco, comptrCharlotteJaneBuccahanandCharmaineJoyBuccahan_RaineSymons, comptrCaitlinQuinn_LatinFire, comptrBachasalsa_SalsaConCoco, comptrAndradaNeaguandAlbertoJuarez_PassionofExpression, comptrAcereBongo_SalsaConCoco, }.ForEach(x => context.Competitors.Add(x));
+            var comptrAlberto_Juarez_Pro_Anoushka_Jain_Am_Passion_Of_Expression = new Competitor { Id = Guid.NewGuid(), EntityName = "Alberto_Juarez_Pro_Anoushka_Jain_Am_Passion_Of_Expression", EntityNumber = 1, Email = "Alberto_Juarez_Pro_Anoushka_Jain_Am_Passion_Of_Expression", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrAracelly_Roxana_Silva_Cortes_and_Rodrigo_Hernan_Plaza_Rosales_Self_Represented = new Competitor { Id = Guid.NewGuid(), EntityName = "Aracelly_Roxana_Silva_Cortes_and_Rodrigo_Hernan_Plaza_Rosales_Self_Represented", EntityNumber = 2, Email = "Aracelly_Roxana_Silva_Cortes_and_Rodrigo_Hernan_Plaza_Rosales_Self_Represented", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrArturo_Flores_and_Kirsten_Scott_Salsa_Cartel_Australia = new Competitor { Id = Guid.NewGuid(), EntityName = "Arturo_Flores_and_Kirsten_Scott_Salsa_Cartel_Australia", EntityNumber = 3, Email = "Arturo_Flores_and_Kirsten_Scott_Salsa_Cartel_Australia", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrArturo_Flores_Salsa_Cartel_Australia = new Competitor { Id = Guid.NewGuid(), EntityName = "Arturo_Flores_Salsa_Cartel_Australia", EntityNumber = 4, Email = "Arturo_Flores_Salsa_Cartel_Australia", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrBen_Hammond_Self_Represented = new Competitor { Id = Guid.NewGuid(), EntityName = "Ben_Hammond_Self_Represented", EntityNumber = 5, Email = "Ben_Hammond_Self_Represented", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrCamila_Sarlo_RYDE = new Competitor { Id = Guid.NewGuid(), EntityName = "Camila_Sarlo_RYDE", EntityNumber = 6, Email = "Camila_Sarlo_RYDE", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrCoco_and_Debbie_Chou_Salsa_Con_Coco_ = new Competitor { Id = Guid.NewGuid(), EntityName = "Coco_and_Debbie_Chou_Salsa_Con_Coco_", EntityNumber = 7, Email = "Coco_and_Debbie_Chou_Salsa_Con_Coco_", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrCoco_Pro_Helga_Moran_Am_Salsa_Con_Coco = new Competitor { Id = Guid.NewGuid(), EntityName = "Coco_Pro_Helga_Moran_Am_Salsa_Con_Coco", EntityNumber = 8, Email = "Coco_Pro_Helga_Moran_Am_Salsa_Con_Coco", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrCoco_Salsa_Con_Coco = new Competitor { Id = Guid.NewGuid(), EntityName = "Coco_Salsa_Con_Coco", EntityNumber = 9, Email = "Coco_Salsa_Con_Coco", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrDebbie_Chou_Salsa_Con_Coco = new Competitor { Id = Guid.NewGuid(), EntityName = "Debbie_Chou_Salsa_Con_Coco", EntityNumber = 10, Email = "Debbie_Chou_Salsa_Con_Coco", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrDiane_Field_and_Jorge_Sequeiros_Salsa_Con_Coco = new Competitor { Id = Guid.NewGuid(), EntityName = "Diane_Field_and_Jorge_Sequeiros_Salsa_Con_Coco", EntityNumber = 11, Email = "Diane_Field_and_Jorge_Sequeiros_Salsa_Con_Coco", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrFarya_Zaman_RYDE = new Competitor { Id = Guid.NewGuid(), EntityName = "Farya_Zaman_RYDE", EntityNumber = 12, Email = "Farya_Zaman_RYDE", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrHannah_Gin_and_Michelle_Knowler_Self_represented = new Competitor { Id = Guid.NewGuid(), EntityName = "Hannah_Gin_and_Michelle_Knowler_Self_represented", EntityNumber = 13, Email = "Hannah_Gin_and_Michelle_Knowler_Self_represented", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrKathrin_Robertson_and_Lee_Aiono_Salsa_In_The_Suburbs = new Competitor { Id = Guid.NewGuid(), EntityName = "Kathrin_Robertson_and_Lee_Aiono_Salsa_In_The_Suburbs", EntityNumber = 14, Email = "Kathrin_Robertson_and_Lee_Aiono_Salsa_In_The_Suburbs", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrKirsten_Scott_Salsa_Cartel_Australia = new Competitor { Id = Guid.NewGuid(), EntityName = "Kirsten_Scott_Salsa_Cartel_Australia", EntityNumber = 15, Email = "Kirsten_Scott_Salsa_Cartel_Australia", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrKrissi_Gould_and_Phil_Gentry_Self_Represented = new Competitor { Id = Guid.NewGuid(), EntityName = "Krissi_Gould_and_Phil_Gentry_Self_Represented", EntityNumber = 16, Email = "Krissi_Gould_and_Phil_Gentry_Self_Represented", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrLee_Aiono_Salsa_In_The_Suburbs = new Competitor { Id = Guid.NewGuid(), EntityName = "Lee_Aiono_Salsa_In_The_Suburbs", EntityNumber = 17, Email = "Lee_Aiono_Salsa_In_The_Suburbs", CompetitorType = CompetitorType.Soloist, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrLiz_Parons_Sweet_Azucar = new Competitor { Id = Guid.NewGuid(), EntityName = "Liz_Parons_Sweet_Azucar", EntityNumber = 18, Email = "Liz_Parons_Sweet_Azucar", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrMia_Yatiswara_and_Robyn_Lindsay_Ritmos_Candentes = new Competitor { Id = Guid.NewGuid(), EntityName = "Mia_Yatiswara_and_Robyn_Lindsay_Ritmos_Candentes", EntityNumber = 19, Email = "Mia_Yatiswara_and_Robyn_Lindsay_Ritmos_Candentes", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrMichael_Cui_RYDE_ = new Competitor { Id = Guid.NewGuid(), EntityName = "Michael_Cui_RYDE_", EntityNumber = 20, Email = "Michael_Cui_RYDE_", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrNatalie_Fester_Masha_Johansson = new Competitor { Id = Guid.NewGuid(), EntityName = "Natalie_Fester_Masha_Johansson", EntityNumber = 21, Email = "Natalie_Fester_Masha_Johansson", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrNicola_Taylor_Viva_Dance = new Competitor { Id = Guid.NewGuid(), EntityName = "Nicola_Taylor_Viva_Dance", EntityNumber = 22, Email = "Nicola_Taylor_Viva_Dance", CompetitorType = CompetitorType.CouplesTeam, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrNola_Chong_and_Wayne_Lapwood_Salsa_Con_Coco_ = new Competitor { Id = Guid.NewGuid(), EntityName = "Nola_Chong_and_Wayne_Lapwood_Salsa_Con_Coco_", EntityNumber = 23, Email = "Nola_Chong_and_Wayne_Lapwood_Salsa_Con_Coco_", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSara_Djuric_Pro_and_Jonny_Watson_Am_Sara_and_Sebasitan_Dance_Co = new Competitor { Id = Guid.NewGuid(), EntityName = "Sara_Djuric_Pro_and_Jonny_Watson_Am_Sara_and_Sebasitan_Dance_Co", EntityNumber = 24, Email = "Sara_Djuric_Pro_and_Jonny_Watson_Am_Sara_and_Sebasitan_Dance_Co", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSebasitan_Vera_Pro_and_Lucile_Payraudeau_Am_To_Register_Sara_and_Sebastian_Dance_Co = new Competitor { Id = Guid.NewGuid(), EntityName = "Sebasitan_Vera_Pro_and_Lucile_Payraudeau_Am_To_Register_Sara_and_Sebastian_Dance_Co", EntityNumber = 25, Email = "Sebasitan_Vera_Pro_and_Lucile_Payraudeau_Am_To_Register_Sara_and_Sebastian_Dance_Co", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSebastian_Vera_Pro_and_Nicola_Taylor_Am_Sara_and_Sebastian_Dance_Co = new Competitor { Id = Guid.NewGuid(), EntityName = "Sebastian_Vera_Pro_and_Nicola_Taylor_Am_Sara_and_Sebastian_Dance_Co", EntityNumber = 26, Email = "Sebastian_Vera_Pro_and_Nicola_Taylor_Am_Sara_and_Sebastian_Dance_Co", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSofia_Radak_Ryde = new Competitor { Id = Guid.NewGuid(), EntityName = "Sofia_Radak_Ryde", EntityNumber = 27, Email = "Sofia_Radak_Ryde", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrYan_Zhou_and_Ricardo_Grecco_RYDE = new Competitor { Id = Guid.NewGuid(), EntityName = "Yan_Zhou_and_Ricardo_Grecco_RYDE", EntityNumber = 28, Email = "Yan_Zhou_and_Ricardo_Grecco_RYDE", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrYan_Zhou_RYDE = new Competitor { Id = Guid.NewGuid(), EntityName = "Yan_Zhou_RYDE", EntityNumber = 29, Email = "Yan_Zhou_RYDE", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrYohei_Mikawa_Pro_and_Farya_Zaman_Am_Self_Represented = new Competitor { Id = Guid.NewGuid(), EntityName = "Yohei_Mikawa_Pro_and_Farya_Zaman_Am_Self_Represented", EntityNumber = 30, Email = "Yohei_Mikawa_Pro_and_Farya_Zaman_Am_Self_Represented", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrYohei_Mikawa_Self_Represented = new Competitor { Id = Guid.NewGuid(), EntityName = "Yohei_Mikawa_Self_Represented", EntityNumber = 31, Email = "Yohei_Mikawa_Self_Represented", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSalsa_Latina = new Competitor { Id = Guid.NewGuid(), EntityName = "Salsa_Latina", EntityNumber = 32, Email = "Salsa_Latina", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrPassion_Of_Expression_Salsa_Team = new Competitor { Id = Guid.NewGuid(), EntityName = "Passion_Of_Expression_Salsa_Team", EntityNumber = 33, Email = "Passion_Of_Expression_Salsa_Team", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSalsa_Con_Coco_Pelota = new Competitor { Id = Guid.NewGuid(), EntityName = "Salsa_Con_Coco_Pelota", EntityNumber = 34, Email = "Salsa_Con_Coco_Pelota", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrRYDE_Salsa_Team = new Competitor { Id = Guid.NewGuid(), EntityName = "RYDE_Salsa_Team", EntityNumber = 35, Email = "RYDE_Salsa_Team", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSalsa_Latina_Mambo_Team = new Competitor { Id = Guid.NewGuid(), EntityName = "Salsa_Latina_Mambo_Team", EntityNumber = 36, Email = "Salsa_Latina_Mambo_Team", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrPassion_Of_Expressions_Bachata_Team = new Competitor { Id = Guid.NewGuid(), EntityName = "Passion_Of_Expressions_Bachata_Team", EntityNumber = 37, Email = "Passion_Of_Expressions_Bachata_Team", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrRYDE_Salsa_Shines_Team = new Competitor { Id = Guid.NewGuid(), EntityName = "RYDE_Salsa_Shines_Team", EntityNumber = 38, Email = "RYDE_Salsa_Shines_Team", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrRitmos_Candentes_Cha = new Competitor { Id = Guid.NewGuid(), EntityName = "Ritmos_Candentes_Cha", EntityNumber = 39, Email = "Ritmos_Candentes_Cha", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrLas_Isadoras_Salsa_Latina = new Competitor { Id = Guid.NewGuid(), EntityName = "Las_Isadoras_Salsa_Latina", EntityNumber = 40, Email = "Las_Isadoras_Salsa_Latina", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrRitmos_Candentes_Bachata = new Competitor { Id = Guid.NewGuid(), EntityName = "Ritmos_Candentes_Bachata", EntityNumber = 41, Email = "Ritmos_Candentes_Bachata", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSweet_Azucar_Showcase_Team = new Competitor { Id = Guid.NewGuid(), EntityName = "Sweet_Azucar_Showcase_Team", EntityNumber = 42, Email = "Sweet_Azucar_Showcase_Team", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSalsa_Latina_Bachata_Kizomba_Team = new Competitor { Id = Guid.NewGuid(), EntityName = "Salsa_Latina_Bachata_Kizomba_Team", EntityNumber = 43, Email = "Salsa_Latina_Bachata_Kizomba_Team", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
+            var comptrSalsa_Con_Coco_Mixed_Latin_Team = new Competitor { Id = Guid.NewGuid(), EntityName = "Salsa_Con_Coco_Mixed_Latin_Team", EntityNumber = 44, Email = "Salsa_Con_Coco_Mixed_Latin_Team", CompetitorType = CompetitorType.Couple, Organisation = orgVivaDance, MobileNumber = "021", FirstName = "", LastName = "" };
 
+            new List<Competitor> { comptrAlberto_Juarez_Pro_Anoushka_Jain_Am_Passion_Of_Expression, comptrAracelly_Roxana_Silva_Cortes_and_Rodrigo_Hernan_Plaza_Rosales_Self_Represented, comptrArturo_Flores_and_Kirsten_Scott_Salsa_Cartel_Australia, comptrArturo_Flores_Salsa_Cartel_Australia, comptrBen_Hammond_Self_Represented, comptrCamila_Sarlo_RYDE, comptrCoco_and_Debbie_Chou_Salsa_Con_Coco_, comptrCoco_Pro_Helga_Moran_Am_Salsa_Con_Coco, comptrCoco_Salsa_Con_Coco, comptrDebbie_Chou_Salsa_Con_Coco, comptrDiane_Field_and_Jorge_Sequeiros_Salsa_Con_Coco, comptrFarya_Zaman_RYDE, comptrHannah_Gin_and_Michelle_Knowler_Self_represented, comptrKathrin_Robertson_and_Lee_Aiono_Salsa_In_The_Suburbs, comptrKirsten_Scott_Salsa_Cartel_Australia, comptrKrissi_Gould_and_Phil_Gentry_Self_Represented, comptrLee_Aiono_Salsa_In_The_Suburbs, comptrLiz_Parons_Sweet_Azucar, comptrMia_Yatiswara_and_Robyn_Lindsay_Ritmos_Candentes, comptrMichael_Cui_RYDE_, comptrNatalie_Fester_Masha_Johansson, comptrNicola_Taylor_Viva_Dance, comptrNola_Chong_and_Wayne_Lapwood_Salsa_Con_Coco_, comptrSara_Djuric_Pro_and_Jonny_Watson_Am_Sara_and_Sebasitan_Dance_Co, comptrSebasitan_Vera_Pro_and_Lucile_Payraudeau_Am_To_Register_Sara_and_Sebastian_Dance_Co, comptrSebastian_Vera_Pro_and_Nicola_Taylor_Am_Sara_and_Sebastian_Dance_Co, comptrSofia_Radak_Ryde, comptrYan_Zhou_and_Ricardo_Grecco_RYDE, comptrYan_Zhou_RYDE, comptrYohei_Mikawa_Pro_and_Farya_Zaman_Am_Self_Represented, comptrYohei_Mikawa_Self_Represented, comptrSalsa_Latina, comptrPassion_Of_Expression_Salsa_Team, comptrSalsa_Con_Coco_Pelota, comptrRYDE_Salsa_Team, comptrSalsa_Latina_Mambo_Team, comptrPassion_Of_Expressions_Bachata_Team, comptrRYDE_Salsa_Shines_Team, comptrRitmos_Candentes_Cha, comptrLas_Isadoras_Salsa_Latina, comptrRitmos_Candentes_Bachata, comptrSweet_Azucar_Showcase_Team, comptrSalsa_Latina_Bachata_Kizomba_Team, comptrSalsa_Con_Coco_Mixed_Latin_Team }.ForEach(x => context.Competitors.Add(x));
 
             #endregion COMPETITORS
 
@@ -488,204 +471,179 @@ namespace Viva.CorporateSys.Dance.Datastore.Migrations
             var location = "10 Newton Rd";
 
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrGraceBerge_RaineSymons,
-                comptrNatashaFrost_LatinFire,
-                comptrHollyBayne_LatinFire,
-                comptrRubyGilligan_LatinFire
+                comptrSofia_Radak_Ryde
             });
-            var compYouthSalsaSoloMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Youth Salsa Solo Mixed", Category = divYouth.Categories.First(x => x.Caption == "Youth Salsa Solo Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 16:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compNoviceSalsaSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Novice Salsa Solo Female", Category = divNovice.Categories.First(x => x.Caption == "Novice Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 12:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrGraceBerge_RaineSymons,
-                comptrCaitlinQuinn_LatinFire
+                comptrMichael_Cui_RYDE_
             });
-            var compYouthLatinSoloMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Youth Latin Solo Mixed", Category = divYouth.Categories.First(x => x.Caption == "Youth Latin Solo Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 16:20"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compAmateurSalsaSolomale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Salsa Solo male", Category = divAmatuer.Categories.First(x=>x.Caption=="Amateur Salsa Solo male"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 12:15"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor>
+            {
+                comptrNatalie_Fester_Masha_Johansson,
+                comptrNicola_Taylor_Viva_Dance,
+                comptrCamila_Sarlo_RYDE,
+                comptrFarya_Zaman_RYDE
+            });
+            var compAmateurSalsaSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Salsa Solo Female", Category = divAmatuer.Categories.First(x => x.Caption == "Amateur Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 12:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor>
+            {
+                comptrYan_Zhou_RYDE
+            });
+            var compProfessionalSalsaSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Salsa Solo Female", Category = divProf.Categories.First(x => x.Caption == "Professional Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 12:40"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor>
+            {
+                comptrArturo_Flores_Salsa_Cartel_Australia,
+                comptrYohei_Mikawa_Self_Represented,
+                comptrBen_Hammond_Self_Represented
+            });
+            var compProfessionalSalsaSoloMale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Salsa Solo Male", Category = divProf.Categories.First(x => x.Caption == "Professional Salsa Solo Male"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 12:50"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor>
+            {
+                comptrDebbie_Chou_Salsa_Con_Coco,
+                comptrLiz_Parons_Sweet_Azucar
+            });
+            var compOpenLatinSoloMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Solo Mixed", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Solo Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 13:10"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor>
+            {
+                comptrKirsten_Scott_Salsa_Cartel_Australia,
+                comptrCoco_Salsa_Con_Coco,
+                comptrLee_Aiono_Salsa_In_The_Suburbs
+            });
+            var compMastersSalsaSoloMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Masters Salsa Solo Mixed", Category = divMasters.Categories.First(x => x.Caption == "Masters Salsa Solo Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 13:20"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+
+            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
+            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor>
+            {
+                comptrMia_Yatiswara_and_Robyn_Lindsay_Ritmos_Candentes
+            });
+            var compOpenSalsaShinesDuets = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Shines Duets", Category = divOpen.Categories.First(x => x.Caption == "Open Salsa Shines Duets"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 13:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrLatinFireYouthTeam
+                comptrHannah_Gin_and_Michelle_Knowler_Self_represented,
+                comptrArturo_Flores_and_Kirsten_Scott_Salsa_Cartel_Australia
             });
-            var compYouthSalsaSoloTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Youth Salsa Solo Teams", Category = divYouth.Categories.First(x => x.Caption == "Youth Salsa Solo Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 16:40"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-
-            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { 
-                comptrRainesSuavesitas_RaineSymons,
-                comptrLatinFireYouthTeam
-            });
-            var compYouthLatinSoloTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Youth Latin Solo Teams", Category = divYouth.Categories.First(x => x.Caption == "Youth Latin Solo Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 17:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-
-            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { 
-                
-            });
-            var compYouthSalsaDuetsMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Youth Salsa Duets Mixed", Category = divYouth.Categories.First(x => x.Caption == "Youth Salsa Duets Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 17:20"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-
-            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { 
-                comptrCharlotteJaneBuccahanandCharmaineJoyBuccahan_RaineSymons,
-                comptrNatashaFrostandMaggieKwon_LatinFire,
-                comptrHollyBayneandCaitlinQuin_LatinFire
-            });
-            var compYouthLatinDuetsMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Youth Latin Duets Mixed", Category = divYouth.Categories.First(x => x.Caption == "Youth Latin Duets Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 17:40"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-
-            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { 
-                comptrKristinaKostevc_Self,
-                comptrMandyYap_Self,
-                comptrMareeHanford_LatinAddiction,
-                comptrKearaTyler_Self
-            });
-            var compAmateurSalsaSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Salsa Solo Female", Category = divAmatuer.Categories.First(x => x.Caption == "Amateur Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 18:45"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-
-
+            var compOpenLatinShinesDuets = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Shines Duets", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Shines Duets"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 13:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrYanZhou_EDanceProductions,
-                comptrEmilyWoodfield_StellarPerformingArts,
-                comptrLaylaMoutrib_EDP,
-                
+                comptrAracelly_Roxana_Silva_Cortes_and_Rodrigo_Hernan_Plaza_Rosales_Self_Represented
             });
-            var compSemi_ProSalsaSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Semi_Pro Salsa Solo Female", Category = divSemiPro.Categories.First(x => x.Caption == "Semi_Pro Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 19:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-
-            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> { 
-                comptrRaineSymons_RainesSuavesitas,
-                comptrMiaYatiswara_SalsaLatina,
-                comptrDeborahChou_SalsaConCoco
-            });
-            var compProfessionalSalsaSoloFemale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Salsa Solo Female", Category = divProf.Categories.First(x => x.Caption == "Professional Salsa Solo Female"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 19:15"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compAmateurSalsaCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Salsa Couples", Category = divAmatuer.Categories.First(x => x.Caption == "Amateur Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 13:40"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrYoheiMikawa_TempoDanceCompany,
-                comptrJeremySim_EncantoEntertainment,
-                comptrJeorgeSequeiros_SalsaConCoco
+                comptrYan_Zhou_and_Ricardo_Grecco_RYDE
             });
-            var compProfessionalSalsaSoloMale = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Salsa Solo Male", Category = divProf.Categories.First(x => x.Caption == "Professional Salsa Solo Male"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 19:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compProfessionalSalsaCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Salsa Couples", Category = divProf.Categories.First(x => x.Caption == "Professional Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 13:50"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrAlanaMace_RainesSuavesitas,
-                comptrYanZhou_EDanceProductions,
-                comptrRaineSymons_RainesSuavesitas,
-                comptrTaniaGordon_SalsaLatina,
-                comptrLaylaMoutrib_EDP,
-                comptrJeremySim_EncantoEntertainment,
-                comptrEstherMeenken_MamboLab,
-                comptrDeborahChou_SalsaConCoco
+                comptrAracelly_Roxana_Silva_Cortes_and_Rodrigo_Hernan_Plaza_Rosales_Self_Represented
             });
-            var compOpenLatinSolo = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Solo", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Solo"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 19:45"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compAmateurBachataCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Bachata Couples", Category = divAmatuer.Categories.First(x => x.Caption == "Amateur Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 14:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrJessicaAbelenandLevGimelfarb_LatinissimoNelson,
-                comptrSharonMiddletonandDarcyLange_Self,
-                comptrEstherMeenkenandCorwinRuegg_MamboLab
+                comptrDebbie_Chou_Salsa_Con_Coco
             });
-            var compSemi_ProSalsaCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Semi_Pro Salsa Couples", Category = divSemiPro.Categories.First(x => x.Caption == "Semi_Pro Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 20:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compProfessionalBachataCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Bachata Couples", Category = divProf.Categories.First(x => x.Caption == "Professional Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 14:20"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrSaraDjuricandSebastianVera_SaraandSebastian,
-                comptrAndradaNeaguandAlbertoJuarez_PassionofExpression
-            });
-            var compProfessionalSalsaCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Salsa Couples", Category = divProf.Categories.First(x => x.Caption == "Professional Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 20:15"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+                comptrSara_Djuric_Pro_and_Jonny_Watson_Am_Sara_and_Sebasitan_Dance_Co,
+                comptrSebastian_Vera_Pro_and_Nicola_Taylor_Am_Sara_and_Sebastian_Dance_Co
+             });
+            var compPro_AmSalsaCouplesMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Pro_Am Salsa Couples Mixed", Category = divProAm.Categories.First(x => x.Caption == "Pro_Am Salsa Couples Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 14:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrNazeefKhanAMandEmilyGlubbPro_EDP,
-                comptrMiaYatiswaraandJeremySim_SalsaLatinaandEncantoEntertainment,
-                comptrRicardoGreccoandYanZhou_Self
+                comptrCoco_Pro_Helga_Moran_Am_Salsa_Con_Coco,
+                comptrAlberto_Juarez_Pro_Anoushka_Jain_Am_Passion_Of_Expression,
+                comptrYohei_Mikawa_Pro_and_Farya_Zaman_Am_Self_Represented,
+                comptrSebasitan_Vera_Pro_and_Lucile_Payraudeau_Am_To_Register_Sara_and_Sebastian_Dance_Co
             });
-            var compOpenSalsaCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Couples", Category = divOpen.Categories.First(x => x.Caption == "Open Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 20:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compPro_AmLatinCouplesMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Pro_Am Latin Couples Mixed", Category = divProAm.Categories.First(x => x.Caption == "Pro_Am Latin Couples Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 14:50"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrKatrinPechingerandKahuLeary_Self,
-                comptrAlinaSolomkinaandCorwinRuegg_EDP
+                comptrDebbie_Chou_Salsa_Con_Coco,
+                comptrKrissi_Gould_and_Phil_Gentry_Self_Represented,
+                comptrKathrin_Robertson_and_Lee_Aiono_Salsa_In_The_Suburbs,
+                comptrCoco_and_Debbie_Chou_Salsa_Con_Coco_,
+                comptrNola_Chong_and_Wayne_Lapwood_Salsa_Con_Coco_,
+                comptrKrissi_Gould_and_Phil_Gentry_Self_Represented
             });
-            var compSemi_ProBachataCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Semi_Pro Bachata Couples", Category = divSemiPro.Categories.First(x => x.Caption == "Semi_Pro Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 20:45"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compMastersSalsaCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Masters Salsa Couples", Category = divMasters.Categories.First(x => x.Caption == "Masters Salsa Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 16:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrSaraDjuricandSebastianVera_SaraandSebastian,
-                comptrAndradaNeaguandAlbertoJuarez_PassionofExpression
+                comptrDiane_Field_and_Jorge_Sequeiros_Salsa_Con_Coco
             });
-            var compProfessionalBachataCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Professional Bachata Couples", Category = divProf.Categories.First(x => x.Caption == "Professional Bachata Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 21:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compMastersLatinCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Masters Latin Couples", Category = divMasters.Categories.First(x => x.Caption == "Masters Latin Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 16:20"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrGiancarloJohanssonandHeidiCone_Latinissimo//,
-                //comptrDeborahChouandJeorgeSequeiros_SalsaConCoco
+                comptrSalsa_Latina,
+                comptrPassion_Of_Expression_Salsa_Team
             });
-            var compOpenLatinCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Couples", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 21:15"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compAmateurSalsaTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Salsa Teams", Category = divAmatuer.Categories.First(x => x.Caption == "Amateur Salsa Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 16:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrEstherMeenkenandEllenHume_MamboLab
+                comptrSalsa_Con_Coco_Pelota,
+                comptrRYDE_Salsa_Team,
+                comptrSalsa_Latina_Mambo_Team
             });
-            var compOpenSalsaShinesDuets = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Shines Duets", Category = divOpen.Categories.First(x => x.Caption == "Open Salsa Shines Duets"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 21:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compOpenSalsaTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Salsa Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 16:45"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrRowenaDalumpienesandJeninaMangoma_RainesSuavesitas,
-                comptrSarahSonalandLeylaMoutrib_EDP
+                comptrPassion_Of_Expressions_Bachata_Team
             });
-            var compOpenLatinShinesDuets = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Shines Duets", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Shines Duets"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 21:45"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compOpenLatinTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 16:55"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrSebastianVeraandKearaTyler_AM_SaraandSebastian,
-                comptrMichaelHobbsandStephanieHampson_Am_LatinFire
+                comptrRYDE_Salsa_Shines_Team
             });
-            var compPro_AmLatinCouples = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Pro_Am Latin Couples", Category = divProAm.Categories.First(x => x.Caption == "Pro_Am Latin Couples"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 22:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compOpenSalsaShinesTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Shines Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Salsa Shines Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 17:10"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrPassionOfExpressionSalsaTeam_PassionOfExpression,
-                comptrSalsaSabrosa_SalsaLatina
+                comptrRitmos_Candentes_Cha,
+                comptrLas_Isadoras_Salsa_Latina,
+                comptrRitmos_Candentes_Bachata
             });
-            var compAmateurSalsaTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Amateur Salsa Teams", Category = divAmatuer.Categories.First(x => x.Caption == "Amateur Salsa Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 22:15"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compOpenLatinShinesTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Shines Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Shines Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 17:20"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrAdvancedAllianceDanceTeam_CarineMoraisandRafaelBarros_Brazil,
-                comptrAcereBongo_SalsaConCoco,
-                comptrIntermediateAllianceDanceTeam_CarineMoraisandRafaelBarros_Brazil
+                comptrSweet_Azucar_Showcase_Team,
+                comptrSalsa_Latina_Bachata_Kizomba_Team
             });
-            var compOpenSalsaTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Salsa Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 22:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compOpenShowcaseTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Showcase Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Showcase Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 17:20"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
             judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
             competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrPassionOfExpressionBachataTeam_PassionofExpression,
-                comptrBachasalsa_SalsaConCoco
+                comptrSalsa_Con_Coco_Mixed_Latin_Team
             });
-            var compOpenLatinTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 22:45"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
+            var compMastersLatinTeamsMixed = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Masters Latin Teams Mixed", Category = divMasters.Categories.First(x => x.Caption == "Masters Latin Teams Mixed"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2018-12-01 17:30"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
 
-            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrEDanceProductions_EDP,
-                comptrRitmosCandentes_SalsaLatina
-            });
-            var compOpenSalsaShinesTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Salsa Shines Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Salsa Shines Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 23:00"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-
-            judgeCompetitions = CreateJudgeCompetitions(new List<Judge> { judgeHead, judge1, judge2, judge3, judge4, judge5 });
-            competitorCompetitions = CreateCompetitorCompetitions(new List<Competitor> {
-                comptrKarenForcanoLadiesShinesTeam_SaraDjuric,
-                comptrRainesSuavesitas_RaineSymons,
-                comptrLatinFireBachataTeam_LatinFire,
-                comptrEDanceProductions_EDP,
-                comptrRitmosCandentes_SalsaLatina
-            });
-            var compOpenLatinShinesTeams = new Competition { Id = Guid.NewGuid(), Location = location, Name = "Open Latin Shines Teams", Category = divOpen.Categories.First(x => x.Caption == "Open Latin Shines Teams"), CompetitionStatus = CompetitionStatus.Created, StartedOn = DateTimeOffset.Parse("2017-11-25 23:15"), CompletedOn = null, CreatedOn = DateTimeOffset.Now, CompetitorCompetitions = competitorCompetitions, JudgeCompetitions = judgeCompetitions };
-
-
-            new List<Competition> { compOpenLatinShinesTeams, compOpenSalsaShinesTeams, compOpenLatinTeams, compOpenSalsaTeams, compAmateurSalsaTeams, compPro_AmLatinCouples, compOpenLatinShinesDuets, compOpenSalsaShinesDuets, compOpenLatinCouples, compProfessionalBachataCouples, compSemi_ProBachataCouples, compOpenSalsaCouples, compProfessionalSalsaCouples, compSemi_ProSalsaCouples, compOpenLatinSolo, compProfessionalSalsaSoloMale, compProfessionalSalsaSoloFemale, compSemi_ProSalsaSoloFemale, compAmateurSalsaSoloFemale, compYouthLatinDuetsMixed, compYouthSalsaDuetsMixed, compYouthLatinSoloTeams, compYouthSalsaSoloTeams, compYouthLatinSoloMixed, compYouthSalsaSoloMixed, }.ForEach(x => context.Competitions.Add(x));
-
-
-
+            new List<Competition> { compNoviceSalsaSoloFemale, compAmateurSalsaSolomale, compAmateurSalsaSoloFemale, compProfessionalSalsaSoloFemale, compProfessionalSalsaSoloMale, compOpenLatinSoloMixed, compMastersSalsaSoloMixed, compOpenSalsaShinesDuets, compOpenLatinShinesDuets, compAmateurSalsaCouples, compProfessionalSalsaCouples, compAmateurBachataCouples, compProfessionalBachataCouples, compPro_AmSalsaCouplesMixed, compPro_AmLatinCouplesMixed, compMastersSalsaCouples, compMastersLatinCouples, compAmateurSalsaTeams, compOpenSalsaTeams, compOpenLatinTeams, compOpenSalsaShinesTeams, compOpenLatinShinesTeams, compOpenShowcaseTeams, compMastersLatinTeamsMixed }.ForEach(x => context.Competitions.Add(x));
 
             #endregion ASSIGN_COMPETITOR_COMPETITION_JUDGES
 

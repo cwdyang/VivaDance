@@ -10,6 +10,7 @@ C:\Development\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Debug\Viva.Corporate
 C:\Development\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Debug\Viva.CorporateSys.Dance.Domain.pdb
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Domain\bin\Debug\Viva.CorporateSys.Dance.Domain.dll
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Domain\bin\Debug\Viva.CorporateSys.Dance.Domain.pdb
-C:\Clients\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Debug\Viva.CorporateSys.Dance.Domain.csprojResolveAssemblyReference.cache
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Debug\Viva.CorporateSys.Dance.Domain.dll
 C:\Clients\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Debug\Viva.CorporateSys.Dance.Domain.pdb
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Debug\Viva.CorporateSys.Dance.Domain.csprojAssemblyReference.cache
+C:\Clients\VivaDance\Viva.CorporateSys.Dance.Domain\obj\Debug\Viva.CorporateSys.Dance.Domain.csproj.CoreCompileInputs.cache
