@@ -4,7 +4,7 @@ Phyllisann Tyler_Independent
 Scott Suen_Salsa Latina
 
 select Name,startedon from dance.competition order by startedon
-exec dbo.sp_ShowParticipantsByNames  'Semi-Pro Solos'
+exec dbo.sp_ShowParticipantsByNames  'Novice Salsa Solo Female'
 */
 
 IF EXISTS (SELECT * FROM dbo.sysobjects
@@ -17,7 +17,7 @@ CREATE PROCEDURE dbo.sp_ShowParticipantsByNames
     @CompetionName nvarchar(255)
 AS 
 
-    select /*p.Id as CompetitorId,*/ cc.Id as CompetitionCompetitorId, p.EntityName,cc.Name,cc.Sequence as CompName from
+    select /*p.Id as CompetitorId,*/ cc.Id as CompetitionCompetitorId, p.EntityName,cc.Name,cc.Sequence as Seq from
 [Dance].[Competitor] c
 inner join
 (select cc.Id, cc.CompetitorId,c.Name,cc.Sequence
